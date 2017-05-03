@@ -1,1 +1,2 @@
-# Code and RMarkdown worksheets for my Introduction to R course.
+# intro_to_r
+Code and RMarkdown worksheets for the Introduction to R course.
