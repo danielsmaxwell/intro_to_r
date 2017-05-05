@@ -22,7 +22,7 @@ In this section, Kabacoff assumes that the reader already knows what a function 
 Because we are using the RStudio integrated development environment (IDE), what you see in the RStudio console will differ from Figure 1.3. \newline 
 
 **1.3.3** The workspace  
-For newcomers, the getwd () and setwd () functions are critically important because R sources files from your current working directory.  Inevitably, students forget where they're at and then get an error message when trying to load a file with one of the read functions. \newline
+For newcomers, the `getwd ()` and `setwd ()` functions are critically important because R sources files from your current working directory.  Inevitably, students forget where they're at and then get an error message when trying to load a data file. \newline
 
 ```{r}
 setwd("c:/Informatics")  # Set the working directory -- This is now the default directory
