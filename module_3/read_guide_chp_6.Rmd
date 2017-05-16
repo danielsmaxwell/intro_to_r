@@ -18,7 +18,10 @@ As Kabacoff does not discuss the `table()` function here, you'll want to read ab
 **6.5.1** Using parallel box plots to compare groups   
 The `~` in the formula `mpg ~ cyl` separates the *dependent* or *response* variable on the left from the *independent* (*explanatory* or *predictor*) variable on the right.  Please note: statistics textbookss are inconsistent in the names they use for these two variables.    
 
-Here's a definition, provided by Gravetter & Wellnau (2016).  "The *dependent variable* is the one that is observed to assess the effect of the treatment ... while the *independent variable* is the one manipulated by the researcher" (p. 15).  
+Here's a definition of these two kinds of variables, provided by Gravetter & Wellnau (2016).  "The *dependent variable* is the one that is observed to assess the effect of the treatment ... while the *independent variable* is the one manipulated by the researcher" (p. 15).  
 
-In Listing 6.9, Kabacoff introduces the `*` operator. What does that mean? To answer this question, see table 8.2 (p. 172) for a list of symbols used in R formulas and their respective definitions.
+In Listing 6.9, Kabacoff introduces the `*` operator. What does that mean? To answer this question, see table 8.2 (p. 172) for a list of symbols used in R formulas and their respective definitions. \newline
 
+
+
+Gravetter, F. J. (2015). *Statistics for the behavioral sciences* (10th ed.). Boston, MA: Cengage Learning.
