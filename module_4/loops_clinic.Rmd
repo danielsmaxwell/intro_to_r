@@ -17,6 +17,8 @@ Later in this clinic, we'll examine some code that demonstrates how a for loop w
 
 And finally, Slide 3 presents the logical operation and basic syntax of the `repeat` loop. \newline \newline ![](repeat_loop.png)
 
+All slides adapted from *More Loops, Control Structures, and Bootstrapping*, by K. Rice & T. Thornton.  Retrieved from http://faculty.washington.edu/kenrice/rintro/.
+
 \newpage
 ## Sample Code
 Now that a concise outline of R's three loop statements has been presented, we need to look at some actual code, to see how R loops work in the real world.  To do that, we are going to load the arsenic data file and then step through it.  Let's take a look at what we've got. \newline
