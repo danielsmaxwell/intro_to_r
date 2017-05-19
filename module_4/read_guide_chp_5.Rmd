@@ -35,7 +35,7 @@ Custom functions are not covered in this course.  However, they are presented in
 **5.6.3** The reshape2 package  
 This is an important section as many students run into trouble when they present data to a statistical function, and it is in the wrong format.  Table 5.8 presents a hypothetical dataset in *wide* format whereas Table 5.9 presents that same dataset in *long* format.  Remember: you only need as many columns as there are variables.
 
-Let's illustrate what these formats look like with some real data.  The file home_ownership.txt contains "homeownership rates, in percentages, for a subset of states for the years 1985, 1996, and 2002. These values represent the proportion of homes owned by the occupant to the total number of occupied homes" (Ott & Longnecker, 2016, p. 129).   
+Let's illustrate what these formats look like with some real data.  The file home_ownership.txt contains "homeownership rates, in percentages, by state for the years 1985, 1996, and 2002. These values represent the proportion of homes owned by the occupant to the total number of occupied homes" (Ott & Longnecker, 2016, p. 129).  The file used in the code below contains just 11 rows of the complete dataset. \newline
 
 ```{r}
 library(reshape2)  # Load the reshape2 library.
@@ -52,5 +52,6 @@ home_own_long      # Now take a look at the data in long format.
 
 ```
 
+As you can see, the year columns in the wide format are stacked when converted to the long format.  Many of R's statistical functions will return errors if the data is presented to them in wide format. \newline
 
 Ott, L., & Longnecker, M. (2016). *An introduction to statistical methods & data analysis* (7th ed.). Boston, MA: Cengage Learning.
