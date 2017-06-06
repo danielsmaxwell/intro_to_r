@@ -42,22 +42,32 @@ fix(tmp)
 write.csv(tmp, file = "tmp.csv")          
 
 # Create a new dataframe of the two columns needed for the pie chart. 
-temp   <- data.frame(tmp$acad_grp, tmp$dept_cnt, stringsAsFactors = FALSE)
-
+temp <- data.frame(tmp$acad_grp, tmp$dept_cnt, stringsAsFactors = FALSE)
 colnames(temp) <- c("acad_grp","dept_cnt")
 
-grp_by <- group_by(temp, acad_grp)                    # Group rows by academic group.
+# Group rows by academic group and then sum dept_cnt for each academic group.
+grp_by <- group_by(temp, acad_grp)            
+slices <- summarize(grp_by, grp_tot = sum(dept_cnt))     
 
-slices <- summarize(grp_by, grp_tot = sum(dept_cnt))  # Sum dept_cnt for each academic group.
-
-pie(slices$grp_tot, labels = slices$acad_grp, main = "Pie Chart") 
+# Calculate percentages, round to two digits, and then create labels.
+slices$grp_pct <- (slices$grp_tot / sum(slices$grp_tot))
+slices$grp_pct <- round(slices$grp_pct, 2) * 100
+slices$lbl     <- paste(slices$acad_grp, " ", slices$grp_pct, "%", sep = "")
+ 
+# And finally, generate the pie chart.
+pie(slices$grp_pct, labels = slices$lbl, main = "Participation by Academic Area") 
 
 # We can accomplish the same thing with the pipe operator.
 slices <- group_by(temp, acad_grp) %>% summarize(grp_tot = sum(dept_cnt))
 
 pie(slices$grp_tot, labels = slices$acad_grp, main = "Pie Chart (Pipe)") 
 
-  
+# Code to make the slice labels more descriptive.
+slices$acad_grp[1] <- "Humanities"
+slices$acad_grp[2] <- "Health Sciences"
+slices$acad_grp[3] <- "Sciences"
+slices$acad_grp[4] <- "Social Sciences"
+slices$acad_grp[5] <- "Unknown"
 
 
 
