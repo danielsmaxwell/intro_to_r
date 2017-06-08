@@ -9,10 +9,10 @@ header-includes: \usepackage{color}
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, fig.pos = 'H')
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Before You Start this Exercise Worksheet
+## Before You Start...
 
 Please ensure you have the latest version of R and RStudio installed on your machine. This is important, as some packages used in the workshop may not install correctly (or at all) if R is not up to date.
 
@@ -21,6 +21,10 @@ Please ensure you have the latest version of R and RStudio installed on your mac
 [Download and install MikTeX here](https://miktex.org/download) 
 
 [Download and install RStudio here](https://www.rstudio.com/) 
+
+> ### *R in Action (Section 1.2)*
+> You must install base R before installing RStudio.  In fact RStudio won't work without
+> R installed.
 
 ## Introduction to RStudio
 
@@ -66,18 +70,18 @@ interactive R console.
    * You will be able to run the file you create from within RStudio
    or using R's `source()`  function.
 
-## Tip: Running segments of your code
-
-RStudio offers you great flexibility in running code from within the editor
-window. There are buttons, menu choices, and keyboard shortcuts. To run the
-current line, you can 1. click on the `Run` button above the editor panel,
-or 2. select "Run Lines" from the "Code" menu, or 3. hit Ctrl-Enter in Windows
-or Linux or Command-Enter on OS X. (This shortcut can also be seen by hovering
-the mouse over the button). To run a block of code, select it and then `Run`.
-If you have modified a line of code within a block of code you have just run,
-there is no need to reselect the section and `Run`, you can use the next button
-along, `Re-run the previous region`. This will run the previous code block
-including the modifications you have made.
+> ### \textcolor{blue}{Tip: Running segments of your code}
+> 
+> RStudio offers you great flexibility in running code from within the editor
+> window. There are buttons, menu choices, and keyboard shortcuts. To run the
+> current line, you can 1. click on the `Run` button above the editor panel,
+> or 2. select "Run Lines" from the "Code" menu, or 3. hit Ctrl-Enter in Windows
+> or Linux or Command-Enter on OS X. (This shortcut can also be seen by hovering
+> the mouse over the button). To run a block of code, select it and then `Run`.
+> If you have modified a line of code within a block of code you have just run,
+> there is no need to reselect the section and `Run`, you can use the next button
+> along, `Re-run the previous region`. This will run the previous code block
+> including the modifications you have made.
 
 ## Introduction to R
 
@@ -108,24 +112,25 @@ for now, we'll explain that later. For now think of it as indicating output.
 Like bash, if you type in an incomplete command, R will wait for you to
 complete it:
 
-> 1 +
-+                        
+`> 1 +`   
+`+`
 
 Any time you hit return and the R session shows a "+" instead of a ">", it
 means it's waiting for you to complete the command. If you want to cancel
 a command you can simply hit "Esc" and RStudio will give you back the ">"
 prompt.
 
-## Tip: Cancelling commands
+> ### \textcolor{blue}{Tip: Cancelling commands}
+>
+> If you're using R from the commandline instead of from within RStudio,
+> you need to use `Ctrl+C` instead of `Esc` to cancel the command. This
+> applies to Mac users as well!
+> 
+> Cancelling a command isn't only useful for killing incomplete commands:
+> you can also use it to tell R to stop running code (for example if it's
+> taking much longer than you expect), or to get rid of the code you're
+> currently writing. \newline 
 
-If you're using R from the commandline instead of from within RStudio,
-you need to use `Ctrl+C` instead of `Esc` to cancel the command. This
-applies to Mac users as well!
-
-Cancelling a command isn't only useful for killing incomplete commands:
-you can also use it to tell R to stop running code (for example if it's
-taking much longer than you expect), or to get rid of the code you're
-currently writing.
 
 When using R as a calculator, the order of operations is the same as you
 would have learned back in school.
@@ -235,23 +240,23 @@ We can also do comparison in R:
 ```
 
 
-## Tip: Comparing Numbers
-
-A word of warning about comparing numbers: you should
-never use `==` to compare two numbers unless they are
-integers (a data type which can specifically represent
-only whole numbers).
-
-Computers may only represent decimal numbers with a
-certain degree of precision, so two numbers which look
-the same when printed out by R, may actually have
-different underlying representations and therefore be
-different by a small margin of error (called Machine
-numeric tolerance).
-
-Instead you should use the `all.equal` function.
-
-Further reading: [http://floating-point-gui.de/](http://floating-point-gui.de/)
+> ### \textcolor{blue}{Tip: Comparing Numbers}
+>
+> A word of warning about comparing numbers: you should
+> never use `==` to compare two numbers unless they are
+> integers (a data type which can specifically represent
+> only whole numbers).
+>
+> Computers may only represent decimal numbers with a
+> certain degree of precision, so two numbers which look
+> the same when printed out by R, may actually have
+> different underlying representations and therefore be
+> different by a small margin of error (called Machine
+> numeric tolerance).
+>
+> Instead you should use the `all.equal` function.
+> 
+> Further reading: [http://floating-point-gui.de/](http://floating-point-gui.de/)
 
 ## Variables and assignment
 
@@ -327,16 +332,16 @@ There are a few useful commands you can use to interact with the R session.
 ls()
 ```
 
-## Tip: hidden objects
-
-Like in the shell, `ls` will hide any variables or functions starting
-with a "." by default. To list all objects, type `ls(all.names=TRUE)`
-instead
-
-Note here that we didn't given any arguments to `ls`, but we still
-needed to give the parentheses to tell R to call the function.
-
-If we type `ls` by itself, R will print out the source code for that function!
+> ### \textcolor{blue}{Tip: Hidden objects}
+> 
+> Like in the shell, `ls` will hide any variables or functions starting
+> with a "." by default. To list all objects, type `ls(all.names=TRUE)`
+> instead
+> 
+> Note here that we didn't given any arguments to `ls`, but we still
+> needed to give the parentheses to tell R to call the function.
+> 
+> If we type `ls` by itself, R will print out the source code for that function!
 
 ```{r}
 ls
@@ -368,12 +373,12 @@ If instead we use `<-`, there will be unintended side effects, or you may get an
 rm(list <- ls())
 ```
 
-## Tip: Warnings vs. Errors
-
-Pay attention when R does something unexpected! Errors, like above,
-are thrown when R cannot proceed with a calculation. Warnings on the
-other hand usually mean that the function has run, but it probably
-hasn't worked as expected.
+> ### \textcolor{blue}{ Tip: Warnings vs. Errors}
+> 
+> Pay attention when R does something unexpected! Errors, like above,
+> are thrown when R cannot proceed with a calculation. Warnings on the
+> other hand usually mean that the function has run, but it probably
+> hasn't worked as expected.
 
 In both cases, the message that R prints out usually give you clues
 how to fix a problem.
@@ -393,19 +398,19 @@ network). R and RStudio have functionality for managing packages:
 * You can remove a package with `remove.packages("packagename")`
 * You can make a package available for use with `library(packagename)`
 
-> ## Challenge 1
->
-> Which of the following are valid R variable names?
-> ```{r, eval=FALSE}
-> min_height
-> max.height
-> _age
-> .mass
-> MaxLength
-> min-length
-> 2widths
-> celsius2kelvin
-> ```
+## Challenge 1
+
+Which of the following are valid R variable names?
+```{r, eval=FALSE}
+min_height
+max.height
+_age
+.mass
+MaxLength
+min-length
+2widths
+celsius2kelvin
+```
 >
 > > ## Solution to challenge 1
 > >
@@ -431,17 +436,17 @@ network). R and RStudio have functionality for managing packages:
 > {: .solution}
 {: .challenge}
 
-> ## Challenge 2
->
-> What will be the value of each  variable  after each
-> statement in the following program?
->
-> ```{r, eval=FALSE}
-> mass <- 47.5
-> age <- 122
-> mass <- mass * 2.3
-> age <- age - 20
-> ```
+## Challenge 2
+
+What will be the value of each  variable  after each
+statement in the following program?
+
+```{r, eval=FALSE}
+mass <- 47.5
+age <- 122
+mass <- mass * 2.3
+age <- age - 20
+```
 >
 > > ## Solution to challenge 2
 > >
@@ -470,11 +475,11 @@ network). R and RStudio have functionality for managing packages:
 {: .challenge}
 
 
-> ## Challenge 3
->
-> Run the code from the previous challenge, and write a command to
-> compare mass to age. Is mass larger than age?
->
+## Challenge 3
+
+Run the code from the previous challenge, and write a command to
+compare mass to age. Is mass larger than age?
+
 > > ## Solution to challenge 3
 > >
 > > One way of answering this question in R is to use the `>` to set up the following:
@@ -486,10 +491,11 @@ network). R and RStudio have functionality for managing packages:
 {: .challenge}
 
 
-> ## Challenge 4
->
-> Clean up your working environment by deleting the mass and age
-> variables.
+## Challenge 4
+
+Clean up your working environment by deleting the mass and age
+variables.
+
 >
 > > ## Solution to challenge 4
 > >
@@ -500,9 +506,10 @@ network). R and RStudio have functionality for managing packages:
 > {: .solution}
 {: .challenge}
 
-> ## Challenge 5
->
-> Install the following packages: `dplyr`, `rshape2`, `gapminder`
+## Challenge 5
+
+Install the following packages: `dplyr`, `rshape2`, `gapminder`
+
 >
 > > ## Solution to challenge 5
 > >
