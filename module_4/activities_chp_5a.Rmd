@@ -1,0 +1,110 @@
+---
+title:  "A Problem of Scale"
+author: "Dan Maxwell"
+date:   "January 12, 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## The Challenge
+
+Students in a local middle-school recently completed tests in Math, Science, and English.  The names of the students and the scores they received are listed below.
+
+Student           | Math    | Science   | English
+------------------|---------|-----------|--------
+John Davis        | 502     | 95        | 25
+Angela Williams   | 600     | 99        | 22
+Bullwinkle Moose  | 412     | 80        | 18
+David Jones       | 358     | 82        | 15
+Janice Markhammer | 495     | 75        | 20
+Cheryl Cushing    | 512     | 85        | 28
+Reuven Ytzrhak    | 410     | 80        | 15
+Greg Knox         | 625     | 95        | 30
+Joel England      | 573     | 89        | 27
+Mary Rayburn      | 522     | 86        | 18
+
+The registrar has asked you to calculate a single grade for each student that represents how each did relative to their peers on all three tests.  Students in the top 20% across all three tests should receive an A, the next 20% should receive a B, and so forth. Immediately, you are confronted with a challenge because the scores are not comparable as each test uses a different scale.  Thus you'll need to transform the scores into equivalent units before calculating a grade.
+
+In order to do this, you'll need to create vectors for each set of scores, combine those vectors into a dataframe, convert the scores to a common scale, calculate the breakpoints (quantiles) for each letter grade, and finally add a column to the dataframe with the assigned grade in it.
+
+Here are the specialized functions you'll need to use for this R challenge.  Start by reviewing the documentation for each by typing *?function_name* at the RStudio prompt and then write a short description of each one.
+
+\textcolor{blue}{c} \newline
+\textcolor{blue}{data.frame} \newline
+\textcolor{blue}{scale} \newline
+\textcolor{blue}{apply} \newline
+\textcolor{blue}{cbind} \newline
+\textcolor{blue}{quantile}
+
+\newpage
+
+## The Solution
+
+In the code below, we first limit the number of digits after the decimal point to 2, using \textcolor{blue}{options}.  We then create four vectors, one populated with the student names and one each for their Math, Science, and English scores.  And finally, we combine the three vectors into a single data frame named roster.  
+
+```{r vector_assignment}
+
+options(digits = 2)
+
+student <- c("John Davis", "Angela Williams", "Bullwinkle Moose", "David Jones",
+             "Janice Markhammer", "Cheryl Cushing", "Reuven Ytzrhak", "Greg Knox",
+             "Joel England","Mary Rayburn")
+
+math    <- c(502, 600, 412, 358, 495, 512, 410, 625, 573, 522)
+science <- c(95, 99, 80, 82, 75, 85, 80, 95, 89, 86)
+english <- c(25, 22, 18, 15, 20, 28, 15, 30, 27, 18)
+
+roster  <- data.frame(student, math, science, english, stringsAsFactors = FALSE)
+
+roster  # Preview the new roster data frame.
+
+```
+
+### Converting to a Common Scale
+In order to assign a single grade to each student, all of the test scores need to be converted to a common scale.  In statistics, we do this by calculating a $z$ score for each of the values in the data frame. 
+
+Here's the formula to do this: $z = \frac{X - \mu }{\sigma}$
+
+A $z$ score is the distance from the mean $\mu$ in standard deviations $\sigma$.  So in the formula above, the mean is first subtracted from an observed value $X$ and the result divided by the standard deviation.  And depending on whether the observed value is above or below the mean, the resulting z score will be either positive or negative. In R, the \textcolor{blue}{scale} function converts observed values to z scores.  In the first line of code below, \textcolor{blue}{scale} does that for all of the test scores in columns 2 through 4.  The results are then assigned to a new dataframe called z_scores.   
+
+With the z_scores dataframe, we then calculate the mean for each row, using the \textcolor{blue}{apply} function.  There are three arguments to this function.  The first is the data frame to be operated on.  The second and third direct \textcolor{blue}{apply} to calculate the mean for each *row* in the dataframe. The results of this calculation are then assigned to the score vector and "glued" to the roster dataframe, using \textcolor{blue}{cbind}.
+
+
+```{r scale_data}
+
+z_scores <- scale(roster[,2:4])
+score    <- apply(z_scores, 1, mean)
+roster   <- cbind(roster, score)
+
+roster  # Preview the roster data frame once again with the score column added.
+
+```
+
+With the averages of the three test scores calculated for each student, our next step is to divide the score vector into five equal parts, one for each letter grade. \textcolor{blue}{Quantile} does this nicely.  In this case, it calculates the grade breakpoints using the values in the score vector.  The results are then assigned to the idx vector which now contains four values, one for each quantile.  Any score above the first value in idx ought to receive an A, between the first and second quantiles a B, and so forth.  In the last five lines of code, a final grade is assigned to each student by comparing the student's composite (mean) score to specific values in the idx vector.  The grade column is implicitly added to the roster dataframe at the time it is first referenced.
+ 
+```{r assign_grade}
+
+idx <- quantile(score, c(.8, .6, .4, .2))
+
+roster$grade[score >= idx[1]] <- "A"
+roster$grade[score < idx[1] & score >= idx[2]] <- "B"
+roster$grade[score < idx[2] & score >= idx[3]] <- "C"
+roster$grade[score < idx[3] & score >= idx[4]] <- "D"
+roster$grade[score < idx[4]] <- "F"
+
+```
+
+And finally, let's take one last look at the roster which now contains the assigned grades.  
+
+```{r final_dsply}
+
+roster <- roster[order(student),]   # Order the roster by name.
+
+roster  # View the roster data frame one last time.
+```
+
+Adapted from *R in Action: Data analysis and graphics with R* (p. 101), Shelter Island, NY: Manning Publications Company.  Copyright 2015.
+
