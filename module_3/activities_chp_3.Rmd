@@ -13,11 +13,12 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 Load the supporting libraries...
-
+ 
 ```{r init}
 
 library(sqldf)
 library(dplyr)
+library(Hmisc)
 
 ```
 
@@ -25,7 +26,78 @@ library(dplyr)
 
 ```{r plot}
 
+# Create dataframe from the data file
+poverty <- read.delim("family_poverty.txt", sep = "\t", stringsAsFactors = FALSE)
 
+opar <- par(no.readonly = TRUE)
+ten  <- subset(poverty, year > 2005)
+
+# Plot poverty % by year.
+plot(ten$year, ten$family_poverty_pct,
+               xlab = "Year",
+               ylab = "Families in Poverty %",
+               ylim = c(9, 13), 
+               type = "b", 
+               cex  = .75,
+               lty  = 3,
+               pch  = 1)
+
+# Reset the parameters.
+par() <- opar
+
+```
+
+http://www.statmethods.net/advgraphs/axes.html
+
+Plotting multiple lines.
+
+```{r}
+
+tmp <- read.delim("race_poverty.txt", sep = "\t", stringsAsFactors = FALSE)
+
+# Because the read.delim command imports the tot_num_poverty variable as
+# a character string, we need to convert it to a numeric.  The problem
+# is that the "numbers" are formatted with commas.  These must first be
+# removed before converting the string to a number.
+
+tot_num_poverty <- as.numeric(gsub(",", "", tmp$tot_num_poverty))
+
+# Remove na's at this point...
+poverty <- data.frame(year = tmp$year, 
+                      tot_num_poverty, 
+                      pct_total_poverty = tmp$pct_total_poverty, 
+                      race = tmp$race)
+
+# Create vectors, one for each race represented.
+white    <- subset(poverty, race == "white")
+hispanic <- subset(poverty, race == "hispanic")
+black    <- subset(poverty, race == "black")
+asian    <- subset(poverty, race == "asian")
+
+# Check the new vectors.  Do they have na's in them?  If so, we have 
+# to deal with them.  This is defensive programming.
+is.na(white$year)
+is.na(white$tot_num_poverty)
+
+x <- white$year
+y <- white$tot_num_poverty
+
+plot(x, y,
+     xlab = "Year",
+     ylab = "Total Number in Poverty (1000's)",
+     ylim = c(7000, 20000),
+     type = "b", 
+     cex  = .75,
+     lty  = 3,
+     col  = "blue",
+     pch  = 1)
+
+x <- hispanic$year
+y <- hispanic$tot_num_poverty
+
+# Now plot the Hispanic line, using a different color and line type.
+
+lines(x, y, type = "b", lty = 2, col = "red", pch = 0, cex = .75)
 
 ```
 
