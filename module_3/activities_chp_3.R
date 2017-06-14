@@ -78,11 +78,20 @@ plot(x, y,
      cex  = .75,
      lty  = 3,
      col  = "blue",
-     pch  = 1)
+     pch  = 1,
+     las  = 1,
+     cex.axis = .60)
 
 x <- hispanic$year
 y <- hispanic$tot_num_poverty
 
 lines(x, y, type = "b", lty = 2, col = "red", pch = 0, cex = .75)
+
+legend("bottomright",
+       title = "Race",
+       c("White","Hispanic"),
+       lty   = c(3, 2), 
+       pch   = c(1, 0),
+       col   = c("blue","red"))
 
 
