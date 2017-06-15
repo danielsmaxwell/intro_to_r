@@ -1,6 +1,8 @@
 library(sqldf)
 library(dplyr)
 
+# Barplot Code --------------------------------------------
+
 survey <- read.csv("informatics_survey.csv", stringsAsFactors = FALSE)
 
 # What happens if we don't set the stringsAsFactors argument?
@@ -22,6 +24,37 @@ barplot(cnts,
 opar <- par()
 
 par(mai = c(.5, 1.5, .5, .5))
+
+# Grouped & Stacked Barplot code -----------------------------
+
+crime <- read.csv("drink_crime.csv", stringsAsFactors = FALSE)
+
+barplot(as.matrix(crime[, c(2:4)]), 
+        legend = crime[, 1],
+           col = c("red","blue","green","yellow"))
+
+barplot(as.matrix(crime[, c(2:4)]), 
+        legend = crime[, 1],
+           col = c("red","blue","green","yellow"),
+        beside = TRUE)
+
+lgnd        <- crime$Crime
+binge       <- crime$Binge
+occassional <- crime$Occasional
+never       <- crime$Never
+cnts        <- data.frame(binge, occassional, never)
+
+barplot(as.matrix(cnts),
+        legend = lgnd,
+        col = c("red","blue","green","yellow"))
+
+barplot(as.matrix(cnts),
+        legend = lgnd,
+        col = c("red","blue","green","yellow"),
+        beside = TRUE )
+
+
+# Pie Chart code --------------------------------------------
 
 # You can write a select statement with new column names.
 tmp <- sqldf("select q3 as department, count(q3) as total from survey where q3 != ' ' group by q3")
@@ -60,8 +93,6 @@ pie(slices$grp_pct, labels = slices$lbl, main = "Participation by Academic Area"
 # We can accomplish the same thing with the pipe operator.
 slices <- group_by(temp, acad_grp) %>% summarize(grp_tot = sum(dept_cnt))
 
-pie(slices$grp_tot, labels = slices$acad_grp, main = "Pie Chart (Pipe)") 
-
 # Code to make the slice labels more descriptive.
 slices$acad_grp[1] <- "Humanities"
 slices$acad_grp[2] <- "Health Sciences"
@@ -69,5 +100,32 @@ slices$acad_grp[3] <- "Sciences"
 slices$acad_grp[4] <- "Social Sciences"
 slices$acad_grp[5] <- "Unknown"
 
+pie(slices$grp_tot, labels = slices$acad_grp, main = "Pie Chart (Pipe)") 
 
+# Histogram code ---------------------------------------------
 
+opar <- par(no.readonly = TRUE)
+
+par(mfrow = c(3, 1))
+
+tmp <- read.delim("home_ownership.txt", sep = "\t", stringsAsFactors = FALSE)
+
+hist(tmp$pct_1985, 
+     main = "1985", 
+     col  = "lightblue",
+     ylim = c(0, 27),
+     xlab = "Home Ownership %")
+
+hist(tmp$pct_1996, 
+     main = "1996", 
+     col  = "lightblue",
+     ylim = c(0, 27),
+     xlab = "Home Ownership %")
+
+hist(tmp$pct_2002, 
+     main = "2002", 
+     col  = "lightblue",
+     ylim = c(0, 27),
+     xlab = "Home Ownership %")
+
+par(opar)
