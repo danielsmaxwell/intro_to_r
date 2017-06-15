@@ -19,14 +19,14 @@ Load the datafile and supporting libraries...
 library(sqldf)
 library(dplyr)
 
-survey <- read.csv("informatics_survey.csv", stringsAsFactors = FALSE)
-
 ```
 
 
 ### The Barplot Challenge
 
 ```{r barplot}
+
+survey <- read.csv("informatics_survey.csv", stringsAsFactors = FALSE)
 
 # What happens if we don't set the stringsAsFactors argument?
 q5_1 <- data.frame(survey$Q5_1, stringsAsFactors = FALSE)
@@ -55,6 +55,39 @@ par(mai = c(.5, 1.5, .5, .5))
 par(opar)
 
 ```
+
+## The Grouped & Stacked Barplot Challenge
+
+```{r group_barplot}
+
+crime <- read.csv("drink_crime.csv", stringsAsFactors = FALSE)
+
+barplot(as.matrix(crime[, c(2:4)]), 
+        legend = crime[, 1],
+           col = c("red","blue","green","yellow"))
+
+barplot(as.matrix(crime[, c(2:4)]), 
+        legend = crime[, 1],
+           col = c("red","blue","green","yellow"),
+        beside = TRUE)
+
+lgnd        <- crime$Crime
+binge       <- crime$Binge
+occassional <- crime$Occasional
+never       <- crime$Never
+cnts        <- data.frame(binge, occassional, never)
+
+barplot(as.matrix(cnts),
+        legend = lgnd,
+        col = c("red","blue","green","yellow"))
+
+barplot(as.matrix(cnts),
+        legend = lgnd,
+        col = c("red","blue","green","yellow"),
+        beside = TRUE )
+
+```
+
 
 ## The Pie Chart Challenge
 
@@ -97,4 +130,73 @@ pie(slices$grp_tot, labels = slices$acad_grp, main = "Pie Chart (Pipe)")
 
 
 ```
+
+
+## The histogram challenge
+
+Code for the histogram challenge:
+
+```{r histogram}
+
+opar <- par(no.readonly = TRUE)
+
+par(mfrow = c(3, 1))
+
+tmp <- read.delim("home_ownership.txt", sep = "\t", stringsAsFactors = FALSE)
+
+hist(tmp$pct_1985, 
+     main = "1985", 
+     col  = "lightblue",
+     ylim = c(0, 27),
+     xlab = "Home Ownership %")
+
+hist(tmp$pct_1996, 
+     main = "1996", 
+     col  = "lightblue",
+     ylim = c(0, 27),
+     xlab = "Home Ownership %")
+
+hist(tmp$pct_2002, 
+     main = "2002", 
+     col  = "lightblue",
+     ylim = c(0, 27),
+     xlab = "Home Ownership %")
+
+par(opar)
+
+
+```
+
+
+## The box plot challenge
+
+Code for the box plot challenge:
+
+```{r boxplot}
+
+
+```
+
+## The scatter plot challenge
+
+Code for the dot plot challenge:
+
+Use the Money Supply table (3.41) from Ott (p. 137)
+
+```{r dotplot}
+
+
+
+```
+
+## The stem-and-leaf Challenge
+
+Code for the stem-and-leaf challenge:
+
+```{r stemleaf}
+ 
+
+
+```
+
 
