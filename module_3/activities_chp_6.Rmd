@@ -55,12 +55,16 @@ par(mai = c(.5, 1.5, .5, .5))
 par(opar)
 
 ```
+Data Source: *2017 UF Informatics Survey*
 
 ## The Grouped & Stacked Barplot Challenge
 
 ```{r group_barplot}
 
 crime <- read.csv("drink_crime.csv", stringsAsFactors = FALSE)
+
+# For stacked and grouped barplots, the data must be presented as
+# a matrix or vector.
 
 barplot(as.matrix(crime[, c(2:4)]), 
         legend = crime[, 1],
@@ -87,6 +91,7 @@ barplot(as.matrix(cnts),
         beside = TRUE )
 
 ```
+Data Source: *Statistical Methods and Data Analysis* (p. 110)
 
 
 ## The Pie Chart Challenge
@@ -130,6 +135,7 @@ pie(slices$grp_tot, labels = slices$acad_grp, main = "Pie Chart (Pipe)")
 
 
 ```
+Data Source: *2017 UF Informatics Survey*
 
 
 ## The histogram challenge
@@ -164,8 +170,8 @@ hist(tmp$pct_2002,
 
 par(opar)
 
-
 ```
+Data Source: *Statistical Methods and Data Analysis* (p. 129)
 
 
 ## The box plot challenge
@@ -179,24 +185,36 @@ Code for the box plot challenge:
 
 ## The scatter plot challenge
 
-Code for the dot plot challenge:
+Code for the scatter plot challenge:
 
-Use the Money Supply table (3.41) from Ott (p. 137)
+```{r scatterplot}
 
-```{r dotplot}
+money <- read.delim("money_supply.txt", sep = "\t", stringsAsFactors = FALSE)
 
+plot(money$m2, money$m3, xlab = "M2 (Trillions)", ylab = "M3 (Trillions)")
 
+# Now, fit a regression model and plot the line.
+fit <- lm(money$m3 ~ money$m2, data = money)
+
+abline(fit, col = "blue")
 
 ```
+Data Source: *Statistical Methods and Data Analysis* (p. 137)
+
 
 ## The stem-and-leaf Challenge
 
 Code for the stem-and-leaf challenge:
 
 ```{r stemleaf}
- 
 
+ozone <- read.csv("ozone.csv", stringsAsFactors = FALSE)
+
+x <- ozone[c(0:79),]
+
+# The scale argument must equal 2 or the function only prints even numbers.
+stem(x, scale = 2) 
 
 ```
-
+Data Source: *Statistical Methods and Data Analysis* (p. 77)
 
