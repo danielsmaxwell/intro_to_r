@@ -45,6 +45,9 @@ plot(ten$year, ten$family_poverty_pct,
 par() <- opar
 
 ```
+Data Source: *U.S. Census Bureau*
+
+This is a helpful sited for modifying the graph axes.
 
 http://www.statmethods.net/advgraphs/axes.html
 
@@ -108,13 +111,12 @@ legend("bottomright",
        col   = c("blue","red"))
 
 ```
+Data Source: *U.S. Census Bureau*
 
 
 ## The Histogram Challenge
 
 The histogram challenge...
-
-Dalgaard, P. (2008). Introductory statistics with R (2nd ed.). New York: Springer.
 
 ```{r energy_histogram}
 
@@ -165,8 +167,12 @@ stripchart(energy$expend ~ energy$stature, method = "jitter", jitter = .03)
 par() <- opar
 
 ```
+Data Source: *Introductory Statistics with R* (p. 79 - 83)
+
 
 Dalgaard, P. (2008). *Introductory statistics with R* (2nd ed.). New York: Springer.
+
+Census Bureau: https://www.census.gov/data/tables/time-series/demo/income-poverty/historical-poverty-people.html
 
 
 
