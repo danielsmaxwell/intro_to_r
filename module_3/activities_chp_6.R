@@ -29,6 +29,9 @@ par(mai = c(.5, 1.5, .5, .5))
 
 crime <- read.csv("drink_crime.csv", stringsAsFactors = FALSE)
 
+# For stacked and grouped barplots, the data must be presented as
+# a matrix or vector.
+
 barplot(as.matrix(crime[, c(2:4)]), 
         legend = crime[, 1],
            col = c("red","blue","green","yellow"))
@@ -53,8 +56,8 @@ barplot(as.matrix(cnts),
         col = c("red","blue","green","yellow"),
         beside = TRUE )
 
-
 # Pie Chart code --------------------------------------------
+survey <- read.csv("informatics_survey.csv", stringsAsFactors = FALSE)
 
 # You can write a select statement with new column names.
 tmp <- sqldf("select q3 as department, count(q3) as total from survey where q3 != ' ' group by q3")
@@ -129,3 +132,26 @@ hist(tmp$pct_2002,
      xlab = "Home Ownership %")
 
 par(opar)
+
+# Stem & Leaf plot ------------------------------------------
+
+ozone <- read.csv("ozone.csv", stringsAsFactors = FALSE)
+
+x <- ozone[c(0:79),]
+
+# The scale argument must equal 2 or the function only prints even numbers.
+stem(x, scale = 2) 
+
+
+# Scatter plot ------------------------------------------
+money <- read.delim("money_supply.txt", sep = "\t", stringsAsFactors = FALSE)
+
+plot(money$m2, money$m3, xlab = "M2 (Trillions)", ylab = "M3 (Trillions)")
+
+# Now, fit a regression model and plot the line.
+fit <- lm(money$m3 ~ money$m2, data = money)
+
+abline(fit, col = "blue")
+
+
+
