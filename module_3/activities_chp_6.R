@@ -2,35 +2,36 @@ library(sqldf)
 library(dplyr)
 
 # Barplot Code --------------------------------------------
-
+ 
 survey <- read.csv("informatics_survey.csv", stringsAsFactors = FALSE)
 
 # What happens if we don't set the stringsAsFactors argument?
-q5_1 <- data.frame(survey$Q5_1, stringsAsFactors = FALSE)
+q <- data.frame(survey$Q5_1, stringsAsFactors = FALSE)
 
-colnames(q5_1) <- c("response")
+colnames(q) <- c("response")
 
-q5_1 <- subset(q5_1, response != "")
-q5_1 <- q5_1[q5_1$response != "",]
+q <- subset(q, response != "")
+q <- q[q$response != "",]
 
-cnts <- table(q5_1)
+cnts <- table(q)
 
+opar <- par(no.readonly = TRUE)
+par(mai = c(.5, 1.5, .5, .5))
+ 
 barplot(cnts, 
         horiz = TRUE, 
         col   = 'lightblue',
         las   = 2,
+        main  = "Knowledge of Statistics - Question 5.1",
         cex.names = 0.5)
 
-opar <- par()
-
-par(mai = c(.5, 1.5, .5, .5))
-
+par(opar)
+ 
 # Grouped & Stacked Barplot code -----------------------------
 
 crime <- read.csv("drink_crime.csv", stringsAsFactors = FALSE)
 
-# For stacked and grouped barplots, the data must be presented as
-# a matrix or vector.
+# Data must be presented as a matrix or vector for stacked or grouped barplots.
 
 barplot(as.matrix(crime[, c(2:4)]), 
         legend = crime[, 1],
@@ -111,27 +112,39 @@ opar <- par(no.readonly = TRUE)
 
 par(mfrow = c(3, 1))
 
-tmp <- read.delim("home_ownership.txt", sep = "\t", stringsAsFactors = FALSE)
+own <- read.delim("home_ownership.txt", sep = "\t", stringsAsFactors = FALSE)
 
-hist(tmp$pct_1985, 
+hist(own$pct_1985, 
      main = "1985", 
      col  = "lightblue",
      ylim = c(0, 27),
      xlab = "Home Ownership %")
 
-hist(tmp$pct_1996, 
+hist(own$pct_1996, 
      main = "1996", 
      col  = "lightblue",
      ylim = c(0, 27),
      xlab = "Home Ownership %")
 
-hist(tmp$pct_2002, 
+hist(own$pct_2002, 
      main = "2002", 
      col  = "lightblue",
      ylim = c(0, 27),
      xlab = "Home Ownership %")
 
 par(opar)
+
+# Boxplot code -----------------------------------------------
+
+own <- read.delim("home_ownership.txt", sep = "\t", stringsAsFactors = FALSE)
+
+boxplot(own$pct_1985, 
+        own$pct_1996, 
+        own$pct_2002, 
+        notch = TRUE,
+        ylab  = "Home Ownership %",
+        main  = "Home Ownership in the United States",
+        names = c("1985","1996","2002"))
 
 # Stem & Leaf plot ------------------------------------------
 
