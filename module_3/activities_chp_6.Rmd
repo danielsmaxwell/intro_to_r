@@ -29,28 +29,29 @@ library(dplyr)
 survey <- read.csv("informatics_survey.csv", stringsAsFactors = FALSE)
 
 # What happens if we don't set the stringsAsFactors argument?
-q5_1 <- data.frame(survey$Q5_1, stringsAsFactors = FALSE)
+q <- data.frame(survey$Q5_1, stringsAsFactors = FALSE)
 
-colnames(q5_1) <- c("response")
+colnames(q) <- c("response")
 
 # Remove the rows with empty responses.
-q5_1 <- subset(q5_1, response != "")
-q5_1 <- q5_1[q5_1$response != "",]
+q <- subset(q, response != "")
+q <- q[q$response != "",]
 
-cnts <- table(q5_1)
+cnts <- table(q)
+
+# Save the original graph parameters.
+opar <- par(no.readonly = TRUE)
+
+# Adjust graph margin parameters.
+par(mai = c(.5, 1.5, .5, .5))
 
 # What does the las argument do?  Look it up with ?par().
 barplot(cnts, 
         horiz = TRUE, 
         col   = 'lightblue',
         las   = 2,
+        main  = "Knowledge of Statistics - Question 5.1",
         cex.names = 0.5)
-
-# Save the original graph parameters.
-opar <- par(no.readonly = TRUE)
-
-# If necessary, adjust graph parameters to make the bar plot look good then rerun barplot code.
-par(mai = c(.5, 1.5, .5, .5))
 
 par(opar)
 
@@ -63,8 +64,7 @@ Data Source: *2017 UF Informatics Survey*
 
 crime <- read.csv("drink_crime.csv", stringsAsFactors = FALSE)
 
-# For stacked and grouped barplots, the data must be presented as
-# a matrix or vector.
+# Data must be presented as a matrix or vector for stacked or grouped barplots.
 
 barplot(as.matrix(crime[, c(2:4)]), 
         legend = crime[, 1],
@@ -75,6 +75,7 @@ barplot(as.matrix(crime[, c(2:4)]),
            col = c("red","blue","green","yellow"),
         beside = TRUE)
 
+# Here's another way to create the barplots by creating a new dataframe.
 lgnd        <- crime$Crime
 binge       <- crime$Binge
 occassional <- crime$Occasional
@@ -96,7 +97,7 @@ Data Source: *Statistical Methods and Data Analysis* (p. 110)
 
 ## The Pie Chart Challenge
 
-And now for the pie chart challenge...
+Code for the pie chart challenge:
 
 ```{r pie}
 # You can write a select statement with new column names.
@@ -126,14 +127,18 @@ grp_by <- group_by(temp, acad_grp)                    # Group rows by academic g
 
 slices <- summarize(grp_by, grp_tot = sum(dept_cnt))  # Sum dept_cnt for each academic group.
 
-pie(slices$grp_tot, labels = slices$acad_grp, main = "Pie Chart") 
+# Assign descriptive labels to the slices.
+slices$acad_grp[1] <- "Humanities"
+slices$acad_grp[2] <- "Health Sciences"
+slices$acad_grp[3] <- "Sciences"
+slices$acad_grp[4] <- "Social Sciences"
+slices$acad_grp[5] <- "Unknown"
 
+pie(slices$grp_tot, labels = slices$acad_grp, main = "Pie Chart") 
 # We can accomplish the same thing with the pipe operator.
 slices <- group_by(temp, acad_grp) %>% summarize(grp_tot = sum(dept_cnt))
 
 pie(slices$grp_tot, labels = slices$acad_grp, main = "Pie Chart (Pipe)") 
-
-
 ```
 Data Source: *2017 UF Informatics Survey*
 
@@ -148,21 +153,21 @@ opar <- par(no.readonly = TRUE)
 
 par(mfrow = c(3, 1))
 
-tmp <- read.delim("home_ownership.txt", sep = "\t", stringsAsFactors = FALSE)
+own <- read.delim("home_ownership.txt", sep = "\t", stringsAsFactors = FALSE)
 
-hist(tmp$pct_1985, 
+hist(own$pct_1985, 
      main = "1985", 
      col  = "lightblue",
      ylim = c(0, 27),
      xlab = "Home Ownership %")
 
-hist(tmp$pct_1996, 
+hist(own$pct_1996, 
      main = "1996", 
      col  = "lightblue",
      ylim = c(0, 27),
      xlab = "Home Ownership %")
 
-hist(tmp$pct_2002, 
+hist(own$pct_2002, 
      main = "2002", 
      col  = "lightblue",
      ylim = c(0, 27),
@@ -173,15 +178,24 @@ par(opar)
 ```
 Data Source: *Statistical Methods and Data Analysis* (p. 129)
 
-
 ## The box plot challenge
 
 Code for the box plot challenge:
 
 ```{r boxplot}
 
+own <- read.delim("home_ownership.txt", sep = "\t", stringsAsFactors = FALSE)
+
+boxplot(own$pct_1985, 
+        own$pct_1996, 
+        own$pct_2002, 
+        notch = TRUE,
+        ylab  = "Home Ownership %",
+        main  = "Home Ownership in the United States",
+        names = c("1985","1996","2002"))
 
 ```
+Data Source: *Statistical Methods and Data Analysis* (p. 129)
 
 ## The scatter plot challenge
 
