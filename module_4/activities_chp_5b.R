@@ -1,6 +1,32 @@
 library(reshape2)
+library(MESS)
 library(tidyr)
 library(dplyr)
+
+# A small dataset to convert to long format and then back again.
+
+wide <- read.csv("wide.csv", stringsAsFactors = FALSE)
+wide
+
+long <- melt(wide, id.vars = c("person", "age", "gender"))
+long
+
+wide <- dcast(long, person ~ variable)
+wide
+
+# This dataset contains Danish births and deaths by year and month.  It is
+# in long format, and we want to convert it to a wide format.
+
+data("bdstat")
+
+head(bdstat)
+
+wide <- dcast(bdstat, year ~ month, value.var = "births")
+
+head(wide)
+
+# Converting the home ownership dataset to long format, using dplyr's
+# gather() function.
 
 home_own_wide <- read.delim("home_ownership.txt", sep = "\t", stringsAsFactors = FALSE)
 home_own_wide
@@ -11,4 +37,3 @@ home_own_long <- home_own_wide %>% gather(state)
 
 home_own_long <- melt(home_own_wide, id = "state")
 home_own_long
-
