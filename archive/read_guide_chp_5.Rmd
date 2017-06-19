@@ -1,0 +1,57 @@
+---
+title: "Reading Guide"
+author: "Dan Maxwell"
+date: "May 16, 2017"
+output: pdf_document 
+header-includes: \usepackage{color}
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Section Notes for *R in Action* 
+
+**5.2.1** Mathematical functions  
+The natural logarithm, usually denoted as *e* in equations, is calculated as follows:
+
+```{r}
+
+exp(1)  # Calculate the natural logarithm, a constant = 2.718282
+
+pi      # Pi is another built-in constant = 3.141593
+
+```
+
+**5.2.2** Statistical functions  
+Interestingly, R does not provide a built-in function to calculate `mode`.
+
+**5.4.1** Repetition and looping  
+Kabacoff does not provide much detail about R's three looping mechanisms.  Please see the loops_clinic.Rmd file for a working example of `for`, `while`, and `repeat` loops.
+
+**5.5** User-written functions  
+Custom functions are not covered in this course.  However, they are presented in my R functions workshop.  This section is therefore optional, though it is worth reading in order to get a sense of how functions work. 
+
+**5.6.3** The reshape2 package  
+This is an important section as many students run into trouble when they present data to a statistical function, and it is in the wrong format.  Table 5.8 presents a hypothetical dataset in *wide* format whereas Table 5.9 presents that same dataset in *long* format.  Remember: you only need as many columns as there are variables.
+
+Let's illustrate what these formats look like with some real data.  The file home_ownership.txt contains "homeownership rates, in percentages, by state for the years 1985, 1996, and 2002. These values represent the proportion of homes owned by the occupant to the total number of occupied homes" (Ott & Longnecker, 2016, p. 129).  The file used in the code below contains just 11 rows of the complete dataset. \newline
+
+```{r}
+library(reshape2)  # Load the reshape2 library.
+
+# Read in the file -- values are separated by tabs -- do not convert to factors.
+
+home_own_wide <- read.delim("home_ownership.txt", sep = "\t", stringsAsFactors = FALSE)
+
+home_own_wide      # Take a look at the data in wide format.
+
+home_own_long <- melt(home_own_wide, id = "state")
+
+home_own_long      # Now take a look at the data in long format.
+
+```
+
+As you can see, the year columns in the wide format are stacked when converted to the long format.  Many of R's statistical functions will return errors if the data is presented to them in wide format. \newline
+
+Ott, L., & Longnecker, M. (2016). *An introduction to statistical methods & data analysis* (7th ed.). Boston, MA: Cengage Learning.
