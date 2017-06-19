@@ -1,0 +1,117 @@
+---
+title: "Activity Worksheet *R in Action* (Chapter 5)"
+author: "Dan Maxwell"
+date: "June 19, 2017"
+output:
+  pdf_document: default
+  html_document: default
+header-includes: \usepackage{color}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+In this final activities worksheet, you'll learn more about R's various functions and then do some dataframe conversions, melting and casting data into different forms.  
+
+> ### *Ref: R in Action (Section 5.2.1)* 
+> The natural logarithm, usually denoted as *e* in equations, is
+> calculated as follows:
+
+```{r}
+
+exp(1)  # Calculate the natural logarithm, a constant = 2.718282
+
+pi      # Pi is another built-in constant = 3.141593
+
+```
+
+
+> ### *Ref: R in Action (Section 5.2.2)*
+> Interestingly, R does not provide a built-in function to calculate `mode`.
+
+> ### *Ref: R in Action (Section 5.4.1)*
+> Kabacoff does not provide much detail about R's three looping mechanisms.
+> Please see the loops_clinic.Rmd file for a working example of `for`,
+> `while`, and `repeat` loops. 
+
+> ### *Ref: R in Action (Section 5.5)*
+> Custom functions are not covered in this course.  However, they are
+> presented in my R functions workshop.  This section is therefore optional,
+> though it is worth reading in order to get a sense of how functions work. 
+
+> ### *Ref: R in Action (Section 5.6.3)*
+> This is an important section as many students run into trouble when they
+> present data to a statistical function, and it is in the wrong format. 
+> Table 5.8 presents a hypothetical dataset in *wide* format whereas Table
+> 5.9 presents that same dataset in *long* format.  Remember: you only need
+> as many columns as there are variables.
+
+Let's illustrate what these formats look like with some real data.  The file home_ownership.txt contains "homeownership rates, in percentages, by state for the years 1985, 1996, and 2002. These values represent the proportion of homes owned by the occupant to the total number of occupied homes" (Ott & Longnecker, 2016, p. 129).  The file used in the code below contains just 11 rows of the complete dataset.  
+
+
+```{r}
+library(reshape2)  # Load the reshape2 library.
+
+# Read in the file -- values are separated by tabs -- do not convert to factors.
+
+home_own_wide <- read.delim("home_ownership.txt", sep = "\t", stringsAsFactors = FALSE)
+
+home_own_wide      # Take a look at the data in wide format.
+
+home_own_long <- melt(home_own_wide, id = "state")
+
+home_own_long      # Now take a look at the data in long format.
+
+```
+Data Source: *Statistical Methods and Data Analysis* (p. 129)
+
+As you can see, the year columns in the wide format are stacked when converted to the long format.  Many of R's statistical functions will return errors if the data is presented to them in wide format. \newline
+
+## Challenge  
+
+Now that you've had a chance to see how to convert a dataframe from wide to long format, let's practice doing this with the data in wide.csv.  Because the data in this file is in a wide format, you'll need to write code to convert it to a long format.  And then, as a test of your knowledge, convert the file back to wide.  
+
+```{r}
+
+# A small dataset to convert to long format and then back again.
+
+wide <- read.csv("wide.csv", stringsAsFactors = FALSE)
+wide
+
+long <- melt(wide, id.vars = c("person", "age", "gender"))
+long
+
+wide <- dcast(long, person ~ variable)
+wide
+
+```
+
+## Challenge
+
+In this challenge, you'll convert a dataset from long to wide format.  The bdstat dataset is part of the MESS package.  It contains Danish births and deaths per month and year, from 1901 to 2013.  The data is in long format and you'll need to convert it to wide. 
+
+```{r}
+
+library(MESS)
+
+# This dataset contains Danish births and deaths by year and month.  It is
+# in long format, and we want to convert it to a wide format.
+
+data("bdstat")
+
+head(bdstat)
+
+wide <- dcast(bdstat, year ~ month, value.var = "births")
+
+head(wide)
+
+```
+Data Source: *The R Primer* (p. 89 - 91)
+
+
+### References
+Ott, L., & Longnecker, M. (2016). *An introduction to statistical methods & data analysis* (7th ed.). Boston, MA: Cengage Learning.
+
+
