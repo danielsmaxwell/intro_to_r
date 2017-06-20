@@ -1,5 +1,5 @@
 ---
-title: "Activity Worksheet: *R in Action* (Chapter 1)"
+title: "Activity Worksheet A: *R in Action* (Chapter 1)"
 author: "Dan Maxwell"
 date: "June 1, 2017"
 output:
@@ -53,7 +53,7 @@ When you first open RStudio, you will be greeted by three panels:
 Once you open files, such as R scripts, an editor panel will also open
 in the top left.
 
-![RStudio layout with .R file open](c:/informatics/rstudio-script.png)
+![RStudio layout with .R file open](c:/informatics/rstudio_script.png)
 
 \newpage 
 ## Work flow within RStudio
