@@ -1,15 +1,16 @@
 ---
-title:  "A Problem of Scale"
+title:  "Activity Worksheet A *R in Action* (Chapter 5)"
 author: "Dan Maxwell"
 date:   "January 12, 2017"
 output: pdf_document
+header-includes: \usepackage{color}
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## The Challenge
+## Challenge
 
 Students in a local middle-school recently completed tests in Math, Science, and English.  The names of the students and the scores they received are listed below.
 
@@ -41,7 +42,7 @@ Here are the specialized functions you'll need to use for this R challenge.  Sta
 
 \newpage
 
-## The Solution
+## Solution
 
 In the code below, we first limit the number of digits after the decimal point to 2, using \textcolor{blue}{options}.  We then create four vectors, one populated with the student names and one each for their Math, Science, and English scores.  And finally, we combine the three vectors into a single data frame named roster.  
 
