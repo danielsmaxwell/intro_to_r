@@ -21,6 +21,28 @@ library(dplyr)
 
 ```
 
+## Introduction
+Review the section notes for *R in Action* before working on the challenges.
+
+> ### *Ref: R in Action (Section 6.1.1)* 
+> As Kabacoff does not discuss the `table()` function here, you'll want to read
+> about it in section 7.2.1 (pages 145 & 146). 
+
+> ### *Ref: R in Action (Section 6.5.1)* 
+> The `~` in the formula `mpg ~ cyl` separates the *dependent* or *response*
+> variable on the left from the *independent* (*explanatory* or *predictor*)
+> variable on the right.  Please note: statistics textbookss are inconsistent in
+> the names they use for these two variables.    
+>
+> Here's a definition of these two kinds of variables, provided by Gravetter &
+> Wellnau (2016).  "The *dependent variable* is the one that is observed to assess
+> the effect of the treatment ... while the *independent variable* is the one
+> manipulated by the researcher" (p. 15).  
+>
+> In Listing 6.9, Kabacoff introduces the `*` operator. What does that mean? To
+> answer this question, see table 8.2 (p. 172) for a list of symbols used in R
+> formulas and their respective definitions. \newline
+
 
 ### The Barplot Challenge
 
@@ -231,4 +253,9 @@ stem(x, scale = 2)
 
 ```
 Data Source: *Statistical Methods and Data Analysis* (p. 77)
+
+
+References
+
+Gravetter, F. J. (2015). *Statistics for the behavioral sciences* (10th ed.). Boston, MA: Cengage Learning.
 
