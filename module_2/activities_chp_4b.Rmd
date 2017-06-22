@@ -667,6 +667,12 @@ gapminder[3,]
 But for a single column the result will be a vector (this can
 be changed with the third argument, `drop = FALSE`).
 
+> ### *Ref: R in Action (Section 4.10.4)* 
+> I favor the `subset()` function over the use of indexes as outlined above.  It
+> has an intuitive feel to it and the code is easier to read.  Even so, this is a
+> personal preference and you might favor the use of indexes in your code. 
+
+
 ## Challenge 7
 
 Fix each of the following common data frame subsetting errors:
