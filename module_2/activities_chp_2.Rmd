@@ -1,5 +1,7 @@
 ---
-title: "Activity Worksheet: *R in Action* (Chapter 2)"
+title: |
+       | Activity Worksheet
+       | *R in Action* (Chapter 2)
 author: "Dan Maxwell"
 date: "June 20, 2017"
 output:
@@ -29,7 +31,7 @@ cats <- cats_orig
 
 One of R's most powerful features is its ability to deal with tabular data -
 such as you may already have in a spreadsheet or a CSV file. Let's start by
-making a toy dataset in your current working directory, called `feline-data.csv`:
+making a toy dataset in your current working directory, called `feline_data.csv`:
 
 ```{r, eval=FALSE}
 coat,weight,likes_string
@@ -40,29 +42,29 @@ tabby,3.2,1
 
 > ### *Tip: Editing Text files in R*
 >
-> Alternatively, you can create `data/feline-data.csv` using a text editor (Nano),
+> Alternatively, you can create `feline_data.csv` using a text editor (Nano),
 > or within RStudio with the **File -> New File -> Text File** menu item.
 
-> ### *Ref: R in Action (Sections 2.3.9 - 2.3.12)*
-> These sections can be skipped, unless you're trying to import data in specialized
-> formats.  Specifically, section 2.3.11 is somewhat dated in that ODBC (Open Database
-> Connectivity) technology dates back to the 1990's and is used less frequently today. 
-> If you're using MySQL, you'll want to use the RMySQL package to access the database
-> directly.  You can now find R packages to directly access most of the major relational
-> databases. 
+> ### *Ref: R in Action (Section 4.4)*
+> Kabocoff discusses the `fix()` function in this section.  It opens the (Nano) text
+> editor, allowing you to edit individual cells in a dataframe.  The `edit()` function
+> does essentially the same thing, though Kabocoff does not discuss it here.  And finally,
+> you can use the `View()` function to examine and filter a dataframe without modifying
+> it.  Please note: this function is mixed case with a capital 'V'.  Because R is
+> case-sensitive, you'll get an error if you type it as all lower-case.
 
 
 ```{r, echo = FALSE}
 cats.df <- data.frame(coat = c("calico", "black", "tabby"),
                       weight = c(2.1, 5.0, 3.2),
                       likes_string = c(1, 0, 1))
-write.csv(cats.df, "feline-data.csv", row.names = FALSE)
+write.csv(cats.df, "feline_data.csv", row.names = FALSE)
 ```
 
 We can load this into R via the following:
 
 ```{r}
-cats <- read.csv(file = "feline-data.csv")
+cats <- read.csv(file = "feline_data.csv")
 cats
 ```
 
@@ -75,7 +77,6 @@ for files where the data are separated with commas and `read.delim` for files
 where the data are separated with tabs. Of these three functions `read.csv` is
 the most commonly used.  If needed it is possible to override the default 
 delimiting punctuation marks for both `read.csv` and `read.delim`.
-
 
 We can begin exploring our dataset right away, pulling out columns by specifying
 them using the `$` operator:
@@ -136,11 +137,11 @@ No matter how complicated our analyses become, all data in R is interpreted as o
 basic data types. This strictness has some really important consequences.
 
 A user has added details of another cat. This information is in the file
-`data/feline-data_v2.csv`.
+`feline_data_v2.csv`.
 
 
 ```{r, eval=FALSE}
-file.show("feline-data_v2.csv")
+file.show("feline_data_v2.csv")
 ```
 
 ```{r, eval=FALSE}
@@ -155,7 +156,7 @@ Load the new cats data like before, and check what type of data we find in the
 `weight` column:
 
 ```{r}
-cats <- read.csv(file="feline-data_v2.csv")
+cats <- read.csv(file="feline_data_v2.csv")
 typeof(cats$weight)
 ```
 
@@ -185,7 +186,7 @@ In order to successfully use our data in R, we need to understand what the basic
 data structures are, and how they behave. For now, let's remove that extra line
 from our cats data and reload it, while we investigate this behavior further:
 
-feline-data.csv:
+feline_data.csv:
 
 ```
 coat,weight,likes_string
@@ -197,7 +198,7 @@ tabby,3.2,1
 And back in RStudio:
 
 ```{r, eval=FALSE}
-cats <- read.csv(file="feline-data.csv")
+cats <- read.csv(file="feline_data.csv")
 ```
 
 ```{r, include=FALSE}
@@ -355,6 +356,46 @@ my_example
 names(my_example)
 ```
 
+> ### *Ref: R in Action (Section 4.7)* 
+> Kabacoff provides some additional information about *type conversion* in 
+> section 4.7 (p. 81).  In particular, table 4.5 lists the functions available
+> for testing a variable's datatype and converting datatypes.
+
+## Dynamic and Static Typed Languages
+R is a *dynamically* typed language as opposed to a *statically* typed language like C.  What this means is that the datatype of an R variable is set at assignment and can be changed on the fly as demonstrated here.
+
+```{r}
+                    # Static typed languages do not allow this...
+
+myvar <- 15         # Set myvar to a numeric datatype.
+is.numeric(myvar)   # Is it numeric? (TRUE/FALSE).
+
+myvar <- "String"   # Now dynamically recast myvar as a string. 
+is.character(myvar) # Is it a character? (TRUE/FALSE).
+
+```
+
+A *statically* typed language like C would not compile this code.  Instead, it would want us to define myvar once, as either a number or a character.  After that, any assignment to myvar would need to match its underlying datatype.
+
+So why is this important?  Well, it becomes an issue when you write a custom function that accepts arguments.  Because R is *dynamically* typed, the interpreter does not check the datatype of arguments upfront, when the function is called.  Thus you'll want to verify argument datatypes inside the function, using one of the `is.` functions from Table 4.5. Consider the following function that accepts a single numeric argument.
+
+```{r}
+# Create function tst() that expects one numeric argument.
+
+tst <- function(num) {
+                  # Fail to check the datatype of the argument with is.numeric().
+  print(num)      # This command executes properly, whatever the datatype.
+  
+  num <- num + 1  # Add 1 to the variable -- we're assuming this is a numeric!
+
+  return(num)           
+}
+
+```
+
+In this example, we fail to verify the argument's datatype, using the `is.numeric()` function.  Now, try calling this function with a character string, like this: `tst("chars")`.  R throws an error.  But strangely, the `print()` statement displays our argument to the console, meaning that we are in the function and the interpreter is happy with everything up to that point.  It complains only when it encounters the next line which assumes a numeric variable.  Thus R is not checking the datatype of passed arguments.  You must do that yourself when working with a *dynamically* typed language. \newline
+
+
 ## Challenge 1
 
 Start by making a vector with the numbers 1 through 26.
@@ -435,7 +476,7 @@ in `cats` is actually a character vector when loaded in this way.
 > One solution is to use the argument `stringAsFactors`:
 >
 > ```{r, eval = FALSE}
-> cats <- read.csv(file="feline-data.csv", stringsAsFactors=FALSE)
+> cats <- read.csv(file="feline_data.csv", stringsAsFactors=FALSE)
 > str(cats$coat)
 > ```
 >
@@ -443,7 +484,7 @@ in `cats` is actually a character vector when loaded in this way.
 > that allow finer control.
 >
 > ```{r, eval = FALSE}
-> cats <- read.csv(file="feline-data.csv", colClasses=c(NA, NA, "character"))
+> cats <- read.csv(file="feline_data.csv", colClasses=c(NA, NA, "character"))
 > str(cats$coat)
 > ```
 >
