@@ -1,5 +1,7 @@
 ---
-title:  "Activity Worksheet A *R in Action* (Chapter 5)"
+title:  | 
+        | Activity Worksheet A 
+        | *R in Action* (Chapter 5)
 author: "Dan Maxwell"
 date:   "January 12, 2017"
 output: pdf_document
