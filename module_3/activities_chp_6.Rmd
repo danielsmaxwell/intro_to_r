@@ -12,9 +12,7 @@ header-includes: \usepackage{color}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Load the datafile and supporting libraries...
-
-```{r init}
+```{r init, echo = FALSE, warning = FALSE, message = FALSE}
 
 library(sqldf)
 library(dplyr)
@@ -90,11 +88,12 @@ crime <- read.csv("drink_crime.csv", stringsAsFactors = FALSE)
 
 barplot(as.matrix(crime[, c(2:4)]), 
         legend = crime[, 1],
-           col = c("red","blue","green","yellow"))
+           col = c("lightcoral","lightblue","khaki","beige"))
 
 barplot(as.matrix(crime[, c(2:4)]), 
         legend = crime[, 1],
-           col = c("red","blue","green","yellow"),
+           col = c("lightcoral","lightblue","khaki","lightgreen"),
+   args.legend = list(x = "topleft"),
         beside = TRUE)
 
 # Here's another way to create the barplots by creating a new dataframe.
@@ -106,11 +105,12 @@ cnts        <- data.frame(binge, occassional, never)
 
 barplot(as.matrix(cnts),
         legend = lgnd,
-        col = c("red","blue","green","yellow"))
+        col = c("lightcoral","lightblue","khaki","beige"))
 
 barplot(as.matrix(cnts),
         legend = lgnd,
-        col = c("red","blue","green","yellow"),
+           col = c("lightcoral","lightblue","khaki","lightgreen"),
+   args.legend = list(x = "topleft"),
         beside = TRUE )
 
 ```
@@ -122,7 +122,15 @@ Data Source: *Statistical Methods and Data Analysis* (p. 110)
 Code for the pie chart challenge:
 
 ```{r pie}
-# You can write a select statement with new column names.
+survey <- read.csv("informatics_survey.csv", stringsAsFactors = FALSE)
+
+# INSTRUCTOR NOTE 
+# sqldf does not work when running under R version 3.4.0.  The two commands below
+# return an error message that the survey table cannot be found, though it was
+# created above.  As of 06.26.17, sqldf requires R version 3.3.3 but will work with
+# warnings under 3.3.2.
+
+# You can write a select statement with new column names. 
 tmp <- sqldf("select q3 as department, count(q3) as total from survey where q3 != ' ' group by q3")
 
 # Or, you can execute a simple select and rename the variables afterwards.
@@ -135,15 +143,17 @@ colnames(tmp)  <- c("dept","dept_cnt")
 tmp$acad_grp <- ""                       
 
 # Set the new acad_grp column, using fix().  What happens if you use edit()?
-fix(tmp)                                   
+# fix(tmp)                                   
 
 # Save a backup copy of the modified dataframe.
-write.csv(tmp, file = "tmp.csv")          
+write.csv(tmp, file = "temp.csv")          
 
 # Create a new dataframe of the two columns needed for the pie chart. 
 temp   <- data.frame(tmp$acad_grp, tmp$dept_cnt, stringsAsFactors = FALSE)
 
 colnames(temp) <- c("acad_grp","dept_cnt")
+
+temp <- read.csv("informatics_acad_grp.csv", stringsAsFactors = FALSE)
 
 grp_by <- group_by(temp, acad_grp)                    # Group rows by academic group.
 
@@ -156,11 +166,20 @@ slices$acad_grp[3] <- "Sciences"
 slices$acad_grp[4] <- "Social Sciences"
 slices$acad_grp[5] <- "Unknown"
 
-pie(slices$grp_tot, labels = slices$acad_grp, main = "Pie Chart") 
-# We can accomplish the same thing with the pipe operator.
-slices <- group_by(temp, acad_grp) %>% summarize(grp_tot = sum(dept_cnt))
+# Calculate percentages, round to two digits, and then create labels.
+slices$grp_pct <- (slices$grp_tot / sum(slices$grp_tot))
+slices$grp_pct <- round(slices$grp_pct, 2) * 100
+slices$lbl     <- paste(slices$acad_grp, " ", slices$grp_pct, "%", sep = "")
 
-pie(slices$grp_tot, labels = slices$acad_grp, main = "Pie Chart (Pipe)") 
+pie(slices$grp_tot, labels = slices$lbl, main = "Pie Chart") 
+
+# INSTRUCTOR NOTE
+# This code accomplishes the same thing with the pipe operator.  If you have
+# time to demo this in lab, uncomment and test.
+
+# slices <- group_by(temp, acad_grp) %>% summarize(grp_tot = sum(dept_cnt))
+# pie(slices$grp_tot, labels = slices$acad_grp, main = "Pie Chart (Pipe)") 
+
 ```
 Data Source: *2017 UF Informatics Survey*
 
@@ -172,8 +191,6 @@ Code for the histogram challenge:
 ```{r histogram}
 
 opar <- par(no.readonly = TRUE)
-
-par(mfrow = c(3, 1))
 
 own <- read.delim("home_ownership.txt", sep = "\t", stringsAsFactors = FALSE)
 
@@ -255,7 +272,7 @@ stem(x, scale = 2)
 Data Source: *Statistical Methods and Data Analysis* (p. 77)
 
 
-References
+#### References
 
 Gravetter, F. J. (2015). *Statistics for the behavioral sciences* (10th ed.). Boston, MA: Cengage Learning.
 
