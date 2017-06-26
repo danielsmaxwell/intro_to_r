@@ -11,7 +11,7 @@ header-includes: \usepackage{color}
 ---
  
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE)  # FALSE hides all code...
 ```
 
 
@@ -41,15 +41,15 @@ Let's take a look at some code to see how this is done:
 
 ```{r, fig.width = 6.5, fig.height = 4.10}
 # Create a blank plot.
-plot(1:5, 1:5, type = "n")
+plot(1:4, 1:4, type = "n")
 
 # Add text inside the plot to demonstrate how to embed math symbols and/or equations.
-text(2, 3, expression(mu))
-text(3, 3, expression(sigma))
-text(4, 3, expression(pi))
-text(2, 2, expression(sqrt(x, y)))
-text(3, 2, expression(frac(sum(x), n)))
-text(4, 2, expression(x^2))
+text(1.5, 3, expression(mu))
+text(2.5, 3, expression(sigma))
+text(3.5, 3, expression(pi))
+text(1.5, 2, expression(sqrt(x, y)))
+text(2.5, 2, expression(frac(sum(x), n)))
+text(3.5, 2, expression(x^2))
 
 ```
 
@@ -78,9 +78,9 @@ http://www.statmethods.net/advgraphs/axes.html
 
 
 ## Challenge 1 (The Basic Plot)
-The basic plot:
+For this first plot challenge, you will plot the percentage of families in poverty, from 2005 to 2015.  The file that contains this information is family_poverty.txt.  What effect did the great recession have on these percentages?  Your final graph should look something like this:    
 
-```{r plot}
+```{r basic_plot}
 
 # Create dataframe from the data file
 poverty <- read.delim("family_poverty.txt", sep = "\t", stringsAsFactors = FALSE)
@@ -96,6 +96,7 @@ plot(ten$year, ten$family_poverty_pct,
                type = "b", 
                cex  = .75,
                lty  = 3,
+               col  = "red",
                pch  = 1)
 
 # Reset the parameters.
@@ -103,12 +104,12 @@ par(opar)
 
 ```
 Data Source: *U.S. Census Bureau*
-
+ 
 
 ## Challenge 2 (Multi-Line Plot)
-The Multi-Line Plot:
+In this second plot challenge, load the race_poverty.txt file into a dataframe and then plot the poverty numbers for whites and hispanics.  As this dataset also contains poverty numbers for asians and blacks, you could also create a graphic that plots all four.  In either case, the final plot should look something like this:
 
-```{r}
+```{r multiline_plot}
 
 tmp <- read.delim("race_poverty.txt", sep = "\t", stringsAsFactors = FALSE)
 
@@ -171,7 +172,7 @@ Data Source: *U.S. Census Bureau*
  
 ## Challenge 3 (The Histogram, Boxplot, & Stripchart)
 
-The histogram:
+In this last challenge, you're going to compare energy expenditures for lean and obese women.  The data file is: energy_expend.csv.  First create two histograms to compare the distributions of these two groups, and then create a boxplot and four stripcharts.  For  the stripcharts, first create a basic graph and then ones where the method argument equals "stack" and "jitter."  Your graphs should look like those pictured here.  From looking at these graphs, What conclusions can be drawn about these two groups?
 
 ```{r energy_histogram}
 
@@ -202,8 +203,8 @@ Now, let's create a boxplot of the data...
 ```{r energy_boxplot}
 
 # Two ways to create the boxplot.
-boxplot(lean, obese, names = c("Lean","Obese"))
-boxplot(energy$expend ~ energy$stature, names = c("Lean","Obese"))
+boxplot(lean, obese, names = c("Lean","Obese"), col = "rosybrown1")
+boxplot(energy$expend ~ energy$stature, names = c("Lean","Obese"), col = "rosybrown1")
 
 ```
 
@@ -225,11 +226,12 @@ par(opar)
 Data Source: *Introductory Statistics with R* (p. 79 - 83)
 
 
-References
+#### References  
+
 Dalgaard, P. (2008). *Introductory statistics with R* (2nd ed.). New York: Springer.
 
 Census Bureau: https://www.census.gov/data/tables/time-series/demo/income-poverty/historical-poverty-people.html
 
-
+ 
 
 
