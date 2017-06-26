@@ -58,6 +58,7 @@ barplot(as.matrix(cnts),
         beside = TRUE )
 
 # Pie Chart code --------------------------------------------
+
 survey <- read.csv("informatics_survey.csv", stringsAsFactors = FALSE)
 
 # You can write a select statement with new column names.
@@ -86,6 +87,13 @@ colnames(temp) <- c("acad_grp","dept_cnt")
 grp_by <- group_by(temp, acad_grp)            
 slices <- summarize(grp_by, grp_tot = sum(dept_cnt))     
 
+# Code to make the slice labels more descriptive.
+slices$acad_grp[1] <- "Humanities"
+slices$acad_grp[2] <- "Health Sciences"
+slices$acad_grp[3] <- "Sciences"
+slices$acad_grp[4] <- "Social Sciences"
+slices$acad_grp[5] <- "Unknown"
+
 # Calculate percentages, round to two digits, and then create labels.
 slices$grp_pct <- (slices$grp_tot / sum(slices$grp_tot))
 slices$grp_pct <- round(slices$grp_pct, 2) * 100
@@ -96,13 +104,6 @@ pie(slices$grp_pct, labels = slices$lbl, main = "Participation by Academic Area"
 
 # We can accomplish the same thing with the pipe operator.
 slices <- group_by(temp, acad_grp) %>% summarize(grp_tot = sum(dept_cnt))
-
-# Code to make the slice labels more descriptive.
-slices$acad_grp[1] <- "Humanities"
-slices$acad_grp[2] <- "Health Sciences"
-slices$acad_grp[3] <- "Sciences"
-slices$acad_grp[4] <- "Social Sciences"
-slices$acad_grp[5] <- "Unknown"
 
 pie(slices$grp_tot, labels = slices$acad_grp, main = "Pie Chart (Pipe)") 
 
