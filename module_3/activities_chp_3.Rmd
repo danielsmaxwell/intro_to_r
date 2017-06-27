@@ -120,7 +120,7 @@ tmp <- read.delim("race_poverty.txt", sep = "\t", stringsAsFactors = FALSE)
 
 tot_num_poverty <- as.numeric(gsub(",", "", tmp$tot_num_poverty))
 
-# Remove na's at this point...
+# Create a custom dataframe for the plot.
 poverty <- data.frame(year = tmp$year, 
                       tot_num_poverty, 
                       pct_total_poverty = tmp$pct_total_poverty, 
@@ -131,11 +131,6 @@ white    <- subset(poverty, race == "white")
 hispanic <- subset(poverty, race == "hispanic")
 black    <- subset(poverty, race == "black")
 asian    <- subset(poverty, race == "asian")
-
-# Check the new vectors.  Do they have na's in them?  If so, we have 
-# to deal with them.  This is defensive programming.
-is.na(white$year)
-is.na(white$tot_num_poverty)
 
 x <- white$year
 y <- white$tot_num_poverty
