@@ -2,7 +2,7 @@ library(sqldf)
 library(dplyr)
 
 # Barplot Code --------------------------------------------
- 
+  
 survey <- read.csv("informatics_survey.csv", stringsAsFactors = FALSE)
 
 # What happens if we don't set the stringsAsFactors argument?
@@ -35,12 +35,18 @@ crime <- read.csv("drink_crime.csv", stringsAsFactors = FALSE)
 
 barplot(as.matrix(crime[, c(2:4)]), 
         legend = crime[, 1],
-           col = c("red","blue","green","yellow"))
+           col = c("lightcoral","lightblue","khaki","beige"))
 
 barplot(as.matrix(crime[, c(2:4)]), 
         legend = crime[, 1],
-           col = c("red","blue","green","yellow"),
+           col = c("lightcoral","lightblue","khaki","beige"),
+   args.legend = list(x = "topleft"),
         beside = TRUE)
+
+# INSTRUCTOR NOTE
+# In programming, there is often more than one way to accomplish a task.  Rather
+# than reference observations and variables with indexes -- the approach taken 
+# above -- the code below creates a new dataframe.
 
 lgnd        <- crime$Crime
 binge       <- crime$Binge
@@ -50,11 +56,12 @@ cnts        <- data.frame(binge, occassional, never)
 
 barplot(as.matrix(cnts),
         legend = lgnd,
-        col = c("red","blue","green","yellow"))
+        col = c("lightcoral","lightblue","khaki","beige"))
 
 barplot(as.matrix(cnts),
         legend = lgnd,
-        col = c("red","blue","green","yellow"),
+           col = c("lightcoral","lightblue","khaki","beige"),
+   args.legend = list(x = "topleft"),
         beside = TRUE )
 
 # Pie Chart code --------------------------------------------
