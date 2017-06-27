@@ -74,7 +74,7 @@ Data Source: *Statistical Methods and Data Analysis* (p. 129)
 
 As you can see, the year columns in the wide format are stacked when converted to the long format.  Many of R's statistical functions will return errors if the data is presented to them in wide format. \newline
 
-## Challenge  
+## Challenge 1  
 
 Now that you've had a chance to see how to convert a dataframe from wide to long format, let's practice doing this with the data in wide.csv.  Because the data in this file is in a wide format, you'll need to write code to convert it to a long format.  And then, as a test of your knowledge, convert the file back to wide.  
 
@@ -93,7 +93,7 @@ wide
 
 ```
 
-## Challenge
+## Challenge 2
 
 In this challenge, you'll convert a dataset from long to wide format.  The bdstat dataset is part of the MESS package.  It contains Danish births and deaths per month and year, from 1901 to 2013.  The data is in long format and in this challenge you'll need to convert it to wide.  First, load the MESS package and the dataset and then write code to convert it.  
 
