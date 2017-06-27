@@ -42,7 +42,10 @@ Review the section notes for *R in Action* before working on the challenges.
 > formulas and their respective definitions. \newline
 
 
-### The Barplot Challenge
+### Challenge 1 (The Basic Barplot)
+
+In this first challenge, load the informatics_survey.csv file into a dataframe and then select
+just the question 5 (Q5_1) column.  From there, create a basic barplot that looks like this:
 
 ```{r barplot}
 
@@ -78,7 +81,13 @@ par(opar)
 ```
 Data Source: *2017 UF Informatics Survey*
 
-## The Grouped & Stacked Barplot Challenge
+## Challenge 2 (The Grouped & Stacked Barplot)
+
+In this second challenge, load the drink_crime.csv file into a dataframe and then generate both
+a stacked and grouped barplot.  This drink_crime.csv file lists the percentage of criminal
+activity in relation to one's drinking level.  Are regular drinkers more likely to enage in
+criminal activity?  When completed, your graph should look something like this:
+
 
 ```{r group_barplot}
 
@@ -96,30 +105,23 @@ barplot(as.matrix(crime[, c(2:4)]),
    args.legend = list(x = "topleft"),
         beside = TRUE)
 
-# Here's another way to create the barplots by creating a new dataframe.
-lgnd        <- crime$Crime
-binge       <- crime$Binge
-occassional <- crime$Occasional
-never       <- crime$Never
-cnts        <- data.frame(binge, occassional, never)
-
-barplot(as.matrix(cnts),
-        legend = lgnd,
-        col = c("lightcoral","lightblue","khaki","beige"))
-
-barplot(as.matrix(cnts),
-        legend = lgnd,
-           col = c("lightcoral","lightblue","khaki","lightgreen"),
-   args.legend = list(x = "topleft"),
-        beside = TRUE )
+# INSTRUCTOR NOTE
+# See activities_chp_6.R for another way to solve this challenge.
 
 ```
 Data Source: *Statistical Methods and Data Analysis* (p. 110)
 
 
-## The Pie Chart Challenge
+## Challenge 3 (The Pie Chart)
 
-Code for the pie chart challenge:
+In 2017, the Informatics Institue at the University of Florida conducted a survey to determine
+the training needs of its clientele.  The informatics_survey.csv file contains the data from 
+that survey.  In this challenge, you'll create a pie-chart that displays the percentage of
+respondents who came from the Sciences, Health Sciences, Humanities, and Social Sciences. You will also need to create a slice for 'Unknown' as some respondents left this question blank.
+
+Question 3 (q3) on the survey asked participants to select an academic department, but this challenge asks you to create a pie chart that displays broad academic areas.  Thus you will need to create an interim dataframe that summarizes department counts.  You will then need to add an academic group column to that dataframe, in order to classify the department in one of our four major groups.  This final classification task is best done by hand, using R's basic editor.
+
+When completed, your graph should look something like this:
 
 ```{r pie}
 survey <- read.csv("informatics_survey.csv", stringsAsFactors = FALSE)
@@ -127,7 +129,7 @@ survey <- read.csv("informatics_survey.csv", stringsAsFactors = FALSE)
 # INSTRUCTOR NOTE 
 # sqldf does not work when running under R version 3.4.0.  The two commands below
 # return an error message that the survey table cannot be found, though it was
-# created above.  As of 06.26.17, sqldf requires R version 3.3.3 but will work with
+# created above.  As of 06.26.17, sqldf calls for R version 3.3.3 but works with
 # warnings under 3.3.2.
 
 # You can write a select statement with new column names. 
@@ -139,10 +141,16 @@ tmp <- sqldf("select q3, count(q3) from survey where q3 != ' ' group by q3")
 # Rename the columns -- department & department count.
 colnames(tmp)  <- c("dept","dept_cnt")
 
-# Add new column for academic group (HUM Humanities, SCI Sciences, SOC, Social Sciences, MED Medical)
+# Add a new column for academic group with the following values:
+# (HUM Humanities, SCI Sciences, SOC, Social Sciences, MED Medical)
 tmp$acad_grp <- ""                       
 
-# Set the new acad_grp column, using fix().  What happens if you use edit()?
+# INSTRUCTOR NOTE
+# In order to populate the new acad_grp variable, students will need to edit the dataframe
+# with the fix() function.  This opens a simple text editor which allows data entry and
+# modification.  Strangely, the edit() function opens the same editor but changes are not
+# permanently saved to the dataframe.
+
 # fix(tmp)                                   
 
 # Save a backup copy of the modified dataframe.
@@ -155,9 +163,11 @@ colnames(temp) <- c("acad_grp","dept_cnt")
 
 temp <- read.csv("informatics_acad_grp.csv", stringsAsFactors = FALSE)
 
-grp_by <- group_by(temp, acad_grp)                    # Group rows by academic group.
+# Group rows by academic group.
+grp_by <- group_by(temp, acad_grp)                    
 
-slices <- summarize(grp_by, grp_tot = sum(dept_cnt))  # Sum dept_cnt for each academic group.
+# Sum dept_cnt for each academic group.
+slices <- summarize(grp_by, grp_tot = sum(dept_cnt))
 
 # Assign descriptive labels to the slices.
 slices$acad_grp[1] <- "Humanities"
@@ -174,7 +184,7 @@ slices$lbl     <- paste(slices$acad_grp, " ", slices$grp_pct, "%", sep = "")
 pie(slices$grp_tot, labels = slices$lbl, main = "Pie Chart") 
 
 # INSTRUCTOR NOTE
-# This code accomplishes the same thing with the pipe operator.  If you have
+# This code accomplishes the same thing using the pipe operator.  If you have
 # time to demo this in lab, uncomment and test.
 
 # slices <- group_by(temp, acad_grp) %>% summarize(grp_tot = sum(dept_cnt))
@@ -182,11 +192,11 @@ pie(slices$grp_tot, labels = slices$lbl, main = "Pie Chart")
 
 ```
 Data Source: *2017 UF Informatics Survey*
+ 
 
+## Challenge 4 (The Histogram)
 
-## The histogram challenge
-
-Code for the histogram challenge:
+The home_ownership.txt file contains home ownership rates for all 50 states and the District of Columbia, for the years 1985, 1996, and 2002.  In this challenge, you will create three histograms, one for each year.  When complete, your graphs should look like these:
 
 ```{r histogram}
 
@@ -217,9 +227,9 @@ par(opar)
 ```
 Data Source: *Statistical Methods and Data Analysis* (p. 129)
 
-## The box plot challenge
+## Challenge 5 (The Box Plot)
 
-Code for the box plot challenge:
+Now, create side-by-side boxplots of the home_ownership dataset used in the last challenge. Your graph should look like this when you're done:
 
 ```{r boxplot}
 
@@ -229,6 +239,7 @@ boxplot(own$pct_1985,
         own$pct_1996, 
         own$pct_2002, 
         notch = TRUE,
+        col   = "tan",
         ylab  = "Home Ownership %",
         main  = "Home Ownership in the United States",
         names = c("1985","1996","2002"))
@@ -236,9 +247,9 @@ boxplot(own$pct_1985,
 ```
 Data Source: *Statistical Methods and Data Analysis* (p. 129)
 
-## The scatter plot challenge
+## Challenge 6 (The Scatter Plot)
 
-Code for the scatter plot challenge:
+In this challenge you will create a basic scatterplot to compare the M2 and M3 money supply (in trillions of dollars).  The data is found in money_supply.txt.  Also, fit a linear regression model to the data and plot the resulting line.  Your graph should look like this when complete:
 
 ```{r scatterplot}
 
@@ -255,9 +266,9 @@ abline(fit, col = "blue")
 Data Source: *Statistical Methods and Data Analysis* (p. 137)
 
 
-## The stem-and-leaf Challenge
+## Challenge 7 (The Stem-and-Leaf Plot)
 
-Code for the stem-and-leaf challenge:
+In this last challenge, create a stem-and-leaf plot of the data found in ozone.csv.  According to Ott (2016), these "are the maximum ozone readings taken on 80 summer days in a large city" (p. 75).  Your graph should look like this when complete:  
 
 ```{r stemleaf}
 
@@ -265,7 +276,10 @@ ozone <- read.csv("ozone.csv", stringsAsFactors = FALSE)
 
 x <- ozone[c(0:79),]
 
-# The scale argument must equal 2 or the function only prints even numbers.
+# INSTRUCTOR NOTE
+# The scale argument must equal 2 or the function only prints even numbers.  This
+# is not stated in the help documentation.  The answer was found on Stack Overflow.
+
 stem(x, scale = 2) 
 
 ```
@@ -275,4 +289,6 @@ Data Source: *Statistical Methods and Data Analysis* (p. 77)
 #### References
 
 Gravetter, F. J. (2015). *Statistics for the behavioral sciences* (10th ed.). Boston, MA: Cengage Learning.
+
+Ott, L., & Longnecker, M. (2016). *An introduction to statistical methods & data analysis* (7th ed.). Boston, MA: Cengage Learning.
 
