@@ -1,0 +1,21 @@
+1. Which of the following are logical operators?
+*a. ==
+*b. !=
+c. &&
+*d. x | y
+
+2. Type the function name that is used to convert a number to a character: {as.character()}
+
+3. Which function(s) append a row to a dataframe?
+a. c()
+b. attach()
+c. cbind()
+*d. rbind()
+
+4. R is a statically typed language.
+*False
+True
+
+5. The sqldf package allows you to use SQL to manipulate data in a dataframe.
+False
+*True
