@@ -1,0 +1,23 @@
+1. Which of the following inserts a tab into a character string?
+a. \tab
+b. \p
+c. \n
+*d. \t
+
+2. Type the command that returns the number of elements in x, defined as x <- c(2, 5, 6, 9): {length(x)}
+
+3. Which of the following control structures is not an R loop construct?
+a. repeat {}
+b. while {}
+c. foreach {}
+d. for {}
+
+4. The reshaper package allows one to convert data sets from wide to long format.
+*False
+True
+
+5. Which function converts a specific score to its equivalent standard deviation.
+a. sd() 
+b. var()
+*c. scale()
+d. zscore()
