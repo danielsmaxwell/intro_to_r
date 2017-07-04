@@ -1,0 +1,24 @@
+1. Which of the following is not an R data structure?
+a. Matrix
+*b. Object
+c. Vector
+d. Data frame
+
+2. Type the command to delete the tst object from your working environment: {rm(tst)}
+
+3. Which of the following arguments loads a data frame without creating any factors?
+*a. stringsAsFactors = FALSE
+b. Factors = FALSE
+c. StringsAsFactors = FALSE
+d. createFactors = FALSE
+
+4. Which of the following functions imports data into R?
+*a. read.fwf()
+*b. read.csv()
+*c. read.table()
+d. read.flatfile()
+
+5. The activities worksheet indicates that coercion rules go in this order: 
+logical -> integer -> numeric -> complex -> character
+False
+*True
