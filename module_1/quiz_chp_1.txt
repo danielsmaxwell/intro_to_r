@@ -1,0 +1,24 @@
+1.  The commands [help(), Help(), and HELP()] are equivalent in R.
+True
+*False 
+
+2. Which of the following tools are part of the technology stack used in this course?
+*a. RStudio
+b. Pandas
+*c. R
+*d. MikTeX
+
+3.  Which of the following functions downloads and then adds a package to your IDE?
+a. library()
+b. source()
+c. install.package()
+*d. install.packages() 
+
+4.  Which of following makes R an attractive choice for statistical work?  Check all that apply.
+*a. A state-of-the-art graphics system
+*b. Interoperability with other languages such as C++
+c. ISO Certification
+* d. R is free
+
+5. Type the command to set your working directory to the mydata subdirectory: {setwd(“c:/mydata”)|setwd(“c:\\mydata”)}
+
