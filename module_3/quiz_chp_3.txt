@@ -1,0 +1,23 @@
+1. Which of the following arguments sets line style to solid in the plot() function?
+a. solid_line = TRUE
+b. line = 1
+*c. lty = 1
+d. lty = 6
+
+2. Type the command to create a 2 x 2 graphic display matrix: {par(mfrow = c(2, 2))}
+
+3. The RColorBrewer package is popular because it:
+a. enhances the performance of the R graphics system
+*b. allows one to easily create attractive color palettes
+c. generates colorful graphs
+d. adds color options to base R
+
+4. Which of the following parameters are used to specify colors?
+*a. col
+*b. col.axis
+*c. bg
+d. color
+
+5. The hist() function creates histograms. 
+False
+*True
