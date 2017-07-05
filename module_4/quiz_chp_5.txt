@@ -16,7 +16,7 @@ d. for {}
 *False
 True
 
-5. Which function converts a specific score to its equivalent standard deviation.
+5. Which function converts a vector of observations to standard-deviation units (z-scores).
 a. sd() 
 b. var()
 *c. scale()
