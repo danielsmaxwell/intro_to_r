@@ -1,0 +1,21 @@
+1. Which of the following is not offered as part of R's base graphing system?
+a. Box Plot
+*b. Network Graph
+c. Bar Plot
+d. Pie Chart
+
+2. Type the command to generate a histogram of vector x: {hist(x)}
+
+3. The solid line inside the box of a boxplot represents the:
+a. mean
+b. variance
+*c. median
+d. mode
+
+4. The polygon () function is frequently used to add fill color to plots.
+*True
+False
+
+5. According to Kabacoff, pie charts are beloved by most statisticans. 
+True
+*False
