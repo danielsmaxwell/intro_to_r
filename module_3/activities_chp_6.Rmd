@@ -119,11 +119,16 @@ the training needs of its clientele.  The informatics_survey.csv file contains t
 that survey.  In this challenge, you'll create a pie-chart that displays the percentage of
 respondents who came from the Sciences, Health Sciences, Humanities, and Social Sciences. You will also need to create a slice for 'Unknown' as some respondents left this question blank.
 
-Question 3 (q3) on the survey asked participants to select an academic department, but this challenge asks you to create a pie chart that displays broad academic areas.  Thus you will need to create an interim dataframe that summarizes department counts.  You will then need to add an academic group column to that dataframe, in order to classify the department in one of our four major groups.  This final classification task is best done by hand, using R's basic editor.
+Question 3 (q3) on the survey asked participants to select an academic department, but it does not classify those departments.  Fortunately, the informatics_acad_grp.csv file provides group totals by department and an acad_grp column with the following values: (UNK) Unknown, (SSI) Social Sciences, (HUM) Humanities, (SCI) Sciences, and (MED) Health Sciences.  You can use that file for this challenge or you can recreate it from the informatics_survey.csv file - a much bigger challenge that will require you to group and manually edit the data.  Please note: this advanced challenge is optional.
 
 When completed, your graph should look something like this:
 
 ```{r pie}
+
+# Solution for the optional (advanced) challenge to create the 
+# informatics_acad_grp.csv file from the informatics_survey.csv file 
+# rather than use the one provided.
+
 survey <- read.csv("informatics_survey.csv", stringsAsFactors = FALSE)
 
 # INSTRUCTOR NOTE 
@@ -147,11 +152,9 @@ tmp$acad_grp <- ""
 
 # INSTRUCTOR NOTE
 # In order to populate the new acad_grp variable, students will need to edit the dataframe
-# with the fix() function.  This opens a simple text editor which allows data entry and
-# modification.  Strangely, the edit() function opens the same editor but changes are not
-# permanently saved to the dataframe.
-
-# fix(tmp)                                   
+# with the fix() function.  This opens a simple text editor which allows data entry 
+# and modification.  Strangely, the edit() function opens the same editor but changes 
+# are not permanently saved to the dataframe.
 
 # Save a backup copy of the modified dataframe.
 write.csv(tmp, file = "temp.csv")          
@@ -160,6 +163,8 @@ write.csv(tmp, file = "temp.csv")
 temp   <- data.frame(tmp$acad_grp, tmp$dept_cnt, stringsAsFactors = FALSE)
 
 colnames(temp) <- c("acad_grp","dept_cnt")
+
+# End optional challenge -------------------------------------------------
 
 temp <- read.csv("informatics_acad_grp.csv", stringsAsFactors = FALSE)
 
