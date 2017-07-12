@@ -1,7 +1,9 @@
 ---
-title: "Exercise Worksheet (Chapter 6)"
+title: | 
+       | Activity Worksheet 
+       | *R in Action (Chapter 6)*
 author: "Dan Maxwell"
-date: "June 1, 2017"
+date: "July 12, 2017"
 output:
   pdf_document: default
   html_document: default
@@ -20,11 +22,50 @@ library(dplyr)
 ```
 
 ## Introduction
-Review the section notes for *R in Action* before working on the challenges.
+Review the sample code and the *Ref* notes before working on the challenges.
+
+## The Table Function
+When you need to summarize a dataframe, the `table()` function is often useful.  As noted in the *Ref* section below, Kabacoff provides code examples and an explanation of this function in chapter 7.  You may want to refer to that section while reviewing the example provided below. 
 
 > ### *Ref: R in Action (Section 6.1.1)* 
-> As Kabacoff does not discuss the `table()` function here, you'll want to read
-> about it in section 7.2.1 (pages 145 & 146). 
+> Kabacoff does not discuss the `table()` function in this section.  So you'll want to 
+> read about it in section 7.2.1 (pages 145 & 146).
+>
+
+Let's take a closer look at the `table()` function, using a dataset of ufo sightings from 1865 to 2004.  First, we load the data into the ufo dataframe and then `attach()` it to the working path.  This allows us to reference columns without having to use the `$` syntax.  In this example, we load the file without converting the strings to factors in order to illustrate how the `factor()` function does this.  And finally, we create new vectors, one for each factor of interest. 
+
+```{r ufo}
+
+ufo <- read.csv(file = "ufo.csv", stringsAsFactors = FALSE)
+
+attach(ufo)
+
+names(ufo)
+
+photo   <- factor(Photo,levels = 0:1, labels = c("No", "Yes"))
+contact <- factor(Contact,levels = 0:1, labels = c("No", "Yes"))
+abduct  <- factor(Abduct,levels = 0:1, labels = c("No", "Yes"))
+
+```
+
+With vectors created, we can now use the `table()` function to summarize our data.  In this example, the function generates simple frequency counts for each vector. Given this information, how might you calculate the percentage of sightings that involved abduction?
+
+```{r ufo_table}
+
+table(photo) 
+table(contact) 
+table(abduct)
+
+```
+
+The `table()` function can also create two-way tables.  Here the first argument specifies the row variable (photo) while the second specifies the column (contact).  Again, the function calculates a frequency count for each combination or cell in this 2-way table.
+
+```{r two_way_table}
+
+table(photo, contact)
+
+```
+
 
 > ### *Ref: R in Action (Section 6.5.1)* 
 > The `~` in the formula `mpg ~ cyl` separates the *dependent* or *response*
@@ -44,10 +85,9 @@ Review the section notes for *R in Action* before working on the challenges.
 
 ### Challenge 1 (The Basic Barplot)
 
-In this first challenge, load the informatics_survey.csv file into a dataframe and then select
-just the question 5 (Q5_1) column.  From there, create a basic barplot that looks like this:
+In this first challenge, load the informatics_survey.csv file into a dataframe and then select just the question 5 (Q5_1) column.  From there, create a basic barplot that looks like this:
 
-```{r barplot}
+```{r barplot, echo = FALSE}
 
 survey <- read.csv("informatics_survey.csv", stringsAsFactors = FALSE)
 
@@ -83,13 +123,10 @@ Data Source: *2017 UF Informatics Survey*
 
 ## Challenge 2 (The Grouped & Stacked Barplot)
 
-In this second challenge, load the drink_crime.csv file into a dataframe and then generate both
-a stacked and grouped barplot.  This drink_crime.csv file lists the percentage of criminal
-activity in relation to one's drinking level.  Are regular drinkers more likely to enage in
-criminal activity?  When completed, your graph should look something like this:
+In this second challenge, load the drink_crime.csv file into a dataframe and then generate both a stacked and grouped barplot.  This drink_crime.csv file lists the percentage of criminal activity in relation to one's drinking level.  Are regular drinkers more likely to enage in criminal activity?  When completed, your graph should look something like this:
 
 
-```{r group_barplot}
+```{r group_barplot, echo = FALSE}
 
 crime <- read.csv("drink_crime.csv", stringsAsFactors = FALSE)
 
@@ -105,29 +142,21 @@ barplot(as.matrix(crime[, c(2:4)]),
    args.legend = list(x = "topleft"),
         beside = TRUE)
 
-# INSTRUCTOR NOTE
-# See activities_chp_6.R for another way to solve this challenge.
-
 ```
 Data Source: *Statistical Methods and Data Analysis* (p. 110)
 
 
 ## Challenge 3 (The Pie Chart)
 
-In 2017, the Informatics Institue at the University of Florida conducted a survey to determine
-the training needs of its clientele.  The informatics_survey.csv file contains the data from 
-that survey.  In this challenge, you'll create a pie-chart that displays the percentage of
-respondents who came from the Sciences, Health Sciences, Humanities, and Social Sciences. You will also need to create a slice for 'Unknown' as some respondents left this question blank.
+In 2017, the Informatics Institue at the University of Florida conducted a survey to determine the training needs of its clientele.  The informatics_survey.csv file contains the data from that survey.  In this challenge, you'll create a pie-chart that displays the percentage of respondents who came from the Sciences, Health Sciences, Humanities, and Social Sciences. You will also need to create a slice for 'Unknown' as some respondents left this question blank.
 
 Question 3 (q3) on the survey asked participants to select an academic department, but it does not classify those departments.  Fortunately, the informatics_acad_grp.csv file provides group totals by department and an acad_grp column with the following values: (UNK) Unknown, (SSI) Social Sciences, (HUM) Humanities, (SCI) Sciences, and (MED) Health Sciences.  You can use that file for this challenge or you can recreate it from the informatics_survey.csv file - a much bigger challenge that will require you to group and manually edit the data.  Please note: this advanced challenge is optional.
 
 When completed, your graph should look something like this:
 
-```{r pie}
+```{r pie, echo = FALSE, message = FALSE, warning = FALSE}
 
-# Solution for the optional (advanced) challenge to create the 
-# informatics_acad_grp.csv file from the informatics_survey.csv file 
-# rather than use the one provided.
+# Solution for the advanced (optional) challenge.
 
 survey <- read.csv("informatics_survey.csv", stringsAsFactors = FALSE)
 
@@ -203,7 +232,7 @@ Data Source: *2017 UF Informatics Survey*
 
 The home_ownership.txt file contains home ownership rates for all 50 states and the District of Columbia, for the years 1985, 1996, and 2002.  In this challenge, you will create three histograms, one for each year.  When complete, your graphs should look like these:
 
-```{r histogram}
+```{r histogram, echo = FALSE}
 
 opar <- par(no.readonly = TRUE)
 
@@ -236,7 +265,7 @@ Data Source: *Statistical Methods and Data Analysis* (p. 129)
 
 Now, create side-by-side boxplots of the home_ownership dataset used in the last challenge. Your graph should look like this when you're done:
 
-```{r boxplot}
+```{r boxplot, echo = FALSE}
 
 own <- read.delim("home_ownership.txt", sep = "\t", stringsAsFactors = FALSE)
 
@@ -256,7 +285,7 @@ Data Source: *Statistical Methods and Data Analysis* (p. 129)
 
 In this challenge you will create a basic scatterplot to compare the M2 and M3 money supply (in trillions of dollars).  The data is found in money_supply.txt.  Also, fit a linear regression model to the data and plot the resulting line.  Your graph should look like this when complete:
 
-```{r scatterplot}
+```{r scatterplot, echo = FALSE}
 
 money <- read.delim("money_supply.txt", sep = "\t", stringsAsFactors = FALSE)
 
@@ -275,7 +304,7 @@ Data Source: *Statistical Methods and Data Analysis* (p. 137)
 
 In this last challenge, create a stem-and-leaf plot of the data found in ozone.csv.  According to Ott (2016), these "are the maximum ozone readings taken on 80 summer days in a large city" (p. 75).  Your graph should look like this when complete:  
 
-```{r stemleaf}
+```{r stemleaf, echo = FALSE}
 
 ozone <- read.csv("ozone.csv", stringsAsFactors = FALSE)
 
@@ -288,7 +317,7 @@ x <- ozone[c(0:79),]
 stem(x, scale = 2) 
 
 ```
-Data Source: *Statistical Methods and Data Analysis* (p. 77)
+Data Source: *Statistical Methods and Data Analysis* (p. 77) \newpage
 
 
 #### References
