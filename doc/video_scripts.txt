@@ -1,0 +1,66 @@
+Videos
+	Class Welcome
+	Assignment Completion
+	Software Installation
+	RStudio Environment
+	Functions
+
+Assignment Completion
+In this short video, I want to walk you through the steps of creating a .pdf from an RMarkdown document.  Your assignments in this class are to complete the Activity Worksheets.  That involves two things:  retype example code found in the worksheet and complete the challenges.  And I am asking that you submit your assignments as .pdf files.  Thus you will need to know how to generate a .pdf from within RStudio.
+
+So let's get started... first click the dropdown to create a new document and select RMarkdown...
+
+And the new document window displays.  Now in this video, I'm going to create an assignment file for the activity_chp_1a worksheet.  Remember: you'll need to create a separate assignment .pdf for each activity worksheet that you complete.  So let's start by creating an appropriate title for this document. 
+
+Activity Worksheet A  (Chapter 1)
+
+And don't forget to click the .pdf radio button.
+
+With our new document on the screen, let's first remove all the default stuff that RStudio adds to the document.
+
+With that done, there's one more thing we need to do.  And that's to add a special line of code to the header.  Let me cut and paste that line:
+				header-includes: \usepackage{color}
+
+For some reason, I've found that the knit process frequently throws errors when this line is missing, specifically in cases where I want to set some text to a particular color.   
+
+Alright -- With the document cleaned up, let's add a section for the example code -- the code you retyped from the activity worksheet.
+
+And with that done, let's add a section for Challenge 1.  You'll need to create a separate section for each Challenge in the activity worksheet. 
+
+To keep things brief, I'm not going to add any code at this time.  Instead, let me show you what you'll need to do to knit the document.  Click knit and then select .pdf... and that will launch the process!  This will produce a .pdf that you can then save to your hard drive and upload to Canvas.
+
+Okay, go write some code...
+
+-------------------------------------------------------------------------------------------------
+RStudio Setup
+
+In this short video, I will introduce you to the RStudio IDE or Integrated Development Environment.  Once RStudio is installed there are a couple things you need to verify before getting to work.  We'll look at those setup options first before spending a little time in the interface.
+
+One of the first things you'll need to do is verify that RStudio is using the correct version of R.  I've actually had to change this a couple times.  Sometimes, packages don't work or throw warnings shortly after you upgrade your base installation of R.
+
+First, select the “Tools” menu and then the “Options submenu. Confirm that the correct version of R is followed by the correct location of R in the “R version” box. If not, change it to the correct version and location.
+
+With that done, we now need to check which CRAN mirror R is using.  A CRAN mirror is just a location where R packages are stored, and there are multiple mirrors around the world.  Pick the one that is closest to you.  In my case, that is the National Laboratories in TN.
+ 
+Select the “Packages” icon and select “change” set the CRAN mirror that you will be using going forward (again, the National Institute for Computational Sciences, Oak Ridge, TN is the closest). 
+
+And finally, you can customize your editor...
+Select “Code Editing” in the “Options” dialogue box and check off a few addition options: 
+“Highlight selected line", “Show margin", and “Show syntax highlighting in console input." Finally select “OK”. 
+
+Okay, go write some code!
+
+
+--------------------------------------------------------------------------------------------------
+Function Anatomy
+
+Syntax
+return_value <- func_name (arg_1, arg_2, etc…)
+
+Okay -- with the basics out of the way, let's write some code to call a function.  In this case, it will be the runif() function, a function that generates a set of random numbers from a uniform distribution.  First let's look at the documentation for this function to see what arguments or parameters it accepts.
+
+Actual Function Call
+tst <- runif(n = 100, min = 10, 200)
+
+	Arguments can be passed by name or position
+
