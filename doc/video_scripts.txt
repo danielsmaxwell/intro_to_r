@@ -2,10 +2,12 @@ Videos
 	Class Welcome
 	Assignment Completion
 	Software Installation
-	RStudio Environment
-	Functions
+	RStudio Final Check
+	Anatomy of a Function
 
+-------------------------------------------------------------------------------------------------
 Assignment Completion
+
 In this short video, I want to walk you through the steps of creating a .pdf from an RMarkdown document.  Your assignments in this class are to complete the Activity Worksheets.  That involves two things:  retype example code found in the worksheet and complete the challenges.  And I am asking that you submit your assignments as .pdf files.  Thus you will need to know how to generate a .pdf from within RStudio.
 
 So let's get started... first click the dropdown to create a new document and select RMarkdown...
@@ -23,7 +25,7 @@ With that done, there's one more thing we need to do.  And that's to add a speci
 
 For some reason, I've found that the knit process frequently throws errors when this line is missing, specifically in cases where I want to set some text to a particular color.   
 
-Alright -- With the document cleaned up, let's add a section for the example code -- the code you retyped from the activity worksheet.
+Alright -- With the document cleaned up, let's add a section for the example code -- the code you retype from the activity worksheet.
 
 And with that done, let's add a section for Challenge 1.  You'll need to create a separate section for each Challenge in the activity worksheet. 
 
@@ -32,35 +34,69 @@ To keep things brief, I'm not going to add any code at this time.  Instead, let 
 Okay, go write some code...
 
 -------------------------------------------------------------------------------------------------
-RStudio Setup
+RStudio Final Check
 
-In this short video, I will introduce you to the RStudio IDE or Integrated Development Environment.  Once RStudio is installed there are a couple things you need to verify before getting to work.  We'll look at those setup options first before spending a little time in the interface.
-
-One of the first things you'll need to do is verify that RStudio is using the correct version of R.  I've actually had to change this a couple times.  Sometimes, packages don't work or throw warnings shortly after you upgrade your base installation of R.
-
-First, select the “Tools” menu and then the “Options submenu. Confirm that the correct version of R is followed by the correct location of R in the “R version” box. If not, change it to the correct version and location.
-
-With that done, we now need to check which CRAN mirror R is using.  A CRAN mirror is just a location where R packages are stored, and there are multiple mirrors around the world.  Pick the one that is closest to you.  In my case, that is the National Laboratories in TN.
+Hi Everyone
  
-Select the “Packages” icon and select “change” set the CRAN mirror that you will be using going forward (again, the National Institute for Computational Sciences, Oak Ridge, TN is the closest). 
+In this short video, I will introduce you to the RStudio IDE or Integrated Development Environment.  Once RStudio is installed, you'll want to check a couple of your global settings.  To check global options, click Tools, and then select Global Options.
 
-And finally, you can customize your editor...
-Select “Code Editing” in the “Options” dialogue box and check off a few addition options: 
-“Highlight selected line", “Show margin", and “Show syntax highlighting in console input." Finally select “OK”. 
+One of the first things you'll need to do is verify that RStudio is using the correct version of R.  I've actually had to change this before.  Confirm that RStudio is using the correct version of R. If not, change it.  Now on my computer, I've got multiple installs of R.  And we can see them when we click the change button, I'm presently running R 3.3.2. And I'm doing so because the sqldf package stopped working when I upgraded to R 3.4.0.  This happens sometimes.  When a new release of R comes out, packages often have to be modified.  And there may be some lag time before the programmers do that.  That was the case here and so I linked RStudio to an earlier version.
+
+Let's quickly verify our CRAN mirror by clicking Packages.  BTW, a CRAN mirror is just a location where R packages are stored, and there are multiple mirrors around the world.  I've had good luck with the default option.  But if package install performance becomes and issue, change this to a mirror that is close to us.  I believe the National Institute for Computational Sciences in Oak Ridge, TN is the closest.
+
+And finally, you can customize your editor...  I'm not going to detail all of the options right now.  But as you gain proficiency in R, you'll probably want to come back here to customize your editor.
+
+Four Panel layout.  Scripts - Console - Environment (In CS, this is known as the stack) - General Panel
 
 Okay, go write some code!
 
-
 --------------------------------------------------------------------------------------------------
-Function Anatomy
+Anatomy of a function
 
 Syntax
 return_value <- func_name (arg_1, arg_2, etc…)
 
-Okay -- with the basics out of the way, let's write some code to call a function.  In this case, it will be the runif() function, a function that generates a set of random numbers from a uniform distribution.  First let's look at the documentation for this function to see what arguments or parameters it accepts.
+Okay -- with the basics out of the way, let's write some code that calls a function.  In this case, it will be the rnorm() function, a function that generates a set of random numbers from a normal distribution.  First let's look at the documentation for this function to see what arguments or parameters it accepts.
 
 Actual Function Call
-tst <- runif(n = 100, min = 10, 200)
+tst <- rnorm(n = 100, min = 10, max = 200)
 
-	Arguments can be passed by name or position
+In this piece of code, I'm passing arguments to rnorm by NAME.  That is, I specify the argument, an equal sign, and then a value.  But this code can be written a different way.  Here's another way to call this function...
+
+tst <- rnorm(100, 10, 200)
+
+Here I pass the arguments by position.  When doing this, you must ensure that your arguments align with what the function expects in that position.  Check the help documentation to verify that order.
+
+Okay, go write some code!
+
+--------------------------------------------------------------------------------------------------
+Class Welcome
+
+Hello Everyone -- I'm Dr. Dan Maxwell -- and welcome to Introduction to R.  In this course, you'll gain a basic working knowledge of the R programming language.  Once you complete this course, my hope is that you'll feel comfortable writing short programs in R to explore your data.  If nothing else, I hope you gain a level of 
+
+
+To succeed, there are a couple things you need to keep in mind:
+
+1. Read the assigned readings.  This is critical because our textbook (R in Action) and the activity worksheets that accompany it
+   will frame your learning experience.  This is how you'll gain conceptual understanding.  And -- I might add -- pass the quizzes.
+
+2. Stay focused.  So often, students think they can learn a new programming language while multi-tasking on Facebook or texting 
+   friends on their cell phone.  After programming for 30 years, I've learned one thing.  You'll learn R -- or any language -- much
+   faster if you can devote focused, uninterrupted time to practice.  
+
+3. Write code.  This may sound self-evident, considering this is a class on learning to program in R!  But this can't be said too
+   often because deeper mastery happens as you code and fix bugs.  In fact, this is why I ask you to retype example code in the
+   in the activity worksheets and hand that in as part of your assignments.  In doing so, you'll inevitably make 
+   mistakes -- and you know what -- that's a REALLY good thing because you'll then have to fix them!  And of course, you'll also 
+   write custom code in response to the challenges.
+
+Keep these principles in mind as you begin your R learning journey.
+
+Okay, go write some code!
+
+
+
+
+
+
 
