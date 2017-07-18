@@ -8,26 +8,37 @@ Videos
 -------------------------------------------------------------------------------------------------
 Assignment Completion
 
-In this short video, I want to walk you through the steps of creating a .pdf from an RMarkdown document.  Your assignments in this class are to complete the Activity Worksheets.  That involves two things:  retype example code found in the worksheet and complete the challenges.  And I am asking that you submit your assignments as .pdf files.  Thus you will need to know how to generate a .pdf from within RStudio.
+Hi Everyone,
+
+In this short video, I want to walk you through the steps of creating a .pdf from within RStudio document.  Your assignments in this class are to complete the Activity Worksheets.  That involves two things:  retype example code found in the worksheet and complete the challenges.  And I am asking that you submit your assignments as .pdf files.  Thus you will need to know how to generate a .pdf from within RStudio.
 
 So let's get started... first click the dropdown to create a new document and select RMarkdown...
 
-And the new document window displays.  Now in this video, I'm going to create an assignment file for the activity_chp_1a worksheet.  Remember: you'll need to create a separate assignment .pdf for each activity worksheet that you complete.  So let's start by creating an appropriate title for this document. 
+Immediately, the new document window displays.  Now in this video, I'm going to create an assignment file for the activity_chp_1a worksheet.  Remember: you'll need to create a separate assignment .pdf for each activity worksheet that you complete.  So let's start by creating an appropriate title for this document. 
 
 Activity Worksheet A  (Chapter 1)
 
 And don't forget to click the .pdf radio button.
 
-With our new document on the screen, let's first remove all the default stuff that RStudio adds to the document.
+With our new document displayed on the screen, let's first remove all of the default text and code that we do not need.  Remember to keep that first section of code as it serves a role in the knit process. 
 
 With that done, there's one more thing we need to do.  And that's to add a special line of code to the header.  Let me cut and paste that line:
 				header-includes: \usepackage{color}
 
 For some reason, I've found that the knit process frequently throws errors when this line is missing, specifically in cases where I want to set some text to a particular color.   
 
-Alright -- With the document cleaned up, let's add a section for the example code -- the code you retype from the activity worksheet.
+Now that we have a clean document, let's add a section for the example code -- this is the code you retype from the activity worksheet.  Let me show you a section of the Activity Chapter A Worksheet right now...
 
-And with that done, let's add a section for Challenge 1.  You'll need to create a separate section for each Challenge in the activity worksheet. 
+Okay --- here's part of Activity Worksheet A (Chapter 1)
+The code in blue is what I want you to retype into the Example Code section of the RMarkdown Document.  When you retype code, you inevitably make mistakes.  And in making those mistakes and working through the errors, you'll begin to internalize R syntax.  That's why I ask you to do this!
+
+So we have example code...  and we also have Challenges...  Let me scroll to the bottom of this document to show you a Challenge.  Let's take a look at Challenge 2.  So in response to this Challenge -- you'll create a section in your RMarkdown document and write some code to answer the question being asked.  Now let's return to our that document...
+
+In the Example code section, let me type in some of the example code from the Activity Worksheet.  
+	log10(10)  
+	exp(1)
+
+For each challenge in the activity worksheet, you'll need to create a separate section.  Let me add one for Challenge 1. 
 
 To keep things brief, I'm not going to add any code at this time.  Instead, let me show you what you'll need to do to knit the document.  Click knit and then select .pdf... and that will launch the process!  This will produce a .pdf that you can then save to your hard drive and upload to Canvas.
 
@@ -38,13 +49,23 @@ RStudio Final Check
 
 Hi Everyone
  
-In this short video, I will introduce you to the RStudio IDE or Integrated Development Environment.  Once RStudio is installed, you'll want to check a couple of your global settings.  To check global options, click Tools, and then select Global Options.
+In this short video, I will introduce you to a couple of RStudio's setup or global options.  To check global options, click Tools, and then select Global Options.
 
-One of the first things you'll need to do is verify that RStudio is using the correct version of R.  I've actually had to change this before.  Confirm that RStudio is using the correct version of R. If not, change it.  Now on my computer, I've got multiple installs of R.  And we can see them when we click the change button, I'm presently running R 3.3.2. And I'm doing so because the sqldf package stopped working when I upgraded to R 3.4.0.  This happens sometimes.  When a new release of R comes out, packages often have to be modified.  And there may be some lag time before the programmers do that.  That was the case here and so I linked RStudio to an earlier version.
+One of the first things you'll need to do is verify that RStudio is using the correct version of R.  To see what versions are available, click the Change button.  Now on my computer, I've got multiple installs of R.  I'm presently running RStudio with R 3.3.2. And I'm doing this because the sqldf package stopped working when I upgraded to 3.4.0.  This happens sometimes.  When a new release of R comes out, some of your packages may stop working.  That was the case here and so I had to go back to an earlier version of R.
 
-Let's quickly verify our CRAN mirror by clicking Packages.  BTW, a CRAN mirror is just a location where R packages are stored, and there are multiple mirrors around the world.  I've had good luck with the default option.  But if package install performance becomes and issue, change this to a mirror that is close to us.  I believe the National Institute for Computational Sciences in Oak Ridge, TN is the closest.
+At this point, I'm going to click Cancel because I don't want to use the latest version of R.  Maybe the folks who wrote the sqldf package will update it soon!
 
-And finally, you can customize your editor...  I'm not going to detail all of the options right now.  But as you gain proficiency in R, you'll probably want to come back here to customize your editor.
+Okay -- let's click Packages and verify the location of our CRAN mirror.  BTW, a CRAN mirror is simply a place where R packages are stored, and there are multiple mirrors around the world.  I've had good luck with the default option.  But if your packages begin to install slowly, you might want to change this option.  
+
+I believe the National Institute for Computational Sciences in Oak Ridge, TN is the closest.
+
+Alright, I have two other options to show you.  The first allows you to set your coding preferences.  Click Code to do so.  Now I'm not going to spend much time on this screen -- I just want to show you the tabs and options available.  As you gain proficiency in R, you may want to change some of these defaults.
+
+And finally, the last option I want to talk about is Appearance.  With this global option, you can apply a color theme to your workspace.  For example, some programmers prefer to work against a black background.  I'm going to click on a couple options just to give you a feel for the possibilities.
+
+And with that, we've completed this short video tour of RStudio's global options.
+
+--------------------------------------------------------------------------------------------------
 
 Four Panel layout.  Scripts - Console - Environment (In CS, this is known as the stack) - General Panel
 
