@@ -1,4 +1,4 @@
----
+ ---
 title: | 
        | Activity Worksheet B
        | *R in Action* (Chapter 4)
@@ -162,8 +162,6 @@ Come up with at least 3 different commands that will produce the following outpu
 ```{r, echo=FALSE}
 x[2:4]
 ```
-
-After you find 3 different commands, compare notes with your neighbour. Did you have different strategies?
 
 > ## Solution to challenge 1
 >
@@ -546,7 +544,7 @@ xlist[1]
 
 This returns a *list with one element*.
 
-We can subset elements of a list exactly the same was as atomic
+We can subset elements of a list exactly the same way as atomic
 vectors using `[`. Comparison operations however won't work as
 they're not recursive, they will try to condition on the data structures
 in each element of the list, not the individual elements within those
