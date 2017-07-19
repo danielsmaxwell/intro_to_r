@@ -154,8 +154,7 @@ Make a data frame that holds the following information for yourself:
 - last name
 - lucky number
 
-Then use `rbind` to add an entry for the people sitting beside you.
-Finally, use `cbind` to add a column with each person's answer to the question, "Is it time for coffee break?"
+Then use `rbind` to add an entry for your best friend. Finally, use `cbind` to add a column with an answer to the question, "Is it time for coffee break?"
 
 > ## Solution to Challenge 1
 > ```{r}
@@ -172,7 +171,7 @@ now, let's use those skills to digest a more realistic dataset. Lets read in the
 gapminder dataset that we downloaded previously:
 
 ```{r}
-gapminder <- read.csv("gapminder_FiveYearData.csv")
+gapminder <- read.csv("gapminder.csv")
 ```
 
 > ## Miscellaneous Tips
@@ -183,13 +182,13 @@ gapminder <- read.csv("gapminder_FiveYearData.csv")
 > folder of your choice onto your computer using the `download.file` function.
 > The `read.csv` function can then be executed to read the downloaded file from the download location, for example,
 > ```{r eval=FALSE, echo=TRUE}
-> download.file("https://raw.githubusercontent.com/danielsmaxwell/intro_to_r/master/data/gapminder_FiveYearData.csv", destfile = "gapminder_FiveYearData.csv")
-> gapminder <- read.csv("gapminder_FiveYearData.csv")
+> download.file("https://raw.githubusercontent.com/danielsmaxwell/intro_to_r/master/data/gapminder.csv", destfile = "gapminder.csv")
+> gapminder <- read.csv("gapminder.csv")
 > ```
 >
 > * Alternatively, you can also read in files directly into R from the Internet by replacing the file paths with a web address in `read.csv`. One should note that in doing this no local copy of the csv file is first saved onto your computer. For example,
 > ```{r eval=FALSE, echo=TRUE}
-> gapminder <- read.csv("https://raw.githubusercontent.com/danielsmaxwell/intro_to_r/master/data/gapminder_FiveYearData.csv")
+> gapminder <- read.csv("https://raw.githubusercontent.com/danielsmaxwell/intro_to_r/master/data/gapminder.csv")
 > ```
 >
 > * You can read directly from excel spreadsheets without
@@ -277,8 +276,8 @@ as its argument (or by pressing the "source" button in RStudio).
 > ## Solution to Challenge 2
 > The contents of `script/load-gapminder.R`:
 > ```{r eval = FALSE}
-> download.file("https://raw.githubusercontent.com/danielsmaxwell/intro_to_r/master/data/gapminder_FiveYearData.csv", destfile = "gapminder_FiveYearData.csv")
-> gapminder <- read.csv(file = "gapminder_FiveYearData.csv")
+> download.file("https://raw.githubusercontent.com/danielsmaxwell/intro_to_r/master/data/gapminder.csv", destfile = "gapminder.csv")
+> gapminder <- read.csv(file = "gapminder.csv")
 > ```
 > To run the script and load the data into the `gapminder` variable:
 > ```{r eval = FALSE}
@@ -288,10 +287,7 @@ as its argument (or by pressing the "source" button in RStudio).
 ## Challenge 3
 
 Read the output of `str(gapminder)` again;
-this time, use what you've learned about factors, lists and vectors,
-as well as the output of functions like `colnames` and `dim`
-to explain what everything that `str` prints out for gapminder means.
-If there are any parts you can't interpret, discuss with fellow students!
+this time, use what you've learned about factors, lists and vectors, as well as the output of functions like `colnames` and `dim` to explain what everything that `str` prints out for gapminder means.
 
 > ## Solution to Challenge 3
 >
