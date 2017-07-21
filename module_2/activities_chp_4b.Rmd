@@ -1,4 +1,4 @@
- ---
+---
 title: | 
        | Activity Worksheet B
        | *R in Action* (Chapter 4)
