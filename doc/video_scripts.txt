@@ -22,7 +22,7 @@ And don't forget to click the .pdf radio button.
 
 With our new document displayed on the screen, let's first remove all of the default text and code that we do not need.  Remember to keep that first section of code as it serves a role in the knit process. 
 
-With that done, there's one more thing we need to do.  And that's to add a special line of code to the header.  Let me cut and paste that line:
+With that done, there's one more thing we need to do.  And that's to add a special line of code to the header.  Let me cut and paste that line:  
 				header-includes: \usepackage{color}
 
 For some reason, I've found that the knit process frequently throws errors when this line is missing, specifically in cases where I want to set some text to a particular color.   
@@ -32,17 +32,19 @@ Now that we have a clean document, let's add a section for the example code -- t
 Okay --- here's part of Activity Worksheet A (Chapter 1)
 The code in blue is what I want you to retype into the Example Code section of the RMarkdown Document.  When you retype code, you inevitably make mistakes.  And in making those mistakes and working through the errors, you'll begin to internalize R syntax.  That's why I ask you to do this!
 
-So we have example code...  and we also have Challenges...  Let me scroll to the bottom of this document to show you a Challenge.  Let's take a look at Challenge 2.  So in response to this Challenge -- you'll create a section in your RMarkdown document and write some code to answer the question being asked.  Now let's return to our that document...
+So we have example code...  and we also have Challenges...  Let me scroll to the bottom of this document to show you a Challenge.  Let's take a look at Challenge 2.  So in response to this Challenge -- you'll create a section in your RMarkdown document and write some code to answer the question being asked.  Now let's return to that document...
 
-In the Example code section, let me type in some of the example code from the Activity Worksheet.  
+As I said when we were looking at the activity worksheet just now, you need to create a section for the example code and one for each challenge.  Since I've already created an example code section, let's add ones for Challenge 1, and Challenge 2. 
+
+...now let me add some example code from the Activity Worksheet.  Let me type in the two lines that I highlighted.
 	log10(10)  
 	exp(1)
 
-For each challenge in the activity worksheet, you'll need to create a separate section.  Let me add one for Challenge 1. 
+Of course, I'm not going to add any code to the two Challenge sections.  That's for you to do!  Instead, let me show you what you'll need to do to knit the document.  Click knit and then select .pdf... and that will launch the process!  This will produce a .pdf that you can then save to your hard drive and upload to Canvas.
 
-To keep things brief, I'm not going to add any code at this time.  Instead, let me show you what you'll need to do to knit the document.  Click knit and then select .pdf... and that will launch the process!  This will produce a .pdf that you can then save to your hard drive and upload to Canvas.
+And with that, I've covered what you need to know to create a .pdf of your assignments in response to the activity worksheets.  
 
-Okay, go write some code...
+Thank-you for your time!
 
 -------------------------------------------------------------------------------------------------
 RStudio Final Check
@@ -74,26 +76,40 @@ Okay, go write some code!
 --------------------------------------------------------------------------------------------------
 Anatomy of a function
 
-Syntax
-return_value <- func_name (arg_1, arg_2, etc…)
+Hi Everyone,
 
-Okay -- with the basics out of the way, let's write some code that calls a function.  In this case, it will be the rnorm() function, a function that generates a set of random numbers from a normal distribution.  First let's look at the documentation for this function to see what arguments or parameters it accepts.
+In this short video, I want to show you the anatomy of a function call.  As you've probably heard, most of the code you write in R is nothing more than calls to various functions.  And what is a function?  Well, I'm glad you asked.  According to Webopedia, a function is a named section of code that performs a specific task.
 
-Actual Function Call
-tst <- rnorm(n = 100, min = 10, max = 200)
+So let's create a script to illustrate this...
 
-In this piece of code, I'm passing arguments to rnorm by NAME.  That is, I specify the argument, an equal sign, and then a value.  But this code can be written a different way.  Here's another way to call this function...
+In this case, I'm going to write a call to rnorm(), a function that generates a set of random numbers from a normal distribution.  First let's look at the documentation for this function to see what arguments or parameters it accepts.  You can do this two ways.
+
+? or help()
+
+From the help documentation, we see that rnorm is one of a family of 4 functions.  It's the last one listed here.  As well, we see that rnorm() takes 3 arguments, sometimes called parameters.  Keep in mind that the term 'argument' and 'parameter' are used interchangeably in the technical literature. 
+
+Okay, let's write some code to call rnorm()...
+
+Because rnorm returns a set of values, we first need to create a variable to hold the results.  Let's call that 'tst'.  Then type the assignment operator, and finally the function name with parenthesis.  Within the parenthesis, we then type each argument with a corresponding value.
+
+tst <- rnorm(n = 100, mean = 0, sd = 1)
+
+Now in this piece of code, I'm passing arguments to rnorm by NAME.  That is, I specify the name of the argument, an equal sign, and then a value.  But this code can be written a different way.  Here's another way to call this function...
 
 tst <- rnorm(100, 10, 200)
 
-Here I pass the arguments by position.  When doing this, you must ensure that your arguments align with what the function expects in that position.  Check the help documentation to verify that order.
+Here I pass the arguments by position.  When doing this, you must ensure that your arguments align with what the function expects at that position.  
 
-Okay, go write some code!
+And finally, you can use a combination of NAME and POSITION when calling a function.  Here's an example of how to do that:
+
+tst <- rnorm(n = 100, 10, 200)
+
+And with that, we've completed this short video tour of function anatomy.
 
 --------------------------------------------------------------------------------------------------
 Class Welcome
 
-Hello Everyone -- I'm Dr. Dan Maxwell -- and welcome to Introduction to R.  In this course, you'll gain a basic working knowledge of the R programming language.  Once you complete this course, my hope is that you'll feel comfortable writing short programs in R to explore your data.  If nothing else, I hope you gain a level of 
+Hello Everyone -- I'm Dr. Dan Maxwell -- and welcome to Introduction to R.  In this course, you'll gain a basic working knowledge of the R programming language.  Once you complete this course, my hope is that you'll feel comfortable writing short programs in R to explore your data.  If nothing else, I hope you gain a level of comfort writing code in a programming language.
 
 
 To succeed, there are a couple things you need to keep in mind:
@@ -113,11 +129,6 @@ To succeed, there are a couple things you need to keep in mind:
 
 Keep these principles in mind as you begin your R learning journey.
 
-Okay, go write some code!
-
-
-
-
-
+Okay, let's get started!
 
 
