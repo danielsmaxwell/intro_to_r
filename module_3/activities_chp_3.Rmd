@@ -23,21 +23,10 @@ library(dplyr)
 ```
 
 ## Introduction
-Review the section notes for *R in Action* before working on the challenges.
- 
-> ### *Ref: R in Action (Section 3.3)* 
-> Saving a baseline (parameters) to a variable is best practice.
+Up to this point, our focus has been data management.  Newcomers to R often want to rush through data scrubbing activities as they find this work tedious.  They would much rather spend their time creating sensational graphs of their data as visualization work is a lot more fun.  However, most data scientists will tell you that the bulk of their time (80% or more) is spent preparing the data.  Indeed, creating a first graph often reveals additional data issues, an outlier that needs to be handled or an extreme data point that must be recoded.  Often a visualization/data cycle sets up, and you'll find yourself going back and forth between looking at the data and fixing it.  Eventually, the data "settles down" and the graphs begin to tell a story.  Keep this in mind as you work through the challenges in this worksheet. 
 
 ## Mathematical Symbols in Plots
-Many times you need to add special mathematical characters to your graphs, usually letters
-from the Greek alphabet.  In order to do that, you'll need to use the `expression()` function.
-
-> ### *Ref: R in Action (Section 3.4.6)* 
-> Unfortunately, this section does not provide a lot of details about embedding
-> mathematical symbols in your plots, other than point the reader to the plotmath
-> demo. 
-
-Let's take a look at some code to see how this is done: 
+Many times you need to add special mathematical characters to your graphs, usually letters from the Greek alphabet.  In order to do that, you'll need to use the `expression()` function.  Let's take a look at some code to see how this is done: 
 
 ```{r, fig.width = 6.5, fig.height = 4.10}
 # Create a blank plot.
@@ -71,11 +60,15 @@ We now have a nice title for our graph with embedded symbols.  R provides
 support for just about any kind of mathematical expression.  To see more
 examples, type `?plotmath()` at the R prompt.
 
-## Helpful Resources for the Graphing Challenges 
-Here are some helpful reference links as work on the graph challenges which follow.
+> ### *Ref: R in Action (Section 3.4.6)* 
+> Unfortunately, this section does not provide a lot of detail about embedding
+> mathematical symbols in your plots.  Hopefully, the code and text in this section
+> corrects that problem. 
 
-http://www.statmethods.net/advgraphs/axes.html
+## Helpful Resource for the Challenges 
+Robert Kabacoff, the author of *R in Action*, provides a quick reference guide of R graphs at the following website:
 
+http://www.statmethods.net/graphs/index.html
 
 ## Challenge 1 (The Basic Plot)
 For this first plot challenge, you will plot the percentage of families in poverty, from 2005 to 2015.  The file that contains this information is family_poverty.txt.  What effect did the great recession have on these percentages?  Your final graph should look something like this:    
@@ -167,7 +160,7 @@ Data Source: *U.S. Census Bureau*
  
 ## Challenge 3 (The Histogram, Boxplot, & Stripchart)
 
-In this last challenge, you're going to compare energy expenditures for lean and obese women.  The data file is: energy_expend.csv.  First create two histograms to compare the distributions of these two groups, and then create a boxplot and four stripcharts.  For  the stripcharts, first create a basic graph and then ones where the method argument equals "stack" and "jitter."  Your graphs should look like those pictured here.  From looking at these graphs, What conclusions can be drawn about these two groups?
+In this last challenge, you're going to compare energy expenditures for lean and obese women.  The data file is energy_expend.csv.  First create two histograms to compare the distributions of these two groups, and then create a boxplot and four stripcharts.  For  the stripcharts, first create a basic graph and then ones where the method argument equals "stack" and "jitter."  Your graphs should look like those pictured here.  From looking at these graphs, What conclusions can be drawn about these two groups?
 
 ```{r energy_histogram}
 
