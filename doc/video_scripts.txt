@@ -82,7 +82,7 @@ In this short video, I want to show you the anatomy of a function call.  As you'
 
 So let's create a script to illustrate this...
 
-In this case, I'm going to write a call to rnorm(), a function that generates a set of random numbers from a normal distribution.  First let's look at the documentation for this function to see what arguments or parameters it accepts.  You can do this two ways.
+In this case, I'm going to write a call to rnorm(), a function that generates a set of random numbers from a normal distribution.  First let's look at the documentation for this function to see what arguments it accepts.  You can do this two ways.
 
 ? or help()
 
@@ -90,7 +90,7 @@ From the help documentation, we see that rnorm is one of a family of 4 functions
 
 Okay, let's write some code to call rnorm()...
 
-Because rnorm returns a set of values, we first need to create a variable to hold the results.  Let's call that 'tst'.  Then type the assignment operator, and finally the function name with parenthesis.  Within the parenthesis, we then type each argument with a corresponding value.
+Because rnorm returns a set of values, we first need to create a variable to hold the results.  Let's call that 'x'.  Then type the assignment operator, and finally the function name with parenthesis.  Within the parenthesis, we then type each argument with a corresponding value.
 
 tst <- rnorm(n = 100, mean = 0, sd = 1)
 
@@ -100,11 +100,15 @@ tst <- rnorm(100, 10, 200)
 
 Here I pass the arguments by position.  When doing this, you must ensure that your arguments align with what the function expects at that position.  
 
-And finally, you can use a combination of NAME and POSITION when calling a function.  Here's an example of how to do that:
+And finally, you can call rnorm by NAME and POSITION.  Here's an example of how to do that:
 
 tst <- rnorm(n = 100, 10, 200)
 
-And with that, we've completed this short video tour of function anatomy.
+In this case, I'm passing the first argument by NAME, and the 2nd and 3rd by POSITION.
+
+Although you can call a function in any one of these three ways, my personal preference is to pass arguments to functions by NAME.  When you do that, you know exactly what's being passed to the function.  And your code becomes self-documenting.  This is important when you come back to a piece of code after a period of time.
+
+And with that, we've completed this short video tour of function call anatomy.  Thank-you for your time.
 
 --------------------------------------------------------------------------------------------------
 Class Welcome
