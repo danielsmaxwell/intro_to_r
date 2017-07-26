@@ -22,7 +22,7 @@ library(dplyr)
 ```
 
 ## Introduction
-Review the sample code and the *Ref* notes before working on the challenges.
+This worksheet builds on and extends the visualization challenges you've already encountered in this module.  The goal here is to have you create a wide variety of graphs, to give you a sense of the possibilities in R's base graphing system.  Once again, data preparation is critical to success and so we begin with a discussion of the table function in the next section. 
 
 ## The Table Function
 When you need to summarize a dataframe, the `table()` function is often useful.  As noted in the *Ref* section below, Kabacoff provides code examples and an explanation of this function in chapter 7.  You may want to refer to that section while reviewing the example provided below. 
@@ -48,7 +48,7 @@ abduct  <- factor(Abduct,levels = 0:1, labels = c("No", "Yes"))
 
 ```
 
-With vectors created, we can now use the `table()` function to summarize our data.  In this example, the function generates simple frequency counts for each vector. Given this information, how might you calculate the percentage of sightings that involved abduction?
+With vectors created, we can now use the `table()` function to summarize our data.  In this example, the function generates simple frequency counts for each vector.
 
 ```{r ufo_table}
 
