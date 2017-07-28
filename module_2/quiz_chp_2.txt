@@ -22,3 +22,35 @@ d. read.flatfile()
 logical -> integer -> numeric -> complex -> character
 False
 *True
+
+6. Data in a vector must use only one type or mode (numeric, character or logical)
+*True 
+False 
+
+7. Matrices are two-dimensional, and can be used for multiples modes or types of data. 
+True 
+*False 
+
+8. Data frames are used when there are multiple modes or types of data. 
+*True
+False
+
+9. Select a shared characteristic of Vectors, Matrices and Arrays.
+a. Two-dimensional
+b. Can hold multiple types of data
+c. All have more than two dimensions 
+*d. All must contain but one type of data. 
+
+10. Select all true statements about the shortcuts attach() and detach()
+a. If a warning about objects being masked is received, it can be ignored. 
+*b. Attach() ad Detach() functions are best for analyzing single data frames where multiple objects are unlikely to have the same name. 
+c. The detach() function will remove the data from the data frame itself. 
+*d. With() is an alternative to using attach()
+
+11. True or False, Lists are the most complex of the R data types, and allow the combination of disparate information.
+*True 
+False 
+
+12. True or False, Indices in R start at 0? 
+True 
+*False 
