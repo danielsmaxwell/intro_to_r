@@ -9,7 +9,7 @@ c. \n
 3. Which of the following control structures is not an R loop construct?
 a. repeat {}
 b. while {}
-c. foreach {}
+*c. foreach {}
 d. for {}
 
 4. The reshaper package allows one to convert data sets from wide to long format.
