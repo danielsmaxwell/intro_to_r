@@ -21,3 +21,33 @@ a. sd()
 b. var()
 *c. scale()
 d. zscore()
+
+6. True or False 
+Looping constructs repetitively execute a statement or series of statements until a condition isn’t true . 
+*True 
+False 
+
+7. True or False 
+In a conditional execution, both statements are executed? 
+True 
+*False 
+
+8. Identify all conditional execution constructs 
+*a. switch 
+b. while 
+*c. if-else 
+d. for 
+
+9. Identify all functions to help add error trapping and correction to self-created functions 
+a. Debug()
+*b. warning()
+c. help()
+*d. stop()
+
+10. Altering the structure (rows and columns) to determine how the data is organized describes which method? 
+a. Aggregation
+b. Transpose
+c. Reshape 
+*d. Restructuring 
+
+
