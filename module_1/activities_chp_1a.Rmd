@@ -528,6 +528,7 @@ variables.
 ## Challenge 5
 
 Install the following packages: `dplyr`, `rshape2`, `gapminder`
+Please note: Do not create a separate section for this challenge in your assignment RMarkdown document.  Instead, run the appropriate commands at the console prompt.
 
 > ## Solution to challenge 5
 >
