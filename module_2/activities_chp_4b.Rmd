@@ -359,10 +359,6 @@ x[x > 7]
 >  * `|`, the "logical OR" operator: returns `TRUE`, if either the left or right
 >    (or both) are `TRUE`.
 >
-> The recycling rule applies with both of these, so `TRUE & c(TRUE, FALSE, TRUE)`
-> will compare the first `TRUE` on the left of the `&` sign with each of the
-> three conditions on the right.
->
 > You may sometimes see `&&` and `||` instead of `&` and `|`. These operators
 > do not use the recycling rule: they only look at the first element of each
 > vector and ignore the remaining elements. The longer operators are mainly used
