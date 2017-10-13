@@ -1,4 +1,4 @@
-# Introduction to R
+## Introduction to R
 
 The modules for this course are as follows:
 - module_1: Introduction to R
