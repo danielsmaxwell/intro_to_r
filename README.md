@@ -9,4 +9,4 @@ The modules for this course are as follows:
 
 ## Notes
 - Use MacTeX for Mac computers as opposed to MicTeX
-- n Macs, students may need to setwd() at the top of their activity worksheets.
+- On Macs, students may need to setwd() at the top of their activity worksheets.
