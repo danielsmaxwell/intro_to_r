@@ -158,7 +158,7 @@ legend("bottomright",
 Data Source: *U.S. Census Bureau*
 
  
-## Challenge 3 (The Histogram, Boxplot, & Stripchart)
+## Challenge 3 (The Histogram and Boxplot)
 
 In this last challenge, you're going to compare energy expenditures for lean and obese women.  The data file is energy_expend.csv.  First create two histograms to compare the distributions of these two groups, and then create a boxplot and four stripcharts.  For  the stripcharts, first create a basic graph and then ones where the method argument equals "stack" and "jitter."  Your graphs should look like those pictured here.  From looking at these graphs, What conclusions can be drawn about these two groups?
 
@@ -167,9 +167,7 @@ In this last challenge, you're going to compare energy expenditures for lean and
 # Create dataframe from data file.
 energy <- read.csv("energy_expend.csv", stringsAsFactors = FALSE)
 
-# Two ways to create separate vectors for each stature factor.
-lst <- split(energy$expend, energy$stature)
-
+# Create two vectors, one for each stature factor.
 lean  <- energy$expend[energy$stature == "lean"]
 obese <- energy$expend[energy$stature == "obese"]
 
@@ -193,22 +191,6 @@ Now, let's create a boxplot of the data...
 # Two ways to create the boxplot.
 boxplot(lean, obese, names = c("Lean","Obese"), col = "rosybrown1")
 boxplot(energy$expend ~ energy$stature, names = c("Lean","Obese"), col = "rosybrown1")
-
-```
-
-
-And finally, let's create a stripchart.
-
-```{r}
-opar <- par(no.readonly = TRUE)
-par(mfrow = c(2,2), mex = 0.8, mar = c(3, 3, 2, 1) + .1)
-
-stripchart(energy$expend ~ energy$stature)
-stripchart(energy$expend ~ energy$stature, method = "stack")
-stripchart(energy$expend ~ energy$stature, method = "jitter")
-stripchart(energy$expend ~ energy$stature, method = "jitter", jitter = .03)
-
-par(opar)
 
 ```
 Data Source: *Introductory Statistics with R* (p. 79 - 83)
