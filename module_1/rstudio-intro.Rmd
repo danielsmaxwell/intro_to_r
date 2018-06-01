@@ -1,7 +1,6 @@
 ---
 title: |
-       | Activity Worksheet A
-       | *R in Action* (Chapter 1)
+       | RStudio Introduction
 author: "Dan Maxwell"
 date: "June 1, 2017"
 output:
