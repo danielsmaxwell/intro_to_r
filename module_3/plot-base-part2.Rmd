@@ -1,7 +1,7 @@
 ---
 title: | 
        | Activity Worksheet 
-       | *R in Action (Chapter 6)*
+       | *Base Plotting 2*
 author: "Dan Maxwell"
 date: "July 12, 2017"
 output:
