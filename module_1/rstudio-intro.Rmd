@@ -1,5 +1,7 @@
 ---
-title: RStudio Introduction
+title: |
+       | Activity Worksheet
+       | *RStudio Introduction*
 author: "Dan Maxwell"
 date: "June 1, 2017"
 output:
