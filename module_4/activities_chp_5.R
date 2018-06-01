@@ -14,17 +14,6 @@ long
 wide <- dcast(long, person ~ variable)
 wide
 
-# This dataset contains Danish births and deaths by year and month.  It is
-# in long format, and we want to convert it to a wide format.
-
-data("bdstat")
-
-head(bdstat)
-
-wide <- dcast(bdstat, year ~ month, value.var = "births")
-
-head(wide)
-
 # Converting the home ownership dataset to long format, using dplyr's
 # gather() function.
 
