@@ -1,6 +1,5 @@
 ---
-title: |
-       | RStudio Introduction
+title: RStudio Introduction
 author: "Dan Maxwell"
 date: "June 1, 2017"
 output:
