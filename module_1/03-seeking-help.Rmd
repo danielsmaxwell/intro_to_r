@@ -136,7 +136,7 @@ What is the difference between the `sep` and `collapse` arguments?
 > The difference between `sep` and `collapse` is a little
 > tricky. The `paste` function accepts any number of arguments, each of which
 > can be a vector of any length. The `sep` argument specifies the string
-> used between concatenated terms â?? by default, a space. The result is a
+> used between concatenated terms Ã¢?? by default, a space. The result is a
 > vector as long as the longest argument supplied to `paste`. In contrast,
 > `collapse` specifies that after concatenation the elements are *collapsed*
 > together using the given separator, the result being a single string.
