@@ -513,7 +513,7 @@ Data Source: *The R Primer* (p. 89 - 91)
 
 
 ### References
-Ekstrøm, C. T. (2017). *The R primer (2nd ed.)*. Boca Raton: CRC Press.
+EkstrÃ¸m, C. T. (2017). *The R primer (2nd ed.)*. Boca Raton: CRC Press.
 
 Kabacoff, R. (2015). *R in action : Data analysis and graphics with R (2nd. ed.)*. Shelter Island: Manning.
 
