@@ -20,7 +20,7 @@ c. install.package()
 c. ISO Certification
 * d. R is free
 
-5. Type the command to set your working directory to the mydata subdirectory: {setwd(“c:/mydata”)|setwd(“c:\\mydata”)}
+5. Type the command to set your working directory to the mydata subdirectory: {setwd(â€œc:/mydataâ€)|setwd(â€œc:\\mydataâ€)}
 
 6. What command is used to display a complete list of available demonstrations in R? 
 a. Demo 
