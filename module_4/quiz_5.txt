@@ -23,7 +23,7 @@ b. var()
 d. zscore()
 
 6. True or False 
-Looping constructs repetitively execute a statement or series of statements until a condition isn’t true . 
+Looping constructs repetitively execute a statement or series of statements until a condition isnâ€™t true . 
 *True 
 False 
 
