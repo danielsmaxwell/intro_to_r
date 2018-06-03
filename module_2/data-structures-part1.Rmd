@@ -45,13 +45,12 @@ tabby,3.2,1
 > Alternatively, you can create `feline_data.csv` using a text editor (Nano),
 > or within RStudio with the **File -> New File -> Text File** menu item.
 
-> ### *Ref: R in Action (Section 4.4)*
-> Kabocoff discusses the `fix()` function in this section.  It opens the (Nano) text
-> editor, allowing you to edit individual cells in a dataframe.  The `edit()` function
-> does essentially the same thing, though Kabocoff does not discuss it here.  And finally,
-> you can use the `View()` function to examine and filter a dataframe without modifying
-> it.  Please note: this function is mixed case with a capital 'V'.  Because R is
-> case-sensitive, you'll get an error if you type it as all lower-case.
+> ### *Tip: The fix(), edit(), and View() functions*
+> The `fix()` function opens the (Nano) text editor, allowing you to edit individual 
+> cells in a dataframe while the `edit()` function does essentially the same thing. And 
+> finally, you can use the `View()` function to examine and filter a dataframe without 
+> modifying it.  Please note: this function is mixed case with a capital 'V'.  Because 
+> R is case-sensitive, you'll get an error if you type it as all lower-case.
 
 
 ```{r, echo = FALSE}
@@ -102,15 +101,13 @@ cats$weight + cats$coat
 
 Understanding what happened here is key to successfully analyzing data in R.
 
-> ### *Ref: R in Action (Section 2.2)*
+> ### *Ref: Data structures and datatypes*
 > 
-> Data structures and/or datatypes are incredibly important so read this section of 
-> the textbook slowly and carefully.  Many times when R raises an error or you are
-> getting unexpected results, the problem can be traced back to the datatype.  For
-> example, a function might be expecting a number as one of its arguments, and you pass
-> it a character string instead. I often use `class()` to see what the underlying
-> datatype is. Kabacoff does not discuss `class()` in this section but presents it later
-> in the book and it is covered later in this worksheet.
+> Data structures and/or datatypes are incredibly important in a programming language. 
+> Many times when R raises an error or you are getting unexpected results, the problem 
+> can be traced back to the datatype.  For example, a function might be expecting a 
+> number as one of its arguments, and you pass it a character string instead. I often 
+> use `class()` to see what the underlying datatype is.
 
 ## Data Types
 
@@ -356,11 +353,6 @@ my_example
 names(my_example)
 ```
 
-> ### *Ref: R in Action (Section 4.7)* 
-> Kabacoff provides some additional information about *type conversion* in 
-> section 4.7 (p. 81).  In particular, table 4.5 lists the functions available
-> for testing a variable's datatype and converting datatypes.
-
 ## Dynamic and Static Typed Languages
 R is a *dynamically* typed language as opposed to a *statically* typed language like C.  What this means is that the datatype of an R variable is set at assignment and can be changed on the fly as demonstrated here.
 
@@ -425,12 +417,11 @@ These make sense. But what about
 str(cats$coat)
 ```
 
-> ### *Ref: R in Action (Section 2.2.4)*
-> Kabacoff discusses the `attach()` function in this section.  However, this function
-> can create issues, especially in situations where you forget to `detach()` a dataframe
-> after use. The problem is that R allows you to attach a dataframe more than once. 
-> When this happens, you cannot know which dataframe you're working with as the names
-> are the same.
+> ### *Tip: Attaching and detaching dataframes*
+> Although the `attach()` function is useful, it can also create issues, especially
+> in situations where you forget to `detach()` a dataframe after use.  The problem
+> is that R allows you to attach a dataframe more than once.  When this happens,
+> you cannot know which dataframe you're working with because the names are the same. 
 
 ## Factors
 
@@ -633,8 +624,8 @@ nrow(matrix_example)
 ncol(matrix_example)
 ```
 
-> ### *Ref: R in Action (Section 2.2.2)*
-> Note well: matrices can "contain only one datatype."  And because of this, data frames
+> ### *Tip: Matrices vs. dataframes*
+> Note well: matrices can "contain only one datatype."  And because of that, data frames
 > are much more common in R.
 
 
