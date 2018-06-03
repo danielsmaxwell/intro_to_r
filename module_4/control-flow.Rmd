@@ -164,10 +164,9 @@ flexible of looping operations, but therefore also the hardest to use
 correctly. Avoid using `for()` loops unless the order of iteration is important:
 i.e. the calculation at each iteration depends on the results of previous iterations.
 
-> ### *Ref: R in Action (Section 5.4.1)*
-> Kabacoff does not provide much detail about R's three loop constructs.  For 
-> an overview of this topic, see the loops.pdf file which provides examples of
-> `for`, `while`, and `repeat` loops. 
+> ### *Ref: Loops*
+> For a more comprehensive overview of this topic, see the loops.pdf file which
+> provides examples of `for`, `while`, and `repeat` loops. 
 
 The basic structure of a `for()` loop is:
 
@@ -448,9 +447,7 @@ output_vector2
 
 ## Long & Wide Data Formats
 
-Often, you'll need to convert a dataframe from wide to long format.  And sometimes, you may need to go the other way.  Table 5.8 of *R in Action* presents a hypothetical dataset in *wide* format whereas Table 5.9 presents that same dataset in *long* format (Kabacoff, 2015, p.111 - 112).
-
-But rather than use hypothetical data, let's illustrate long and wide formats with real data.  The file home_ownership.txt contains "homeownership rates, in percentages, by state for the years 1985, 1996, and 2002. These values represent the proportion of homes owned by the occupant to the total number of occupied homes" (Ott & Longnecker, 2016, p. 129).  The file used in the code below contains just 11 rows of the complete dataset.  
+Often, you'll need to convert a dataframe from wide to long format.  And sometimes, you may need to go the other way.  To illustrate, the file home_ownership.txt contains "homeownership rates, in percentages, by state for the years 1985, 1996, and 2002. These values represent the proportion of homes owned by the occupant to the total number of occupied homes" (Ott & Longnecker, 2016, p. 129).  The file used in the code below contains just 11 rows of the complete dataset.  
 
 ```{r wide_long_1}
 library(reshape2)  # Load the reshape2 library.
@@ -513,9 +510,7 @@ Data Source: *The R Primer* (p. 89 - 91)
 
 
 ### References
-Ekstrøm, C. T. (2017). *The R primer (2nd ed.)*. Boca Raton: CRC Press.
-
-Kabacoff, R. (2015). *R in action : Data analysis and graphics with R (2nd. ed.)*. Shelter Island: Manning.
+Ekstrom, C. T. (2017). *The R primer (2nd ed.)*. Boca Raton: CRC Press.
 
 Ott, L., & Longnecker, M. (2016). *An introduction to statistical methods & data analysis* (7th ed.). Boston, MA: Cengage Learning.
 
