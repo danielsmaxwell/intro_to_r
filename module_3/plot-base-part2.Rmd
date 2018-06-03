@@ -27,11 +27,6 @@ This worksheet builds on and extends the visualization challenges you've already
 ## The Table Function
 When you need to summarize a dataframe, the `table()` function is often useful.  As noted in the *Ref* section below, Kabacoff provides code examples and an explanation of this function in chapter 7.  You may want to refer to that section while reviewing the example provided below. 
 
-> ### *Ref: R in Action (Section 6.1.1)* 
-> Kabacoff does not discuss the `table()` function in this section.  So you'll want to 
-> read about it in section 7.2.1 (pages 145 & 146).
->
-
 Let's take a closer look at the `table()` function, using a dataset of ufo sightings from 1865 to 2004.  First, we load the data into the ufo dataframe and then `attach()` it to the working path.  This allows us to reference columns without having to use the `$` syntax.  In this example, we load the file without converting the strings to factors in order to illustrate how the `factor()` function does this.  And finally, we create new vectors, one for each factor of interest. 
 
 ```{r ufo}
@@ -67,7 +62,7 @@ table(photo, contact)
 ```
 
 
-> ### *Ref: R in Action (Section 6.5.1)* 
+> ### *Ref: Independent and dependent variables* 
 > The `~` in the formula `mpg ~ cyl` separates the *dependent* or *response*
 > variable on the left from the *independent* (*explanatory* or *predictor*)
 > variable on the right.  Please note: statistics textbookss are inconsistent in
@@ -78,10 +73,6 @@ table(photo, contact)
 > the effect of the treatment ... while the *independent variable* is the one
 > manipulated by the researcher" (p. 15).  
 >
-> In Listing 6.9, Kabacoff introduces the `*` operator. What does that mean? To
-> answer this question, see table 8.2 (p. 172) for a list of symbols used in R
-> formulas and their respective definitions. \newline
-
 
 ### Challenge 1 (The Basic Barplot)
 
