@@ -24,7 +24,7 @@ Please ensure you have the latest version of R and RStudio installed on your mac
 
 [Download and install RStudio here](https://www.rstudio.com/) 
 
-> ### *Ref: R in Action (Section 1.2)* 
+> ### *Tip: Installation order for R and RStudio* 
 > You must install base R before installing RStudio.  In fact RStudio won't work without
 > R installed.
 
@@ -202,8 +202,8 @@ Don't worry about trying to remember every function in R. You
 can simply look them up on Google, or if you can remember the
 start of the function's name, use the tab completion in RStudio.
 
-> ### *Ref: R in Action (Section 1.3)*
-> Kabacoff assumes that the reader already knows what a function is and how they are called.  As defined by Webopedia, a software function is "a named section of a program that performs a specific task."  By now, you should have already read the section on functions, written by Peter Dalgaard.
+> ### *Ref: Functions*
+> So what is a function? As defined by Webopedia, a software function is "a named section of a program that performs a specific task."  Functions are the workhorses of R, allowing programmers to do all kinds of things.
 
 This is one advantage that RStudio has over R on its own, it
 has auto-completion abilities that allow you to more easily
@@ -388,7 +388,7 @@ rm(list <- ls())
 > In both cases, the message that R prints out usually give you clues
 > how to fix a problem.
 
-> ### *Ref: R in Action (Section 1.3.3)*
+> ### *Tip: The getwd() and setwd() functions*
 > For newcomers, the `getwd ()` and `setwd ()` functions are critically important
 > because R sources files from your current working directory.  Inevitably, students
 > forget where they're at and then get an error message when trying to load a data file.
