@@ -60,11 +60,6 @@ We now have a nice title for our graph with embedded symbols.  R provides
 support for just about any kind of mathematical expression.  To see more
 examples, type `?plotmath()` at the R prompt.
 
-> ### *Ref: R in Action (Section 3.4.6)* 
-> Unfortunately, this section does not provide a lot of detail about embedding
-> mathematical symbols in your plots.  Hopefully, the code and text in this section
-> corrects that problem. 
-
 ## Helpful Resource for the Challenges 
 Robert Kabacoff, the author of *R in Action*, provides a quick reference guide of R graphs at the following website:
 
