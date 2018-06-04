@@ -61,19 +61,6 @@ table(photo, contact)
 
 ```
 
-
-> ### *Ref: Independent and dependent variables* 
-> The `~` in the formula `mpg ~ cyl` separates the *dependent* or *response*
-> variable on the left from the *independent* (*explanatory* or *predictor*)
-> variable on the right.  Please note: statistics textbookss are inconsistent in
-> the names they use for these two variables.    
->
-> Here's a definition of these two kinds of variables, provided by Gravetter &
-> Wellnau (2016).  "The *dependent variable* is the one that is observed to assess
-> the effect of the treatment ... while the *independent variable* is the one
-> manipulated by the researcher" (p. 15).  
->
-
 ### Challenge 1 (The Basic Barplot)
 
 In this first challenge, load the informatics_survey.csv file into a dataframe and then select just the question 5 (Q5_1) column.  From there, create a basic barplot that looks like this:
