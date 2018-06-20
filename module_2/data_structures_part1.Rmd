@@ -248,7 +248,7 @@ a column to be the same basic data type.
 > Why is R so opinionated about what we put in our columns of data?
 > How does this help us?
 >
-> > ### *Discussion 1*
+> > ### *Solution to Discussion 1*
 > >
 > > By keeping everything in a column the same, we allow ourselves to make simple
 > > assumptions about our data; if you can interpret one entry in the column as a
