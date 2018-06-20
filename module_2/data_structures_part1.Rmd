@@ -417,12 +417,6 @@ These make sense. But what about
 str(cats$coat)
 ```
 
-> ### *Tip: Attaching and detaching dataframes*
-> Although the `attach()` function is useful, it can also create issues, especially
-> in situations where you forget to `detach()` a dataframe after use.  The problem
-> is that R allows you to attach a dataframe more than once.  When this happens,
-> you cannot know which dataframe you're working with because the names are the same. 
-
 ## Factors
 
 Another important data structure is called a *factor*. Factors usually look like
