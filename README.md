@@ -1,11 +1,14 @@
 ## Introduction to R
 
-The modules for this course are as follows:
-- module_1: Introduction to R
-- module_2: Data Wrangling
-- module_3: Basic Graphs
-- module_4: Loops & Control Constructs
-
+* **Attribution**--- Some of the material in this course is derived 
+  from work that is Copyright © by Software Carpentry.  Additional 
+  information can be found at: http://software-carpentry.org/).  As 
+  well, information about the Creative Commons license which governs 
+  this work can be found at: [link to the license][cc-by-human].
+  
+  The original Software Carpentry episodes have been modified and/or
+  extended to meet the specific learning goals of this class.  The
+  
 
 ## Notes
 - Use MacTeX for Mac computers as opposed to MicTeX
