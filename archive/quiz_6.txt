@@ -1,0 +1,53 @@
+1. Which of the following inserts a tab into a character string?
+a. \tab
+b. \p
+c. \n
+*d. \t
+
+2. Type the command that returns the number of elements in x, defined as x <- c(2, 5, 6, 9): {length(x)}
+
+3. Which of the following control structures is not an R loop construct?
+a. repeat {}
+b. while {}
+*c. foreach {}
+d. for {}
+
+4. The reshaper package allows one to convert data sets from wide to long format.
+*False
+True
+
+5. Which function converts a vector of observations to standard-deviation units (z-scores).
+a. sd() 
+b. var()
+*c. scale()
+d. zscore()
+
+6. True or False 
+Looping constructs repetitively execute a statement or series of statements until a condition isn’t true . 
+*True 
+False 
+
+7. True or False 
+In a conditional execution, both statements are executed? 
+True 
+*False 
+
+8. Identify all conditional execution constructs 
+*a. switch 
+b. while 
+*c. if-else 
+d. for 
+
+9. Identify all functions to help add error trapping and correction to self-created functions 
+a. Debug()
+*b. warning()
+c. help()
+*d. stop()
+
+10. Altering the structure (rows and columns) to determine how the data is organized describes which method? 
+a. Aggregation
+b. Transpose
+c. Reshape 
+*d. Restructuring 
+
+

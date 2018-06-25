@@ -1,0 +1,48 @@
+1. Which of the following is not offered as part of R's base graphing system?
+a. Box Plot
+*b. Network Graph
+c. Bar Plot
+d. Pie Chart
+
+2. Type the command to generate a histogram of vector x: {hist(x)}
+
+3. The solid line inside the box of a boxplot represents the:
+a. mean
+b. variance
+*c. median
+d. mode
+
+4. The polygon () function is frequently used to add fill color to plots.
+*True
+False
+
+5. According to Kabacoff, pie charts are beloved by most statisticans. 
+True
+*False
+
+6. Type the package name used to create a spinogram: {vcd} 
+
+7. What function decreases the font size of bar labels? 
+a. Names.arg 
+b. Par()
+c. Mar=
+*d. cex.names 
+
+8. True or False 
+Pie chart options in R are limited, as bar or dot plots are recommended over pie charts because people are able to more accurately judge length than volume
+*True 
+False 
+
+9. Identify all the true statement about kernel density plots in R :
+*a. Underutilized method to compare groups and to visualize the distribution of continuous variables 
+b. Installing  the  plotrix package allows superimposing of the kernel density plots of two or more groups 
+c. Effective method to visualize the distribution of categorical variables 
+*d. sm.density.compare() allows superimposing of the kernel density plots of two or more groups
+
+10. Identify all of the true statements about violin plots in R: 
+a. It is a combination of a pie chart and a kernel density plot 
+*b. The vioplot() function is located in the vioplot package 
+c. The vioplot() function does not require groups to be separated to be plotted into separate variables 
+*d. Essentialy violin plots are kernel density plots superimposed in a mirror image fashion over box plots 
+
+
