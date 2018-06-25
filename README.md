@@ -2,13 +2,12 @@
 
 * **Attribution**--- Some of the material in this course is derived 
   from work that is Copyright © by Software Carpentry.  Additional 
-  information can be found at: http://software-carpentry.org/).  As 
-  well, information about the Creative Commons license which governs 
-  this work can be found at: [link to the license][cc-by-human].
+  information can be found at: http://software-carpentry.org/).
   
   The original Software Carpentry episodes have been modified and/or
-  extended to meet the specific learning goals of this class.  The
-  
+  extended to meet the specific learning goals of this class.  The 
+  plot_base_part1 and plot_base_part2 episodes, however, were created
+  by the myDataStory development team.
 
 ## Notes
 - Use MacTeX for Mac computers as opposed to MicTeX
