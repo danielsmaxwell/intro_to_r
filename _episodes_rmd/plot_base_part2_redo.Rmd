@@ -1,0 +1,252 @@
+---
+title: | 
+       | Activity Worksheet 
+       | *Base R Plotting 2*
+author: "Dan Maxwell"
+date: "July 12, 2017"
+output:
+  pdf_document: default
+  html_document: default
+header-includes: \usepackage{color}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r init, echo = FALSE, warning = FALSE, message = FALSE}
+
+library(dplyr)
+
+data <- read.csv("../data/gapminder.csv")
+
+```
+
+## Introduction
+This worksheet builds on and extends the visualization challenges you've already encountered in this module.  The goal here is to have you create a wide variety of graphs, to give you a sense of the possibilities in R's base graphing system.  Once again, data preparation is critical to success and so we begin with a discussion of the table function in the next section. 
+
+## The Table Function
+When you need to summarize a dataframe, the `table()` function is often useful.  As noted in the *Ref* section below, Kabacoff provides code examples and an explanation of this function in chapter 7.  You may want to refer to that section while reviewing the example provided below. 
+
+Let's take a closer look at the `table()` function, using a dataset of ufo sightings from 1865 to 2004.  First, we load the data into the ufo dataframe and then `attach()` it to the working path.  This allows us to reference columns without having to use the `$` syntax.  In this example, we load the file without converting the strings to factors in order to illustrate how the `factor()` function does this.  And finally, we create new vectors, one for each factor of interest. 
+
+```{r ufo}
+
+continents <- dplyr::select(data, country, continent)
+continents <- unique(continents)
+cont_table <- table(continents$continent)
+cont_table
+```
+
+With vectors created, we can now use the `table()` function to summarize our data.  In this example, the function generates simple frequency counts for each vector.
+
+```{r eval=FALSE}
+
+table(photo) 
+table(contact) 
+table(abduct)
+
+```
+
+The `table()` function can also create two-way tables.  Here the first argument specifies the row variable (photo) while the second specifies the column (contact).  Again, the function calculates a frequency count for each combination or cell in this 2-way table.
+
+```{r two_way_table, eval=FALSE}
+
+### gap_minder doesnt have a good example for two way table, not enough categorical variables
+table(photo, contact)
+
+```
+
+### Challenge 1 (The Basic Barplot)
+
+In this first challenge, load the informatics_survey.csv file into a dataframe and then select just the question 5 (Q5_1) column.  From there, create a basic barplot that looks like this:
+
+```{r barplot, echo = FALSE, eval=FALSE}
+
+survey <- read.csv("informatics_survey.csv", stringsAsFactors = FALSE)
+
+# What happens if we don't set the stringsAsFactors argument?
+q <- data.frame(survey$Q5_1, stringsAsFactors = FALSE)
+
+colnames(q) <- c("response")
+
+# Remove the rows with empty responses.
+q <- subset(q, response != "")
+q <- q[q$response != "",]
+
+cnts <- table(q)
+
+# Save the original graph parameters.
+opar <- par(no.readonly = TRUE)
+
+# Adjust graph margin parameters.
+par(mai = c(.5, 1.5, .5, .5))
+
+# What does the las argument do?  Look it up with ?par().
+barplot(cnts, 
+        horiz = TRUE, 
+        col   = 'lightblue',
+        las   = 2,
+        main  = "Knowledge of Statistics - Question 5.1",
+        cex.names = 0.5)
+
+par(opar)
+
+```
+Data Source: *2017 UF Informatics Survey*
+
+## Challenge 2 (The Grouped & Stacked Barplot)
+
+In this second challenge, load the drink_crime.csv file into a dataframe and then generate both a stacked and grouped barplot.  This drink_crime.csv file lists the percentage of criminal activity in relation to one's drinking level.  Are regular drinkers more likely to enage in criminal activity?  When completed, your graph should look something like this:
+
+
+```{r group_barplot, echo = FALSE}
+
+crime <- read.csv("../data/drink_crime.csv", stringsAsFactors = FALSE)
+
+# Remove Oceania because it only has a sample size of 2 (New Zealand and Australia)
+pop_2007 <- dplyr::filter(data, year == 2007, continent != "Oceania")
+pop_2007 %>% group_by(continent) %>% summarise(sum(pop))
+pop_2007 %>% group_by(continent) %>% mutate(cont_pop = cumsum(pop))
+
+for (cont in unique(pop_2007$continent)){
+  x <- dplyr::filter(pop_2007, continent == cont) %>% top_n(3, pop) %>% droplevels
+  
+  # Assign the name of the cont as the variable name
+  assign(cont, x)
+}
+
+
+# Data must be presented as a matrix or vector for stacked or grouped barplots.
+
+barplot(cbind(Africa = Africa$pop, Americas = Americas$pop, 
+              Asia = Asia$pop, Europe = Europe$pop), 
+        legend = cbind(levels(Africa$country), levels(Americas$country), 
+                       levels(Asia$country), levels(Europe$country)),
+        col = rainbow(12, s = 0.5),
+        beside = TRUE)
+
+barplot(as.matrix(crime[, c(2:4)]), 
+        legend = crime[, 1],
+           col = c("lightcoral","lightblue","khaki","lightgreen"),
+   args.legend = list(x = "topleft"),
+        beside = TRUE)
+
+```
+Data Source: *Statistical Methods and Data Analysis* (p. 110)
+
+
+## Challenge 3 (The Pie Chart)
+
+In 2017, the Informatics Institue at the University of Florida conducted a survey to determine the training needs of its clientele.  The informatics_survey.csv file contains the data from that survey.  In this challenge, you'll create a pie-chart that displays the percentage of respondents who came from the Sciences, Health Sciences, Humanities, and Social Sciences. You will also need to create a slice for 'Unknown' as some respondents left this question blank.
+
+Question 3 (q3) on the survey asked participants to select an academic department, but it does not classify those departments.  Fortunately, the informatics_acad_grp.csv file provides group totals by department and an acad_grp column with the following values: (UNK) Unknown, (SSI) Social Sciences, (HUM) Humanities, (SCI) Sciences, and (MED) Health Sciences.  You can use that file for this challenge or you can recreate it from the informatics_survey.csv file - a much bigger challenge that will require you to group and manually edit the data.  Please note: this advanced challenge is optional.
+
+When completed, your graph should look something like this:
+
+```{r pie}
+cont_table
+lbls <- paste0(names(cont_table), "\n ", cont_table)
+pie(cont_table, labels = lbls, main = "Pie Chart of Continents\n (number of countries)")
+
+```
+Data Source: *2017 UF Informatics Survey*
+ 
+
+## Challenge 4 (The Histogram)
+
+The home_ownership.txt file contains home ownership rates for all 50 states and the District of Columbia, for the years 1985, 1996, and 2002.  In this challenge, you will create three histograms, one for each year.  When complete, your graphs should look like these:
+
+```{r histogram, echo = FALSE, eval=FALSE}
+
+opar <- par(no.readonly = TRUE)
+
+own <- read.delim("home_ownership.txt", sep = "\t", stringsAsFactors = FALSE)
+
+hist(own$pct_1985, 
+     main = "1985", 
+     col  = "lightblue",
+     ylim = c(0, 27),
+     xlab = "Home Ownership %")
+
+hist(own$pct_1996, 
+     main = "1996", 
+     col  = "lightblue",
+     ylim = c(0, 27),
+     xlab = "Home Ownership %")
+
+hist(own$pct_2002, 
+     main = "2002", 
+     col  = "lightblue",
+     ylim = c(0, 27),
+     xlab = "Home Ownership %")
+
+par(opar)
+
+```
+Data Source: *Statistical Methods and Data Analysis* (p. 129)
+
+## Challenge 5 (The Box Plot)
+
+Now, create side-by-side boxplots of the home_ownership dataset used in the last challenge. Your graph should look like this when you're done:
+
+```{r boxplot, echo = FALSE, eval=FALSE}
+
+own <- read.delim("home_ownership.txt", sep = "\t", stringsAsFactors = FALSE)
+
+boxplot(own$pct_1985, 
+        own$pct_1996, 
+        own$pct_2002, 
+        notch = TRUE,
+        col   = "tan",
+        ylab  = "Home Ownership %",
+        main  = "Home Ownership in the United States",
+        names = c("1985","1996","2002"))
+
+```
+Data Source: *Statistical Methods and Data Analysis* (p. 129)
+
+## Challenge 6 (The Scatter Plot)
+
+In this challenge you will create a basic scatterplot to compare the M2 and M3 money supply (in trillions of dollars).  The data is found in money_supply.txt.  Also, fit a linear regression model to the data and plot the resulting line.  Your graph should look like this when complete:
+
+```{r scatterplot, echo = FALSE}
+
+money <- read.delim("../data/money_supply.txt", sep = "\t", stringsAsFactors = FALSE)
+
+plot(money$m2, money$m3, xlab = "M2 (Trillions)", ylab = "M3 (Trillions)")
+
+# Now, fit a regression model and plot the line.
+fit <- lm(money$m3 ~ money$m2, data = money)
+
+abline(fit, col = "blue")
+
+data_2007 <- dplyr::filter(data, year == 2007)
+plot(data_2007$gdpPercap, data_2007$lifeExp, xlab = "GDP Per Capital ($)", ylab = "Life Expectancy (Years)")
+
+```
+Data Source: *Statistical Methods and Data Analysis* (p. 137)
+
+
+## Challenge 7 (The Stem-and-Leaf Plot)
+
+In this last challenge, create a stem-and-leaf plot of the data found in ozone.csv.  According to Ott (2016), these "are the maximum ozone readings taken on 80 summer days in a large city" (p. 75).  Your graph should look like this when complete:  
+
+```{r stemleaf, echo = FALSE}
+
+# INSTRUCTOR NOTE
+# The scale argument must equal 2 or the function only prints even numbers.  This
+# is not stated in the help documentation.  The answer was found on Stack Overflow.
+
+stem(data_2007$lifeExp, scale = 2) 
+
+```
+Data Source: *Statistical Methods and Data Analysis* (p. 77) \newpage
+
+
+#### References
+
+Gravetter, F. J. (2015). *Statistics for the behavioral sciences* (10th ed.). Boston, MA: Cengage Learning.
+
+Ott, L., & Longnecker, M. (2016). *An introduction to statistical methods & data analysis* (7th ed.). Boston, MA: Cengage Learning.
+
