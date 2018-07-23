@@ -6,6 +6,7 @@ author: "Dan Maxwell"
 date: "June 1, 2017"
 output:
   pdf_document: default
+  keep_md: true
   html_document: default
 header-includes: \usepackage{color}
 ---
