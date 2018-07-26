@@ -1,3 +1,9 @@
+---
+title: "graphs"
+output: rmarkdown::github_document
+---
+
+```{r}
 
 ### Graphs
 
@@ -151,6 +157,7 @@ barplot(rows_for_barplot$lifeExp,
 
 
 
+
 ## Stacked and grouped barplots
 
 library(dplyr)
@@ -224,7 +231,5 @@ plot(data_2007$gdpPercap, data_2007$lifeExp, xlab = "GDP Per Capital ($)", ylab 
 
 stem(data_2007$lifeExp, scale = 2) 
 
-
-
-
+```
 

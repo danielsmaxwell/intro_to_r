@@ -1,4 +1,4 @@
-Graphs
+graphs
 ================
 
 ``` r
@@ -157,11 +157,13 @@ cont_table
 
 ``` r
 ## Basic barplot
-set.seed(1234)
+
+set.seed(123)
 rows_for_barplot <- data[sample(nrow(data), 6), ]
 
 barplot(rows_for_barplot$lifeExp, 
         names.arg = paste0(rows_for_barplot$country, "\n", rows_for_barplot$year),
+        cex.names = 0.8,
         col = rainbow(6, s = 0.3),
         ylab = "Life Exp (Years)",
         ylim = c(0,80))
