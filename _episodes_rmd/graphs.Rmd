@@ -144,7 +144,7 @@ cont_table
 
 
 ## Basic barplot
-seed(1)
+set.seed(1234)
 rows_for_barplot <- data[sample(nrow(data), 6), ]
 
 barplot(rows_for_barplot$lifeExp, 
