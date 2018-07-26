@@ -164,10 +164,6 @@ flexible of looping operations, but therefore also the hardest to use
 correctly. Avoid using `for()` loops unless the order of iteration is important:
 i.e. the calculation at each iteration depends on the results of previous iterations.
 
-> ### *Ref: Loops*
-> For a more comprehensive overview of this topic, see the loops.pdf file which
-> provides examples of `for`, `while`, and `repeat` loops. 
-
 The basic structure of a `for()` loop is:
 
 ```{r, eval=FALSE}
