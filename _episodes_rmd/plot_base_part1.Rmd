@@ -17,7 +17,6 @@ knitr::opts_chunk$set(echo = TRUE)  # FALSE hides all code...
 
 ```{r init, echo = FALSE, message = FALSE}
 
-library(sqldf)
 library(dplyr)
 
 ```
@@ -71,24 +70,20 @@ For this first plot challenge, you will plot the percentage of families in pover
 ```{r basic_plot}
 
 # Create dataframe from the data file
-poverty <- read.delim("family_poverty.txt", sep = "\t", stringsAsFactors = FALSE)
+data <- read.csv("../data/gapminder.csv")
 
-opar <- par(no.readonly = TRUE)
-ten  <- subset(poverty, year > 2005)
+us  <- subset(data, country == "United States")
 
-# Plot poverty % by year.
-plot(ten$year, ten$family_poverty_pct,
+# Plot GDP per Capital by year.
+plot(us$year, us$gdpPercap,
                xlab = "Year",
-               ylab = "Families in Poverty %",
-               ylim = c(9, 13), 
+               ylab = "GDP per Capital",
                type = "b", 
                cex  = .75,
                lty  = 3,
                col  = "red",
                pch  = 1)
 
-# Reset the parameters.
-par(opar) 
 
 ```
 Data Source: *U.S. Census Bureau*
@@ -99,34 +94,17 @@ In this second plot challenge, load the race_poverty.txt file into a dataframe a
 
 ```{r multiline_plot}
 
-tmp <- read.delim("race_poverty.txt", sep = "\t", stringsAsFactors = FALSE)
+# Create vectors, one for each country represented.
+uk         <- subset(data, country == "United Kingdom")
+germany    <- subset(data, country == "Germany")
+japan      <- subset(data, country == "Japan")
 
-# Because the read.delim command imports the tot_num_poverty variable as
-# a character string, we need to convert it to a numeric.  The problem
-# is that the "numbers" are formatted with commas.  These must first be
-# removed before converting the string to a number.
-
-tot_num_poverty <- as.numeric(gsub(",", "", tmp$tot_num_poverty))
-
-# Create a custom dataframe for the plot.
-poverty <- data.frame(year = tmp$year, 
-                      tot_num_poverty, 
-                      pct_total_poverty = tmp$pct_total_poverty, 
-                      race = tmp$race)
-
-# Create vectors, one for each race represented.
-white    <- subset(poverty, race == "white")
-hispanic <- subset(poverty, race == "hispanic")
-black    <- subset(poverty, race == "black")
-asian    <- subset(poverty, race == "asian")
-
-x <- white$year
-y <- white$tot_num_poverty
+x <- us$year
+y <- us$gdpPercap
 
 plot(x, y,
      xlab = "Year",
-     ylab = "Total Number in Poverty (1000's)",
-     ylim = c(7000, 20000),
+     ylab = "GDP per Capital",
      type = "b", 
      cex  = .75,
      lty  = 3,
@@ -135,16 +113,16 @@ plot(x, y,
      las  = 1,
      cex.axis = .60)
 
-x <- hispanic$year
-y <- hispanic$tot_num_poverty
+x <- uk$year
+y <- uk$gdpPercap
 
-# Now plot the Hispanic line, using a different color and line type.
+# Now plot the UK line, using a different color and line type.
 lines(x, y, type = "b", lty = 2, col = "red", pch = 0, cex = .75)
 
 # Add legend to distinguish between the two lines.
 legend("bottomright",
        title = "Race",
-       c("White","Hispanic"),
+       c("United States","United Kingdom"),
        lty   = c(3, 2), 
        pch   = c(1, 0),
        col   = c("blue","red"))
@@ -160,18 +138,18 @@ In this last challenge, you're going to compare energy expenditures for lean and
 ```{r energy_histogram}
 
 # Create dataframe from data file.
-energy <- read.csv("energy_expend.csv", stringsAsFactors = FALSE)
+life_exp_1987 <- dplyr::filter(data, year==1987)
+life_exp_2007 <- dplyr::filter(data, year==2007)
 
 # Create two vectors, one for each stature factor.
-lean  <- energy$expend[energy$stature == "lean"]
-obese <- energy$expend[energy$stature == "obese"]
+
 
 # Set graphic device parameters to 2 rows and 1 column.
 par(mfrow = c(2, 1))    
 
 # Graph the two vectors.
-hist(lean, breaks = 10, xlim = c(5, 13), ylim = c(0, 4), col = "lightblue")
-hist(obese, breaks = 10, xlim = c(5, 13), ylim = c(0, 4), col = "lemonchiffon")
+hist(life_exp_1987$lifeExp, main = "Life Expectancy in 1987", xlab = "Life Expectancy", xlim = range(30:90), col = "lightblue")
+hist(life_exp_2007$lifeExp, main = "Life Expectancy in 2007", xlab = "Life Expectancy", xlim = range(30:90), col = "lemonchiffon")
 
 # Restore graphic device to 1 row, 1 column.
 par(mfrow = c(1, 1))    
@@ -184,8 +162,12 @@ Now, let's create a boxplot of the data...
 ```{r energy_boxplot}
 
 # Two ways to create the boxplot.
-boxplot(lean, obese, names = c("Lean","Obese"), col = "rosybrown1")
-boxplot(energy$expend ~ energy$stature, names = c("Lean","Obese"), col = "rosybrown1")
+# Create with filter data
+boxplot(life_exp_1987$lifeExp, life_exp_2007$lifeExp, names = c("1987","2007"), col = "rosybrown1")
+boxplot(data$lifeExp ~ data$year, subset = data$year %in% c(1987,2007), col = "rosybrown1")
+
+# Create with formula (all years)
+boxplot(data$lifeExp ~ data$year, col = "rosybrown1")
 
 ```
 Data Source: *Introductory Statistics with R* (p. 79 - 83)
