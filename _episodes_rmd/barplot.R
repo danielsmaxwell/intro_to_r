@@ -12,6 +12,9 @@ for (cont in unique(pop_2007$continent)){
   assign(cont, x)
 }
 
+# This code requires the lattice package...
+library(lattice)
+
 df <- rbind(Africa, Americas, Asia, Europe)
 df$pop <- df$pop / 1000000
 
