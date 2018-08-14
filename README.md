@@ -5,7 +5,7 @@
   https://creativecommons.org/licenses/by/4.0/
   
   The original Software Carpentry episodes have been modified and/or extended to meet the specific learning goals of this class.  The 
-  plot_base_part1 and plot_base_part2 episodes, however, were created by the myDataStory development team.
+  basic_graphs episode, however, was created by the myDataStory development team.
 
 ## Notes
 - Use MacTeX for Mac computers as opposed to MicTeX

@@ -16,8 +16,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r init, echo = FALSE, warning = FALSE, message = FALSE}
 
-library(sqldf)
 library(dplyr)
+
+data <- read.csv("../data/gapminder.csv")
 
 ```
 
@@ -31,21 +32,15 @@ Let's take a closer look at the `table()` function, using a dataset of ufo sight
 
 ```{r ufo}
 
-ufo <- read.csv(file = "ufo.csv", stringsAsFactors = FALSE)
-
-attach(ufo)
-
-names(ufo)
-
-photo   <- factor(Photo,levels = 0:1, labels = c("No", "Yes"))
-contact <- factor(Contact,levels = 0:1, labels = c("No", "Yes"))
-abduct  <- factor(Abduct,levels = 0:1, labels = c("No", "Yes"))
-
+continents <- dplyr::select(data, country, continent)
+continents <- unique(continents)
+cont_table <- table(continents$continent)
+cont_table
 ```
 
 With vectors created, we can now use the `table()` function to summarize our data.  In this example, the function generates simple frequency counts for each vector.
 
-```{r ufo_table}
+```{r eval=FALSE}
 
 table(photo) 
 table(contact) 
@@ -55,8 +50,9 @@ table(abduct)
 
 The `table()` function can also create two-way tables.  Here the first argument specifies the row variable (photo) while the second specifies the column (contact).  Again, the function calculates a frequency count for each combination or cell in this 2-way table.
 
-```{r two_way_table}
+```{r two_way_table, eval=FALSE}
 
+### gap_minder doesnt have a good example for two way table, not enough categorical variables
 table(photo, contact)
 
 ```
@@ -65,7 +61,7 @@ table(photo, contact)
 
 In this first challenge, load the informatics_survey.csv file into a dataframe and then select just the question 5 (Q5_1) column.  From there, create a basic barplot that looks like this:
 
-```{r barplot, echo = FALSE}
+```{r barplot, echo = FALSE, eval=FALSE}
 
 survey <- read.csv("informatics_survey.csv", stringsAsFactors = FALSE)
 
@@ -106,13 +102,29 @@ In this second challenge, load the drink_crime.csv file into a dataframe and the
 
 ```{r group_barplot, echo = FALSE}
 
-crime <- read.csv("drink_crime.csv", stringsAsFactors = FALSE)
+crime <- read.csv("../data/drink_crime.csv", stringsAsFactors = FALSE)
+
+# Remove Oceania because it only has a sample size of 2 (New Zealand and Australia)
+pop_2007 <- dplyr::filter(data, year == 2007, continent != "Oceania")
+pop_2007 %>% group_by(continent) %>% summarise(sum(pop))
+pop_2007 %>% group_by(continent) %>% mutate(cont_pop = cumsum(pop))
+
+for (cont in unique(pop_2007$continent)){
+  x <- dplyr::filter(pop_2007, continent == cont) %>% top_n(3, pop) %>% droplevels
+  
+  # Assign the name of the cont as the variable name
+  assign(cont, x)
+}
+
 
 # Data must be presented as a matrix or vector for stacked or grouped barplots.
 
-barplot(as.matrix(crime[, c(2:4)]), 
-        legend = crime[, 1],
-           col = c("lightcoral","lightblue","khaki","beige"))
+barplot(cbind(Africa = Africa$pop, Americas = Americas$pop, 
+              Asia = Asia$pop, Europe = Europe$pop), 
+        legend = cbind(levels(Africa$country), levels(Americas$country), 
+                       levels(Asia$country), levels(Europe$country)),
+        col = rainbow(12, s = 0.5),
+        beside = TRUE)
 
 barplot(as.matrix(crime[, c(2:4)]), 
         legend = crime[, 1],
@@ -132,75 +144,10 @@ Question 3 (q3) on the survey asked participants to select an academic departmen
 
 When completed, your graph should look something like this:
 
-```{r pie, echo = FALSE, message = FALSE, warning = FALSE}
-
-# Solution for the advanced (optional) challenge.
-
-survey <- read.csv("informatics_survey.csv", stringsAsFactors = FALSE)
-
-# INSTRUCTOR NOTE 
-# sqldf does not work when running under R version 3.4.0.  The two commands below
-# return an error message that the survey table cannot be found, though it was
-# created above.  As of 06.26.17, sqldf calls for R version 3.3.3 but works with
-# warnings under 3.3.2.
-
-# You can write a select statement with new column names. 
-tmp <- sqldf("select q3 as department, count(q3) as total from survey where q3 != ' ' group by q3")
-
-# Or, you can execute a simple select and rename the variables afterwards.
-tmp <- sqldf("select q3, count(q3) from survey where q3 != ' ' group by q3")
-
-# Rename the columns -- department & department count.
-colnames(tmp)  <- c("dept","dept_cnt")
-
-# Add a new column for academic group with the following values:
-# (HUM Humanities, SCI Sciences, SOC, Social Sciences, MED Medical)
-tmp$acad_grp <- ""                       
-
-# INSTRUCTOR NOTE
-# In order to populate the new acad_grp variable, students will need to edit the dataframe
-# with the fix() function.  This opens a simple text editor which allows data entry 
-# and modification.  Strangely, the edit() function opens the same editor but changes 
-# are not permanently saved to the dataframe.
-
-# Save a backup copy of the modified dataframe.
-write.csv(tmp, file = "temp.csv")          
-
-# Create a new dataframe of the two columns needed for the pie chart. 
-temp   <- data.frame(tmp$acad_grp, tmp$dept_cnt, stringsAsFactors = FALSE)
-
-colnames(temp) <- c("acad_grp","dept_cnt")
-
-# End optional challenge -------------------------------------------------
-
-temp <- read.csv("informatics_acad_grp.csv", stringsAsFactors = FALSE)
-
-# Group rows by academic group.
-grp_by <- group_by(temp, acad_grp)                    
-
-# Sum dept_cnt for each academic group.
-slices <- summarize(grp_by, grp_tot = sum(dept_cnt))
-
-# Assign descriptive labels to the slices.
-slices$acad_grp[1] <- "Humanities"
-slices$acad_grp[2] <- "Health Sciences"
-slices$acad_grp[3] <- "Sciences"
-slices$acad_grp[4] <- "Social Sciences"
-slices$acad_grp[5] <- "Unknown"
-
-# Calculate percentages, round to two digits, and then create labels.
-slices$grp_pct <- (slices$grp_tot / sum(slices$grp_tot))
-slices$grp_pct <- round(slices$grp_pct, 2) * 100
-slices$lbl     <- paste(slices$acad_grp, " ", slices$grp_pct, "%", sep = "")
-
-pie(slices$grp_tot, labels = slices$lbl, main = "Pie Chart") 
-
-# INSTRUCTOR NOTE
-# This code accomplishes the same thing using the pipe operator.  If you have
-# time to demo this in lab, uncomment and test.
-
-# slices <- group_by(temp, acad_grp) %>% summarize(grp_tot = sum(dept_cnt))
-# pie(slices$grp_tot, labels = slices$acad_grp, main = "Pie Chart (Pipe)") 
+```{r pie}
+cont_table
+lbls <- paste0(names(cont_table), "\n ", cont_table)
+pie(cont_table, labels = lbls, main = "Pie Chart of Continents\n (number of countries)")
 
 ```
 Data Source: *2017 UF Informatics Survey*
@@ -210,7 +157,7 @@ Data Source: *2017 UF Informatics Survey*
 
 The home_ownership.txt file contains home ownership rates for all 50 states and the District of Columbia, for the years 1985, 1996, and 2002.  In this challenge, you will create three histograms, one for each year.  When complete, your graphs should look like these:
 
-```{r histogram, echo = FALSE}
+```{r histogram, echo = FALSE, eval=FALSE}
 
 opar <- par(no.readonly = TRUE)
 
@@ -243,7 +190,7 @@ Data Source: *Statistical Methods and Data Analysis* (p. 129)
 
 Now, create side-by-side boxplots of the home_ownership dataset used in the last challenge. Your graph should look like this when you're done:
 
-```{r boxplot, echo = FALSE}
+```{r boxplot, echo = FALSE, eval=FALSE}
 
 own <- read.delim("home_ownership.txt", sep = "\t", stringsAsFactors = FALSE)
 
@@ -265,7 +212,7 @@ In this challenge you will create a basic scatterplot to compare the M2 and M3 m
 
 ```{r scatterplot, echo = FALSE}
 
-money <- read.delim("money_supply.txt", sep = "\t", stringsAsFactors = FALSE)
+money <- read.delim("../data/money_supply.txt", sep = "\t", stringsAsFactors = FALSE)
 
 plot(money$m2, money$m3, xlab = "M2 (Trillions)", ylab = "M3 (Trillions)")
 
@@ -273,6 +220,9 @@ plot(money$m2, money$m3, xlab = "M2 (Trillions)", ylab = "M3 (Trillions)")
 fit <- lm(money$m3 ~ money$m2, data = money)
 
 abline(fit, col = "blue")
+
+data_2007 <- dplyr::filter(data, year == 2007)
+plot(data_2007$gdpPercap, data_2007$lifeExp, xlab = "GDP Per Capital ($)", ylab = "Life Expectancy (Years)")
 
 ```
 Data Source: *Statistical Methods and Data Analysis* (p. 137)
@@ -284,15 +234,11 @@ In this last challenge, create a stem-and-leaf plot of the data found in ozone.c
 
 ```{r stemleaf, echo = FALSE}
 
-ozone <- read.csv("ozone.csv", stringsAsFactors = FALSE)
-
-x <- ozone[c(0:79),]
-
 # INSTRUCTOR NOTE
 # The scale argument must equal 2 or the function only prints even numbers.  This
 # is not stated in the help documentation.  The answer was found on Stack Overflow.
 
-stem(x, scale = 2) 
+stem(data_2007$lifeExp, scale = 2) 
 
 ```
 Data Source: *Statistical Methods and Data Analysis* (p. 77) \newpage
