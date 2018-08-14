@@ -142,7 +142,7 @@ boxplot(data$lifeExp ~ data$year, col = "rosybrown1")
 ```
 
 
-### The Basic Barplot
+## The Basic Barplot
 
 ```{r barplot}
 
