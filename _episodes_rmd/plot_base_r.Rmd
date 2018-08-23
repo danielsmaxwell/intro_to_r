@@ -1,13 +1,15 @@
 --- 
 title: |
-  | *A Picture is Worth a Thousand Words*
-  | A myDataStory Learning Experience
+  | Activity Worksheet
+  | *Base R Plotting*
+  | ![](../fig/mydatastory_footer.png) 
 author: "Dan Maxwell"
-date: "August 12, 2018"
+date: "`r Sys.Date()`" 
 output:
   html_document:
     code_folding: hide
   pdf_document: default
+  word_document: default
 header-includes: \usepackage{color}
 ---
  
@@ -26,7 +28,7 @@ In this learning experience, we're going to introduce you to a variety of *base 
 
 Each section of this learning experience displays a finished graph with basic information about the function(s) used to create it.  And if you're viewing this document in a browser -- not as a pdf file -- you'll also see a `Code` button above and to the right of each graph.  Clicking that button will display the code that creates the graph.  But rather than view the solution immediately, try to write the code yourself, using the hints and information provided for each graph.  
 
-## Graphs are the Icing on the Cake
+## Graphs are Icing on the Data Cake
 Understandably, newcomers to R often want to rush through data scrubbing activities as they find this work tedious.  They would much rather spend their time creating sensational graphs of their data.  Yes, data visualization work can be a lot of fun.  However, most data scientists will tell you that the bulk of their time (80% or more) is spent preparing the data.  Indeed, creating a first graph often reveals additional data issues, an outlier that needs to be handled or missing values that need to be imputed.  Often a visualization/data cycle sets up, and you'll find yourself going back and forth between looking at the data and fixing it.  Eventually, the data "settles down" and the graphs begin to tell a story.
 
 > ### *Ref: Additional Resources* 
@@ -297,8 +299,7 @@ hist(x, main = expression(paste("Sampled values, ", mu, " = 5, ", sigma, " = 1")
 
 We now have a nice title for our graph with embedded symbols.  R provides support for just about any kind of mathematical expression.  To see more examples, type `?plotmath()` at the R prompt.
 
-## References  
-
+![](../fig/mydatastory_footer.png) 
 
 
  
