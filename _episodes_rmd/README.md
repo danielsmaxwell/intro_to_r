@@ -11,4 +11,4 @@
 
 Note: See ../src for the barplot.R code.
 
-The most comfortable way to preview HTML files on GitHub is to go to http://htmlpreview.github.com/ or just prepend it to the original URL, i.e.: http://htmlpreview.github.com/?https://github.com/bartaz/impress.js/blob/master/index.html
+The most comfortable way to preview HTML files on GitHub is to go to http://htmlpreview.github.com/ or just prepend it to the original URL, i.e.: http://htmlpreview.github.com/?https://github.com/mydatastory-dev/r_intro_class/blob/master/plot_base_r.html
