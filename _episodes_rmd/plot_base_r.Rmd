@@ -1,12 +1,13 @@
 --- 
-title: | 
-       | *A Picture is Worth a Thousand Words*
-       | A myDataStory Learning Experience
+title: |
+  | *A Picture is Worth a Thousand Words*
+  | A myDataStory Learning Experience
 author: "Dan Maxwell"
 date: "August 12, 2018"
 output:
+  html_document:
+    code_folding: hide
   pdf_document: default
-  html_document: default
 header-includes: \usepackage{color}
 ---
  
@@ -18,16 +19,21 @@ knitr::opts_chunk$set(echo = TRUE)  # FALSE hides all code...
 ```{r init, echo = FALSE, message = FALSE}
 
 library(dplyr)
-
 ```
 
 ## Introduction
-Up to this point, our focus has been data management.  Newcomers to R often want to rush through data scrubbing activities as they find this work tedious.  They would much rather spend their time creating sensational graphs of their data as visualization work is a lot more fun.  However, most data scientists will tell you that the bulk of their time (80% or more) is spent preparing the data.  Indeed, creating a first graph often reveals additional data issues, an outlier that needs to be handled or values that need to be imputed.  Often a visualization/data cycle sets up, and you'll find yourself going back and forth between looking at the data and fixing it.  Eventually, the data "settles down" and the graphs begin to tell a story.  Keep this in mind as you work through the examples provided here. 
+In this learning experience, we're going to introduce you to a variety of *base R* graph functions.  A base function is part of the R installation so you don't need to load any packages to access them. Later, we'll introduce you to the popular ggplot2 package.
 
-## A Helpful Resource
-See http://www.statmethods.net/graphs/index.html for additional graphing resources.
+Each section of this learning experience displays a finished graph with basic information about the function(s) used to create it.  And if you're viewing this document in a browser -- not as a pdf file -- you'll also see a `Code` button above and to the right of each graph.  Clicking that button will display the code that creates the graph.  But rather than view the solution immediately, try to write the code yourself, using the hints and information provided for each graph.  
 
-## The Basic Histogram
+## Graphs are the Icing on the Cake
+Understandably, newcomers to R often want to rush through data scrubbing activities as they find this work tedious.  They would much rather spend their time creating sensational graphs of their data.  Yes, data visualization work can be a lot of fun.  However, most data scientists will tell you that the bulk of their time (80% or more) is spent preparing the data.  Indeed, creating a first graph often reveals additional data issues, an outlier that needs to be handled or missing values that need to be imputed.  Often a visualization/data cycle sets up, and you'll find yourself going back and forth between looking at the data and fixing it.  Eventually, the data "settles down" and the graphs begin to tell a story.
+
+> ### *Ref: Additional Resources* 
+> See [Quick-R](http://www.statmethods.net/graphs/index.html) for a concise overview of base R graphs.
+
+## The Histogram
+The histogram is a foundational graph in statistics.  In this example, a histogram of 50 values with a mean of 5 and standard deviation of 1 is displayed.  To generate the dataset for this graph, use the `rnorm()` function.  Afterwards, plotting can be done with the `hist()` function.  Can you figure out how to embed the special Greek characters in the title?  Hint: take a look at the `expression()` and `paste()` functions!
 
 ```{r basic_histogram}
 # Generate random numbers from a normal distribution.
@@ -39,6 +45,7 @@ hist(x, main = expression(paste("Sampled values, ", mu, " = 5, ", sigma, " = 1")
 ```
 
 ## The Basic Plot
+This simple line graph displays per capita income for the United States from 1950 to 2007.  The `plot()` function allows programmers to quickly graph a dataset.  In this case, the data plotted in this graph comes from the gapminder.csv file.  So to create this graph, you'll first need to load the data into a dataframe and then select just those rows where country equals the 'United States'.  Actually plotting the subset is fairly straightforward, though you may need to adjust font sizes, line colors, and some other key arguments.
 
 ```{r basic_plot}
 
@@ -51,7 +58,7 @@ us  <- data[data$country=="United States",]
 # Plot GDP per Capital by year.
 plot(us$year, us$gdpPercap,
      xlab = "Year",
-     ylab = "GDP per Capital",
+     ylab = "GDP per Capita",
      type = "b", 
      cex  = .75,
      lty  = 3,
