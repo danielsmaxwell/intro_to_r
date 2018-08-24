@@ -2,7 +2,6 @@
 title: |
   | Activity Worksheet
   | *Base R Plotting*
-  | ![](../fig/mydatastory_footer.png) 
 author: "Dan Maxwell"
 date: "`r Sys.Date()`" 
 output:
@@ -22,13 +21,14 @@ knitr::opts_chunk$set(echo = TRUE)  # FALSE hides all code...
 
 library(dplyr)
 ```
+![](../fig/mydatastory_footer.png)
 
 ## Introduction
 In this learning experience, we're going to introduce you to a variety of *base R* graph functions.  A base function is part of the R installation so you don't need to load any packages to access them. Later, we'll introduce you to the popular ggplot2 package.
 
 Each section of this learning experience displays a finished graph with basic information about the function(s) used to create it.  And if you're viewing this document in a browser -- not as a pdf file -- you'll also see a `Code` button above and to the right of each graph.  Clicking that button will display the code that creates the graph.  But rather than view the solution immediately, try to write the code yourself, using the hints and information provided for each graph.  
 
-## Graphs are Icing on the Data Cake
+## Graphs are the Icing on the Data Cake
 Understandably, newcomers to R often want to rush through data scrubbing activities as they find this work tedious.  They would much rather spend their time creating sensational graphs of their data.  Yes, data visualization work can be a lot of fun.  However, most data scientists will tell you that the bulk of their time (80% or more) is spent preparing the data.  Indeed, creating a first graph often reveals additional data issues, an outlier that needs to be handled or missing values that need to be imputed.  Often a visualization/data cycle sets up, and you'll find yourself going back and forth between looking at the data and fixing it.  Eventually, the data "settles down" and the graphs begin to tell a story.
 
 > ### *Ref: Additional Resources* 
@@ -47,7 +47,7 @@ hist(x, main = expression(paste("Sampled values, ", mu, " = 5, ", sigma, " = 1")
 ```
 
 ## The Basic Plot
-This simple line graph displays per capita income for the United States from 1950 to 2007.  The `plot()` function allows programmers to quickly graph a dataset.  In this case, the data plotted in this graph comes from the gapminder.csv file.  So to create this graph, you'll first need to load the data into a dataframe and then select just those rows where country equals the 'United States'.  Actually plotting the subset is fairly straightforward, though you may need to adjust font sizes, line colors, and some other key arguments.
+This simple line graph below displays per capita income for the United States from 1950 to 2007.  The `plot()` function allows programmers to quickly graph a dataset.  In this case, the data plotted in this graph comes from the gapminder.csv file.  So to create this graph, you'll first need to load the data into a dataframe and then select just those rows where the country = 'United States'.  Actually plotting the subset is fairly straightforward, though you may need to adjust font sizes, line colors, and some other key arguments.  This challenge provides opportunities for you to explore a variety of arguments to the `plot()` function.
 
 ```{r basic_plot}
 
@@ -69,10 +69,14 @@ plot(us$year, us$gdpPercap,
 
 ```
 
-
 ## The Multi-Line Plot
+Building on the code from the last graph, we now plot multiple lines in a single graph.  In this case, we're comparing the per capita GDP of the United States and the United Kingdom from 1950 to 2007.  To write the code to generate this graph, you'll need to investigate both the `lines()` and `legend()` functions.
+
+### Advanced Challenge
+How would you modify this code to add lines for Germany and Japan?
 
 ```{r multiline_plot}
+# Note: read.csv() was used earlier to load gapminder.csv into the data dataframe.
 
 # Create vectors, one for each country represented.
 us <- data[data$country=="United States",]
@@ -108,11 +112,16 @@ legend("bottomright",
 
 ```
 
-Now add GDP lines for Germany and Japan to the graph...
+## Comparing Graphs
+Rather than plot multiple lines on a single graph, sometimes it's better to create two graphs stacked on top of each other, as displayed below.  The mfrow argument to the `par()` function is how you create a graphic device capable of displaying multiple rows and columns of graphs.  Rather than stack these two graphs as one row on top of another, we could place them in two columns, side by side.
 
-## Advanced Histograms
+Of course, we are now subsetting the data by year (1987 and 2007) rather than by country, as was done previously.  And finally, we create the graphs, using the life expectancy column of the gapminder.csv file and the `hist()` function.
+
+### Advanced Challenge
+How would you modify this code to create stacked life expectancy graphs for four countries (United States, United Kingdom, Germany, and Japan)?
 
 ```{r life_histograms}
+# Note: read.csv() was used earlier to load gapminder.csv into the data dataframe.
 
 # Create dataframe from data file.
 life_exp_1987 <- data[data$year==1987,]
@@ -132,8 +141,7 @@ par(mfrow = c(1, 1))
 
 ```
 
-
-## Advanced Boxplots
+## Boxplots
 
 ```{r life_boxplots}
 
@@ -223,7 +231,7 @@ barplot(m1,
 
 ## The Table Function
 
-When you need to summarize a dataframe, the `table()` function is often useful. 
+When you need to summarize a dataframe, the `table()` function is often useful.  In this example, we first create a continents dataframe, selecting just the country and continent columns from the previously created data dataframe.  We then use the `unique()` and `table()` functions to generate a summary table called cont_table. 
 
 ```{r continents}
 
@@ -234,13 +242,15 @@ cont_table
 
 ```
 
-
 ## The Pie Chart
+Now that we have a summary table (cont_table), we create a pie chart of the number of countries per continent.  In general, statisticians dislike pie charts and their use in data analysis settings.  Business executives, on the other hand, have no qualms about visualizing data in this way.
 
 ```{r pie}
 
 cont_table
+
 lbls <- paste0(names(cont_table), "\n ", cont_table)
+
 pie(cont_table, labels = lbls, main = "Pie Chart of Continents\n (number of countries)")
 
 ```
@@ -251,6 +261,7 @@ pie(cont_table, labels = lbls, main = "Pie Chart of Continents\n (number of coun
 ```{r scatterplot, echo = FALSE}
 
 data_2007 <- data[data$year==2007,]
+
 plot(data_2007$gdpPercap, data_2007$lifeExp, xlab = "GDP Per Capital ($)", ylab = "Life Expectancy (Years)")
 
 ```
@@ -267,9 +278,8 @@ stem(data_2007$lifeExp, scale = 2)
 
 ```
 
-
 ## Mathematical Symbols in Plots
-Now that we've demonstrated some of the graphs available to you in base R, there may be times when you'll want to add special mathematical characters to a plot, usually letters from the Greek alphabet.  In order to do that, you'll need to use the `expression()` function.  Let's take a look at some code to see how this is done: 
+Now that we've demonstrated some of the graphs available to you in base R, there may be times when you'll want to add special characters to a graph, usually letters from the Greek alphabet.  In order to do that, you'll need to use the `expression()` function.  Let's take a look at some code to see how this is done: 
 
 ```{r, fig.width = 6.5, fig.height = 4.10}
 # Create a blank plot.
@@ -299,7 +309,6 @@ hist(x, main = expression(paste("Sampled values, ", mu, " = 5, ", sigma, " = 1")
 
 We now have a nice title for our graph with embedded symbols.  R provides support for just about any kind of mathematical expression.  To see more examples, type `?plotmath()` at the R prompt.
 
-![](../fig/mydatastory_footer.png) 
 
 
  
