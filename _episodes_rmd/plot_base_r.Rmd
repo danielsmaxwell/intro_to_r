@@ -1,7 +1,7 @@
 --- 
 title: |
-  | Activity Worksheet
-  | *Base R Plotting*
+       | Activity Worksheet
+       | *Base R Plotting*
 author: "Dan Maxwell"
 date: "`r Sys.Date()`" 
 output:
@@ -72,7 +72,7 @@ plot(us$year, us$gdpPercap,
 ## The Multi-Line Plot
 Building on the code from the last graph, we now plot multiple lines in a single graph.  In this case, we're comparing the per capita GDP of the United States and the United Kingdom from 1950 to 2007.  To write the code to generate this graph, you'll need to investigate both the `lines()` and `legend()` functions.
 
-### Advanced Challenge
+### Challenge
 How would you modify this code to add lines for Germany and Japan?
 
 ```{r multiline_plot}
@@ -117,7 +117,7 @@ Rather than plot multiple lines on a single graph, sometimes it's better to crea
 
 Of course, we are now subsetting the data by year (1987 and 2007) rather than by country, as was done previously.  And finally, we create the graphs, using the life expectancy column of the gapminder.csv file and the `hist()` function.
 
-### Advanced Challenge
+### Challenge
 How would you modify this code to create stacked life expectancy graphs for four countries (United States, United Kingdom, Germany, and Japan)?
 
 ```{r life_histograms}
@@ -142,10 +142,12 @@ par(mfrow = c(1, 1))
 ```
 
 ## Boxplots
+The boxplot is a great way to visualize the spread (distribution) of a dataset by displaying "a five-part summary: the minimum, lower quartile (25th percentile), median (50th percentile), upper quartile (75th percentile), and maximum" (Kabacoff, p. 129). The boxplots displayed here compare life expectancy data for 1987 and 2007.  There are multiple ways to write the calls to `boxplot()`.  Take a look at a couple of those ways after attempting to write the code yourself.
 
 ```{r life_boxplots}
 
 # Two ways to create the boxplot.
+
 # Create with filter data
 boxplot(life_exp_1987$lifeExp, life_exp_2007$lifeExp, 
         names = c("1987","2007"), col = "rosybrown1")
@@ -158,8 +160,11 @@ boxplot(data$lifeExp ~ data$year, col = "rosybrown1")
 
 ```
 
-
 ## The Basic Barplot
+The barplot is another workhorse in the data scientist's arsenal, used most often to visualize categorical data.  In this graph, we first select 6 countries, using the `sample()` function.  (This function randomly selects the countries.)  We then display the life-expectancy of each with a bar.  Another interesting feature of this code is the creative use of the `rainbow()` function which color-cooridnates each of the bars.
+
+### Challenge
+How would you modify this code to sample a different set of 6 countries?
 
 ```{r barplot}
 
@@ -178,6 +183,9 @@ barplot(rows_for_barplot$lifeExp,
 
 
 ## Grouped & Stacked Barplots
+
+### Advanced Challenge
+
 
 ```{r group_barplot, echo = FALSE}
 
@@ -230,8 +238,7 @@ barplot(m1,
 
 
 ## The Table Function
-
-When you need to summarize a dataframe, the `table()` function is often useful.  In this example, we first create a continents dataframe, selecting just the country and continent columns from the previously created data dataframe.  We then use the `unique()` and `table()` functions to generate a summary table called cont_table. 
+When you need to summarize a dataframe, the `table()` function is often useful.  In this example, we first create a continents dataframe, selecting just the country and continent columns from the previously created data dataframe.  We then use the `unique()` and `table()` functions to generate a summary table called cont_table, used to create the pie chart in the next section of code. 
 
 ```{r continents}
 
@@ -247,27 +254,27 @@ Now that we have a summary table (cont_table), we create a pie chart of the numb
 
 ```{r pie}
 
-cont_table
-
 lbls <- paste0(names(cont_table), "\n ", cont_table)
 
 pie(cont_table, labels = lbls, main = "Pie Chart of Continents\n (number of countries)")
 
 ```
 
-
-## The Scatter Plot
+## The Scatterplot
+The scatterplot is a basic kind of graph and is often used to take an initial look at a dataset.  In the graph displayed below, we use the `plot()` function to graph the GDP per capita as it relates to life expectancy.
 
 ```{r scatterplot, echo = FALSE}
 
 data_2007 <- data[data$year==2007,]
 
-plot(data_2007$gdpPercap, data_2007$lifeExp, xlab = "GDP Per Capital ($)", ylab = "Life Expectancy (Years)")
+plot(data_2007$gdpPercap, data_2007$lifeExp, 
+     xlab = "GDP Per Capita ($)", ylab = "Life Expectancy (Years)")
 
 ```
 
 
 ## The Stem-and-Leaf Plot
+The stem-and-leaf plot is like a histogram laid on its side.  The `stem()` function creates this graph but you'll need to set the scale argument to 2 or the generated graph only displays even numbers.  Strangely, this is not noted in the help documentation for this function.  In the graph here, we're displaying the 2007 life expectancy column.
 
 ```{r stemleaf, echo = FALSE}
 
@@ -309,7 +316,8 @@ hist(x, main = expression(paste("Sampled values, ", mu, " = 5, ", sigma, " = 1")
 
 We now have a nice title for our graph with embedded symbols.  R provides support for just about any kind of mathematical expression.  To see more examples, type `?plotmath()` at the R prompt.
 
-
+## References
+Kabacoff, R. I. (2015). R in Action: Data analysis and graphics with R (2nd ed.). Shelter Island, NY: Manning.
 
  
 
