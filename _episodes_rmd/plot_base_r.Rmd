@@ -26,7 +26,7 @@ library(dplyr)
 ## Introduction
 In this learning experience, we're going to introduce you to a variety of *base R* graph functions.  A base function is part of the R installation so you don't need to load any packages to access them. Later, we'll introduce you to the popular ggplot2 package.
 
-Each section of this learning experience displays a finished graph with basic information about the function(s) used to create it.  And if you're viewing this document in a browser -- not as a pdf file -- you'll also see a `Code` button above and to the right of each graph.  Clicking that button will display the code that creates the graph.  But rather than view the solution immediately, try to write the code yourself, using the hints and information provided for each graph.  
+Each section of this learning experience displays a finished graph with basic information about the function(s) used to create it.  And if you're viewing this document in a browser -- not as a pdf file -- you'll also see a `Code` button above and to the right of each graph.  Clicking that button will display the code that creates the graph.  But rather than view the solution immediately, try to write the code yourself, using the hints and information provided.  The best way to learn how to visualize data is to just do it! 
 
 ## Graphs are the Icing on the Data Cake
 Understandably, newcomers to R often want to rush through data scrubbing activities as they find this work tedious.  They would much rather spend their time creating sensational graphs of their data.  Yes, data visualization work can be a lot of fun.  However, most data scientists will tell you that the bulk of their time (80% or more) is spent preparing the data.  Indeed, creating a first graph often reveals additional data issues, an outlier that needs to be handled or missing values that need to be imputed.  Often a visualization/data cycle sets up, and you'll find yourself going back and forth between looking at the data and fixing it.  Eventually, the data "settles down" and the graphs begin to tell a story.
@@ -87,7 +87,7 @@ y <- us$gdpPercap
 
 plot(x, y,
      xlab = "Year",
-     ylab = "GDP per Capital",
+     ylab = "GDP per Capita",
      type = "b", 
      cex  = .75,
      lty  = 3,
@@ -104,7 +104,7 @@ lines(x, y, type = "b", lty = 2, col = "red", pch = 0, cex = .75)
 
 # Add legend to distinguish between the two lines.
 legend("bottomright",
-       title = "GDP Per Cap",
+       title = "GDP Per Capita",
        c("United States","United Kingdom"),
        lty   = c(3, 2), 
        pch   = c(1, 0),
@@ -115,7 +115,7 @@ legend("bottomright",
 ## Comparing Graphs
 Rather than plot multiple lines on a single graph, sometimes it's better to create two graphs stacked on top of each other, as displayed below.  The mfrow argument to the `par()` function is how you create a graphic device capable of displaying multiple rows and columns of graphs.  Rather than stack these two graphs as one row on top of another, we could place them in two columns, side by side.
 
-Of course, we are now subsetting the data by year (1987 and 2007) rather than by country, as was done previously.  And finally, we create the graphs, using the life expectancy column of the gapminder.csv file and the `hist()` function.
+In this example, we are now subsetting the data by year (1987 and 2007) rather than by country, as was done previously.  And finally, we create the graphs, using the life expectancy column of the gapminder.csv file and the `hist()` function.
 
 ### Challenge
 How would you modify this code to create stacked life expectancy graphs for four countries (United States, United Kingdom, Germany, and Japan)?
@@ -142,7 +142,7 @@ par(mfrow = c(1, 1))
 ```
 
 ## Boxplots
-The boxplot is a great way to visualize the spread (distribution) of a dataset by displaying "a five-part summary: the minimum, lower quartile (25th percentile), median (50th percentile), upper quartile (75th percentile), and maximum" (Kabacoff, p. 129). The boxplots displayed here compare life expectancy data for 1987 and 2007.  There are multiple ways to write the calls to `boxplot()`.  Take a look at a couple of those ways after attempting to write the code yourself.
+The boxplot is a great way to visualize the spread (distribution) of a dataset by displaying "a five-part summary: the minimum, lower quartile (25th percentile), median (50th percentile), upper quartile (75th percentile), and maximum" (Kabacoff, p. 129). The boxplots displayed here compare life expectancy data for 1987 and 2007.  There are multiple ways to write the calls to `boxplot()`.  This section of code demonstrates a couple of those ways.  But first, attempt to recreate these graphs yourself.
 
 ```{r life_boxplots}
 
@@ -161,7 +161,7 @@ boxplot(data$lifeExp ~ data$year, col = "rosybrown1")
 ```
 
 ## The Basic Barplot
-The barplot is another workhorse in the data scientist's arsenal, used most often to visualize categorical data.  In this graph, we first select 6 countries, using the `sample()` function.  (This function randomly selects the countries.)  We then display the life-expectancy of each with a bar.  Another interesting feature of this code is the creative use of the `rainbow()` function which color-cooridnates each of the bars.
+The barplot is another workhorse in the data scientist's arsenal, used most often to visualize categorical data.  In this graph, we first select 6 countries, using the `sample()` function.  (This function randomly selects the countries.)  We then display the life-expectancy of each with a bar.  Another interesting feature of this code is the creative use of the `rainbow()` function which color-coordinates each of the bars.
 
 ### Challenge
 How would you modify this code to sample a different set of 6 countries?
@@ -183,19 +183,51 @@ barplot(rows_for_barplot$lifeExp,
 
 
 ## Grouped & Stacked Barplots
+The grouped and stacked barplots are sophisticated variants of the basic barplot.  With both, the data *must be presented* to the `barplot()` function as a matrix.  In this example, we provide you with two pre-formatted data files (barplot_group.csv and barplot_stack.csv) in order to simplify the graphing process.  After loading the files to dataframes, first take a look at how the data is presented before writing your code.  You'll also want to carefully read the help documentation for the `beside` argument as this determines whether the barplot is grouped or stacked.    
+
+```{r grp_stk_barplot}
+# Load data for the group barplot (m1) and stacked barplot (m2).
+m1 <- read.csv("https://github.com/mydatastory/r_intro_class/raw/master/data/barplot_group.csv")
+m2 <- read.csv("https://github.com/mydatastory/r_intro_class/raw/master/data/barplot_stack.csv")
+
+# Create a legend for both graphs, using the country names in m2.
+lgnd <- m2$Country
+
+# Redefine m2 by removing the Country column as it isn't needed in the stacked barplot. 
+m2 <- cbind(m2$Africa, m2$Americas, m2$Asia, m2$Europe)
+colnames(m2) <- c('Africa','Americas','Asia','Europe')
+
+# Create the group barplot - divide population by 1 million and then convert to matrix.
+m1 <- m1/1000000
+m1 <- as.matrix(m1)
+
+barplot(m1, 
+        legend = lgnd,
+        args.legend = list(x = "topright", cex = .7),
+        col = rainbow(12, s = 0.5),
+        beside = T)
+
+# Create the stacked barplot - divide population by 1 million and then convert to matrix.
+m2 <- m2/1000000
+m2 <- as.matrix(m2)
+
+barplot(m2, 
+        legend = lgnd,
+        args.legend = list(x = "topright", cex = .7),
+        col = rainbow(12, s = 0.5),
+        beside = F)
+
+```
 
 ### Advanced Challenge
+It is indeed rare when a dataset comes to you pre-formatted and ready to graph.  In the last section, we provided you with two pristine datasets, ready to present to the `barplot()` function.  But what if we had not done that?  Do you think you could write the code to create these two data files from the original gapminder.csv file?  Actually, this *data wrangling* task is quite complex, and the code to achieve it can be seen by clicking the Code button.  This is one of those times where you'll probably want to view the solution first, before attempting to write anything yourself.  Take the time to carefully review each line of code to know exactly what it is doing.  Also note the creative use of functions from the `dplyr` package to summarize the gapminder data and then select the top three most populous countries for each continent.  You'll learn more about the `dplyr` package in a future module.
 
-
-```{r group_barplot, echo = FALSE}
+```{r data_barplot, eval = FALSE}
 
 library(dplyr)
 
 # Remove Oceania because it only has a sample size of 2 (New Zealand and Australia)
 pop_2007 <- dplyr::filter(data, year == 2007, continent != "Oceania")
-pop_2007 %>% group_by(continent) %>% summarise(sum(pop))
-
-pop_2007 %>% group_by(continent) %>% mutate(cont_pop = cumsum(pop))
 
 for (cont in unique(pop_2007$continent)){
   x <- dplyr::filter(pop_2007, continent == cont) %>% top_n(3, pop) %>% droplevels
@@ -207,7 +239,6 @@ for (cont in unique(pop_2007$continent)){
 # Data must be presented as a matrix or vector for stacked or grouped barplots.
 m1 <- cbind(Africa = Africa$pop, Americas = Americas$pop, 
             Asia = Asia$pop, Europe = Europe$pop)
-m1
 
 xx <- rep(0,3)
 aa <- Africa$pop
@@ -218,21 +249,24 @@ m2 <- matrix(c(aa,xx,xx,xx,
                xx,bb,xx,xx,
                xx,xx,cc,xx,
                xx,xx,xx,dd), ncol = 4)
+
 colnames(m2) <- c("Africa", "Americas", "Asia", "Europe")
 
-m2
-
-barplot(m2, 
-        legend = cbind(levels(Africa$country), levels(Americas$country), 
-                       levels(Asia$country), levels(Europe$country)),
-        col = rainbow(12, s = 0.5),
-        beside = F)
-
+# Create the group barplot.
 barplot(m1, 
         legend = cbind(levels(Africa$country), levels(Americas$country), 
                        levels(Asia$country), levels(Europe$country)),
+        args.legend = list(x = "topright", cex = .7),
         col = rainbow(12, s = 0.5),
         beside = T)
+
+# Create the stacked barplot.
+barplot(m2, 
+        legend = cbind(levels(Africa$country), levels(Americas$country), 
+                       levels(Asia$country), levels(Europe$country)),
+        args.legend = list(x = "topright", cex = .7),
+        col = rainbow(12, s = 0.5),
+        beside = F)
 
 ```
 
