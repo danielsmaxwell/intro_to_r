@@ -122,6 +122,7 @@ c(1, 2, 'f')
 ```
 
 <div class="fold s">
+
 ```{r eval = FALSE}
 
 # Solution to Challenge 1
@@ -131,6 +132,7 @@ c(1, 2, 'f')
 # second, they are characters, and in the third they are characters:
 # the numeric values are "coerced" to be characters.
 ```
+
 </div>
 
 ### Challenge 2
@@ -139,6 +141,7 @@ Look at the help for the `paste` function. You'll need to use this later.
 What is the difference between the `sep` and `collapse` arguments?
 
 <div class="fold s">
+
 ```{r eval = FALSE}
 > # Solution to Challenge 2
 >
@@ -166,6 +169,7 @@ paste(c("a","b"), "c", sep = ",", collapse = "|")
 # examples, or try `example('paste')`.)
 
 ```
+
 </div>
 
 ### Challenge 3
@@ -179,7 +183,8 @@ decimal point (i.e. comma vs period).
 
 hint: use `??csv` to lookup csv related functions.
 
-<div class="fold s">
+<div class="fold s>
+
 ```{r eval = FALSE}
 # Solution to Challenge 3
 
@@ -191,6 +196,7 @@ hint: use `??csv` to lookup csv related functions.
 # hash (#) characters
 
 ```
+
 </div>
 
 ## Other ports of call
