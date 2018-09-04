@@ -31,7 +31,7 @@ Each section of this learning experience displays a finished graph with basic in
 ## Graphs are the Icing on the Data Cake
 Understandably, newcomers to R often want to rush through data scrubbing activities as they find this work tedious.  They would much rather spend their time creating sensational graphs of their data.  Yes, data visualization work can be a lot of fun.  However, most data scientists will tell you that the bulk of their time (80% or more) is spent preparing the data.  Indeed, creating a first graph often reveals additional data issues, an outlier that needs to be handled or missing values that need to be imputed.  Often a visualization/data cycle sets up, and you'll find yourself going back and forth between looking at the data and fixing it.  Eventually, the data "settles down" and the graphs begin to tell a story.
 
-> ### *Ref: Additional Resources* 
+> ## Ref: Additional Resources
 > See [Quick-R](http://www.statmethods.net/graphs/index.html) for a concise overview of base R graphs.
 
 ## The Histogram
