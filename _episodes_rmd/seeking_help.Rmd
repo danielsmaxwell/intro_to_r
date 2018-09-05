@@ -14,7 +14,7 @@ header-includes: \usepackage{color}
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-![](../fig/mydatastory_carpentry_footer2.png)
+![](../fig/mydatastory_carpentry_footer.png)
 
 <script src="hideOutput.js"></script>
 
