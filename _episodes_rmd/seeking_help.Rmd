@@ -1,18 +1,24 @@
 ---
 title: |
-       | Activity Worksheet
-       | *Seeking Help* 
+  | Activity Worksheet
+  | *Seeking Help*
 author: "Dan Maxwell"
-date: "June 20, 2017"
+date: '`r Sys.Date()`'
 output:
-  pdf_document: default
   html_document: default
+  pdf_document:
+    fig_caption: no
 header-includes: \usepackage{color}
 ---
  
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+![](../fig/mydatastory_carpentry_footer.png)
+
+<script src="hideOutput.js"></script>
+
+<link rel="stylesheet" type="text/css" href="fold.css">
 
 ## Reading Help files
 
@@ -39,7 +45,7 @@ Each help page is broken down into sections:
 
 Different functions might have different sections, but these are the main ones you should be aware of.
 
-> ## Tip: Reading help files
+> ### Tip: Reading help files
 >
 > One of the most daunting aspects of R is the large number of functions
 > available. It would be prohibitive, if not impossible to remember the
@@ -105,70 +111,93 @@ have loaded. This can be useful for others to help reproduce and debug
 your issue.
 
 
-## Challenge 1
+### Challenge 1
 
 Look at the help for the `c` function. What kind of vector do you
 expect you will create if you evaluate the following:
-```{r, eval=FALSE}
+```{r, eval = FALSE}
 c(1, 2, 3)
 c('d', 'e', 'f')
 c(1, 2, 'f')
 ```
-> ## Solution to Challenge 1
->
-> The `c()` function creates a vector, in which all elements are the
-> same type. In the first case, the elements are numeric, in the
-> second, they are characters, and in the third they are characters:
-> the numeric values are "coerced" to be characters.
 
-## Challenge 2
+<div class="fold s">
+
+```{r eval = FALSE}
+
+# Solution to Challenge 1
+
+# The `c()` function creates a vector, in which all elements are the
+# same type. In the first case, the elements are numeric, in the
+# second, they are characters, and in the third they are characters:
+# the numeric values are "coerced" to be characters.
+```
+
+</div>
+
+### Challenge 2
 
 Look at the help for the `paste` function. You'll need to use this later.
 What is the difference between the `sep` and `collapse` arguments?
 
-> ## Solution to Challenge 2
+<div class="fold s">
+
+```{r eval = FALSE}
+> # Solution to Challenge 2
 >
-> To look at the help for the `paste()` function, use:
-> ```{r, eval=FALSE}
+> # To look at the help for the `paste()` function, use:
+> 
 > help("paste")
 > ?paste
-> ```
-> The difference between `sep` and `collapse` is a little
-> tricky. The `paste` function accepts any number of arguments, each of which
-> can be a vector of any length. The `sep` argument specifies the string
-> used between concatenated terms â?? by default, a space. The result is a
-> vector as long as the longest argument supplied to `paste`. In contrast,
-> `collapse` specifies that after concatenation the elements are *collapsed*
-> together using the given separator, the result being a single string.
-> e.g. 
-> ```{r} 
-> paste(c("a","b"), "c")
-> paste(c("a","b"), "c", sep = ",")
-> paste(c("a","b"), "c", collapse = "|")
-> paste(c("a","b"), "c", sep = ",", collapse = "|")
-> ```
-> (For more information,
-> scroll to the bottom of the `?paste` help page and look at the
-> examples, or try `example('paste')`.)
+> 
+# The difference between `sep` and `collapse` is a little
+# tricky. The `paste` function accepts any number of arguments, each of which
+# can be a vector of any length. The `sep` argument specifies the string
+# used between concatenated terms - by default, a space. The result is a
+# vector as long as the longest argument supplied to `paste`. In contrast,
+# `collapse` specifies that after concatenation the elements are *collapsed*
+# together using the given separator, the result being a single string.
+# e.g. 
+ 
+paste(c("a","b"), "c")
+paste(c("a","b"), "c", sep = ",")
+paste(c("a","b"), "c", collapse = "|")
+paste(c("a","b"), "c", sep = ",", collapse = "|")
 
+# For more information,
+# scroll to the bottom of the `?paste` help page and look at the
+# examples, or try `example('paste')`.)
 
-## Challenge 3
+```
+
+</div>
+
+### Challenge 3
+
 Use help to find a function (and its associated parameters) that you could
 use to load data from a csv file in which columns are delimited with "\t"
 (tab) and the decimal point is a "." (period). This check for decimal
 separator is important, especially if you are working with international
 colleagues, because different countries have different conventions for the
 decimal point (i.e. comma vs period).
+
 hint: use `??csv` to lookup csv related functions.
 
-> ## Solution to Challenge 3
->
-> The standard R function for reading tab-delimited files with a period
-> decimal separator is read.delim(). You can also do this with
-> `read.table(file, sep="\t")` (the period is the *default* decimal
-> separator for `read.table()`, although you may have to change
-> the `comment.char` argument as well if your data file contains
-> hash (#) characters
+<div class="fold s>
+
+```{r eval = FALSE}
+# Solution to Challenge 3
+
+# The standard R function for reading tab-delimited files with a period
+# decimal separator is read.delim(). You can also do this with
+# `read.table(file, sep="\t")` (the period is the *default* decimal
+# separator for `read.table()`, although you may have to change
+# the `comment.char` argument as well, if your data file contains
+# hash (#) characters
+
+```
+
+</div>
 
 ## Other ports of call
 

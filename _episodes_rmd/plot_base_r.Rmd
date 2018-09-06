@@ -1,0 +1,372 @@
+--- 
+title: |
+       | Activity Worksheet
+       | *Base R Plotting*
+author: "Dan Maxwell"
+date: "`r Sys.Date()`" 
+output:
+  html_document:
+    code_folding: hide
+  pdf_document: 
+    fig_caption: no
+  word_document: default
+header-includes: \usepackage{color}
+---
+ 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)  # FALSE hides all code...
+```
+
+
+```{r init, echo = FALSE, message = FALSE}
+
+library(dplyr)
+```
+![](../fig/mydatastory_footer.png)
+
+## Introduction
+In this learning experience, we're going to introduce you to a variety of *base R* graph functions.  A base function is part of the R installation so you don't need to load any packages to access them. Later, we'll introduce you to the popular ggplot2 package.
+
+Each section of this learning experience displays a finished graph with basic information about the function(s) used to create it.  And if you're viewing this document in a browser -- not as a pdf file -- you'll also see a `Code` button above and to the right of each graph.  Clicking that button will display the code that creates the graph.  But rather than view the solution immediately, try to write the code yourself, using the hints and information provided.  The best way to learn how to visualize data is to just do it! 
+
+## Graphs are the Icing on the Data Cake
+Understandably, newcomers to R often want to rush through data scrubbing activities as they find this work tedious.  They would much rather spend their time creating sensational graphs of their data.  Yes, data visualization work can be a lot of fun.  However, most data scientists will tell you that the bulk of their time (80% or more) is spent preparing the data.  Indeed, creating a first graph often reveals additional data issues, an outlier that needs to be handled or missing values that need to be imputed.  Often a visualization/data cycle sets up, and you'll find yourself going back and forth between looking at the data and fixing it.  Eventually, the data "settles down" and the graphs begin to tell a story.
+
+> ## Ref: Additional Resources
+> See [Quick-R](http://www.statmethods.net/graphs/index.html) for a concise overview of base R graphs.
+
+## The Histogram
+The histogram is a foundational graph in statistics.  In this example, a histogram of 50 values with a mean of 5 and standard deviation of 1 is displayed.  To generate the dataset for this graph, use the `rnorm()` function.  Afterwards, plotting can be done with the `hist()` function.  Can you figure out how to embed the special Greek characters in the title?  Hint: take a look at the `expression()` and `paste()` functions!
+
+```{r basic_histogram}
+# Generate random numbers from a normal distribution.
+x <- rnorm(mean = 5, sd = 1, n = 50)
+
+# Create a histogram with a title, indicating the mean and standard deviation.
+hist(x, main = expression(paste("Sampled values, ", mu, " = 5, ", sigma, " = 1")),
+     col = "lightblue")
+```
+
+## The Basic Plot
+This simple line graph below displays per capita income for the United States from 1950 to 2007.  The `plot()` function allows programmers to quickly graph a dataset.  In this case, the data plotted in this graph comes from the gapminder.csv file.  So to create this graph, you'll first need to load the data into a dataframe and then select just those rows where the country = 'United States'.  Actually plotting the subset is fairly straightforward, though you may need to adjust font sizes, line colors, and some other key arguments.  This challenge provides opportunities for you to explore a variety of arguments to the `plot()` function.
+
+> ## Note: The `data` Dataframe
+> Most of the solution code in this learning experience references the `data` dataframe.  So
+> you'll want to load the gapminder.csv file into a variable of that name.
+
+```{r basic_plot}
+
+# Create dataframe from the data file.
+data <- read.csv("https://github.com/mydatastory/r_intro_class/raw/master/data/gapminder.csv")
+
+# Create a subset of data for just the United States.
+us  <- data[data$country=="United States",]
+
+# Plot GDP per Capital by year.
+plot(us$year, us$gdpPercap,
+     xlab = "Year",
+     ylab = "GDP per Capita",
+     type = "b", 
+     cex  = .75,
+     lty  = 3,
+     col  = "red",
+     pch  = 1)
+
+```
+
+## The Multi-Line Plot
+Building on the code from the last graph, we now plot multiple lines in a single graph.  In this case, we're comparing the per capita GDP of the United States and the United Kingdom from 1950 to 2007.  To write the code to generate this graph, you'll need to investigate both the `lines()` and `legend()` functions.
+
+### Challenge
+How would you modify this code to add lines for Germany and Japan?
+
+```{r multiline_plot}
+# Note: read.csv() was used earlier to load gapminder.csv into the data dataframe.
+
+# Create vectors, one for each country represented.
+us <- data[data$country=="United States",]
+uk <- data[data$country=="United Kingdom",]
+
+x <- us$year
+y <- us$gdpPercap
+
+plot(x, y,
+     xlab = "Year",
+     ylab = "GDP per Capita",
+     type = "b", 
+     cex  = .75,
+     lty  = 3,
+     col  = "blue",
+     pch  = 1,
+     las  = 1,
+     cex.axis = .60)
+
+x <- uk$year
+y <- uk$gdpPercap
+
+# Now plot the UK line, using a different color and line type.
+lines(x, y, type = "b", lty = 2, col = "red", pch = 0, cex = .75)
+
+# Add legend to distinguish between the two lines.
+legend("bottomright",
+       title = "GDP Per Capita",
+       c("United States","United Kingdom"),
+       lty   = c(3, 2), 
+       pch   = c(1, 0),
+       col   = c("blue","red"))
+
+```
+
+## Comparing Graphs
+Rather than plot multiple lines on a single graph, sometimes it's better to create two graphs stacked on top of each other, as displayed below.  The mfrow argument to the `par()` function is how you create a graphic device capable of displaying multiple rows and columns of graphs.  Rather than stack these two graphs as one row on top of another, we could place them in two columns, side by side.
+
+In this example, we are now subsetting the data by year (1987 and 2007) rather than by country, as was done previously.  And finally, we create the graphs, using the life expectancy column of the gapminder.csv file and the `hist()` function.
+
+### Challenge
+How would you modify this code to create stacked life expectancy graphs for four countries (United States, United Kingdom, Germany, and Japan)?
+
+```{r life_histograms}
+# Note: read.csv() was used earlier to load gapminder.csv into the data dataframe.
+
+# Create dataframe from data file.
+life_exp_1987 <- data[data$year==1987,]
+life_exp_2007 <- data[data$year==2007,]
+
+# Set graphic device parameters to 2 rows and 1 column.
+par(mfrow = c(2, 1))    
+
+# Graph the two vectors.
+hist(life_exp_1987$lifeExp, main = "Life Expectancy in 1987", 
+     xlab = "Life Expectancy", xlim = range(30:90), col = "lightblue")
+
+hist(life_exp_2007$lifeExp, main = "Life Expectancy in 2007", 
+     xlab = "Life Expectancy", xlim = range(30:90), col = "lemonchiffon")
+
+# Restore graphic device to 1 row, 1 column.
+par(mfrow = c(1, 1))    
+
+```
+
+## Boxplots
+The boxplot is a great way to visualize the spread (distribution) of a dataset by displaying "a five-part summary: the minimum, lower quartile (25th percentile), median (50th percentile), upper quartile (75th percentile), and maximum" (Kabacoff, p. 129). The boxplots displayed here compare life expectancy data for 1987 and 2007.  There are multiple ways to write the calls to `boxplot()`.  This section of code demonstrates a couple of those ways.  But first, attempt to recreate these graphs yourself.  And finally, be sure to reuse the life expectancy dataframes created for the histogram plots.
+
+```{r life_boxplots}
+
+# Note: The life_expectancy dataframes were created previously for the histogram.
+# Two ways to create the boxplot.
+
+# Create with filter data
+boxplot(life_exp_1987$lifeExp, life_exp_2007$lifeExp, 
+        names = c("1987","2007"), col = "rosybrown1")
+
+boxplot(data$lifeExp ~ data$year, 
+        data[data$year==1987|2007,], col = "rosybrown1")
+        
+# Create with formula (all years)
+boxplot(data$lifeExp ~ data$year, col = "rosybrown1")
+
+```
+
+## The Basic Barplot
+The barplot is another workhorse in the data scientist's arsenal, used most often to visualize categorical data.  In this graph, we first select 6 countries, using the `sample()` function.  (This function randomly selects the countries.)  We then display the life-expectancy of each with a bar.  Another interesting feature of this code is the creative use of the `rainbow()` function which color-coordinates each of the bars.
+
+### Challenge
+How would you modify this code to sample a different set of 6 countries?
+
+```{r barplot}
+
+# Note: read.csv() was used earlier to load gapminder.csv into the data dataframe.
+# Basic barplot
+
+set.seed(123)
+rows_for_barplot <- data[sample(nrow(data), 6), ]
+
+barplot(rows_for_barplot$lifeExp, 
+        names.arg = paste0(rows_for_barplot$country, "\n", rows_for_barplot$year),
+        cex.names = 0.8,
+        col = rainbow(6, s = 0.3),
+        ylab = "Life Exp (Years)",
+        ylim = c(0,80))
+```
+
+
+## Grouped & Stacked Barplots
+The grouped and stacked barplots are sophisticated variants of the basic barplot.  With both, the data *must be presented* to the `barplot()` function as a matrix.  In this example, we provide you with two pre-formatted data files (barplot_group.csv and barplot_stack.csv) in order to simplify the graphing process.  After loading the files to dataframes, first take a look at how the data is presented before writing your code.  You'll also want to carefully read the help documentation for the `beside` argument as this determines whether the barplot is grouped or stacked.    
+
+```{r grp_stk_barplot}
+# Load data for the group barplot (m1) and stacked barplot (m2).
+m1 <- read.csv("https://github.com/mydatastory/r_intro_class/raw/master/data/barplot_group.csv")
+m2 <- read.csv("https://github.com/mydatastory/r_intro_class/raw/master/data/barplot_stack.csv")
+
+# Create a legend for both graphs, using the country names in m2.
+lgnd <- m2$Country
+
+# Redefine m2 by removing the Country column as it isn't needed in the stacked barplot. 
+m2 <- cbind(m2$Africa, m2$Americas, m2$Asia, m2$Europe)
+colnames(m2) <- c('Africa','Americas','Asia','Europe')
+
+# Create the group barplot - divide population by 1 million and then convert to matrix.
+m1 <- m1/1000000
+m1 <- as.matrix(m1)
+
+barplot(m1, 
+        legend = lgnd,
+        args.legend = list(x = "topright", cex = .7),
+        col = rainbow(12, s = 0.5),
+        beside = T)
+
+# Create the stacked barplot - divide population by 1 million and then convert to matrix.
+m2 <- m2/1000000
+m2 <- as.matrix(m2)
+
+barplot(m2, 
+        legend = lgnd,
+        args.legend = list(x = "topright", cex = .7),
+        col = rainbow(12, s = 0.5),
+        beside = F)
+
+```
+ 
+### Advanced Challenge
+It is indeed rare when a dataset comes to you pre-formatted and ready to graph.  In the last section, we provided you with two pristine datasets, ready to present to the `barplot()` function.  But what if we had not done that?  Do you think you could write the code to create these two data files from the original gapminder.csv file?  Actually, this *data wrangling* task is quite complex, and the code to achieve it can be seen by clicking the Code button.  This is one of those times where you'll probably want to view the solution first, before attempting to write anything yourself.  Take the time to carefully review each line of code to know exactly what it is doing.  Also note the creative use of functions from the `dplyr` package to summarize the gapminder data and then select the top three most populous countries for each continent.  You'll learn more about the `dplyr` package in a future module.
+
+```{r data_barplot, eval = FALSE}
+
+library(dplyr)
+
+# Note: read.csv() was used earlier to load gapminder.csv into the data dataframe.
+
+# Remove Oceania because it only has a sample size of 2 (New Zealand and Australia).
+pop_2007 <- dplyr::filter(data, year == 2007, continent != "Oceania")
+
+for (cont in unique(pop_2007$continent)){
+  x <- dplyr::filter(pop_2007, continent == cont) %>% top_n(3, pop) %>% droplevels
+  
+  # Assign the name of the cont as the variable name.
+  assign(cont, x)
+}
+
+# Data must be presented as a matrix or vector for stacked or grouped barplots.
+m1 <- cbind(Africa = Africa$pop, Americas = Americas$pop, 
+            Asia = Asia$pop, Europe = Europe$pop)
+
+xx <- rep(0,3)
+aa <- Africa$pop
+bb <- Americas$pop
+cc <- Asia$pop
+dd <- Europe$pop
+m2 <- matrix(c(aa,xx,xx,xx,
+               xx,bb,xx,xx,
+               xx,xx,cc,xx,
+               xx,xx,xx,dd), ncol = 4)
+
+colnames(m2) <- c("Africa", "Americas", "Asia", "Europe")
+
+# Create the group barplot.
+barplot(m1, 
+        legend = cbind(levels(Africa$country), levels(Americas$country), 
+                       levels(Asia$country), levels(Europe$country)),
+        args.legend = list(x = "topright", cex = .7),
+        col = rainbow(12, s = 0.5),
+        beside = T)
+
+# Create the stacked barplot.
+barplot(m2, 
+        legend = cbind(levels(Africa$country), levels(Americas$country), 
+                       levels(Asia$country), levels(Europe$country)),
+        args.legend = list(x = "topright", cex = .7),
+        col = rainbow(12, s = 0.5),
+        beside = F)
+
+```
+
+
+## The Table Function
+When you need to summarize a dataframe, the `table()` function is often useful.  In this example, we first create a continents dataframe, selecting just the country and continent columns from the previously created data dataframe.  We then use the `unique()` and `table()` functions to generate a summary table called cont_table, used to create the pie chart in the next section of code. 
+
+```{r continents}
+# Note: read.csv() was used earlier to load gapminder.csv into the data dataframe.
+
+continents <- data[,c("country","continent")]
+continents <- unique(continents)
+cont_table <- table(continents$continent)
+cont_table
+
+```
+
+## The Pie Chart
+Now that we have a summary table (cont_table), we create a pie chart of the number of countries per continent.  In general, statisticians dislike pie charts and their use in data analysis settings.  Business executives, on the other hand, have no qualms about visualizing data in this way.
+
+```{r pie}
+# Note: cont_table was created previously to demonstrate the table() function.
+
+lbls <- paste0(names(cont_table), "\n ", cont_table)
+
+pie(cont_table, labels = lbls, main = "Pie Chart of Continents\n (number of countries)")
+
+```
+
+## The Scatterplot
+The scatterplot is a basic kind of graph and is often used to take an initial look at a dataset.  In the graph displayed below, we use the `plot()` function to graph the GDP per capita as it relates to life expectancy.
+
+```{r scatterplot, echo = FALSE}
+# Note: read.csv() was used earlier to load gapminder.csv into the data dataframe.
+
+data_2007 <- data[data$year==2007,]
+
+plot(data_2007$gdpPercap, data_2007$lifeExp, 
+     xlab = "GDP Per Capita ($)", ylab = "Life Expectancy (Years)")
+
+```
+
+
+## The Stem-and-Leaf Plot
+The stem-and-leaf plot is like a histogram laid on its side.  The `stem()` function creates this graph but you'll need to set the scale argument to 2 or the generated graph only displays even numbers.  Strangely, this is not noted in the help documentation for this function.  In the graph here, we're displaying the 2007 life expectancy column.
+
+```{r stemleaf, echo = FALSE}
+# Note: the data_2007 dataframe was created for the scatterplot graph.
+
+# The scale argument must equal 2 or the function only prints even numbers.  This
+# is not stated in the help documentation.  The answer was found on Stack Overflow.
+
+stem(data_2007$lifeExp, scale = 2) 
+
+```
+
+## Mathematical Symbols in Plots
+Now that we've demonstrated some of the graphs available to you in base R, there may be times when you'll want to add special characters to a graph, usually letters from the Greek alphabet.  In order to do that, you'll need to use the `expression()` function.  Let's take a look at some code to see how this is done: 
+
+```{r, fig.width = 6.5, fig.height = 4.10}
+# Create a blank plot.
+plot(1:4, 1:4, type = "n")
+
+# Add text inside the plot to demonstrate how to embed math symbols and/or equations.
+text(1.5, 3, expression(mu))
+text(2.5, 3, expression(sigma))
+text(3.5, 3, expression(pi))
+text(1.5, 2, expression(sqrt(x, y)))
+text(2.5, 2, expression(frac(sum(x), n)))
+text(3.5, 2, expression(x^2))
+
+```
+
+The code listed here works fine if all you want to do is embed a formula.  But
+what if you also want to add explanatory text?  In that case, you'll need to use the `paste()` function.  Let's generate a simple histogram to show how this is done.
+
+```{r}
+# Generate random numbers from a normal distribution.
+x <- rnorm(mean = 5, sd = 1, n = 50)
+
+# Create a histogram with a title, indicating the mean and standard deviation.
+hist(x, main = expression(paste("Sampled values, ", mu, " = 5, ", sigma, " = 1")),
+         col = "lightblue")
+```
+
+We now have a nice title for our graph with embedded symbols.  R provides support for just about any kind of mathematical expression.  To see more examples, type `?plotmath()` at the R prompt.
+
+## References
+Kabacoff, R. I. (2015). R in Action: Data analysis and graphics with R (2nd ed.). Shelter Island, NY: Manning.
+
+ 
+
+
