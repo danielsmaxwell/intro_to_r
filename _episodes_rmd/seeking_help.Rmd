@@ -143,13 +143,13 @@ What is the difference between the `sep` and `collapse` arguments?
 <div class="fold s"> 
 
 ```{r eval = FALSE}
-> # Solution to Challenge 2
->
-> # To look at the help for the `paste()` function, use:
-> 
-> help("paste")
-> ?paste
-> 
+# Solution to Challenge 2
+
+# To look at the help for the `paste()` function, use:
+ 
+help("paste")
+?paste
+ 
 # The difference between `sep` and `collapse` is a little
 # tricky. The `paste` function accepts any number of arguments, each of which
 # can be a vector of any length. The `sep` argument specifies the string
