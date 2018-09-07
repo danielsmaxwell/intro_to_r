@@ -5,9 +5,9 @@ title: |
 author: "Dan Maxwell"
 date: '`r Sys.Date()`'
 output:
-  html_document: default
   pdf_document:
     fig_caption: no
+  html_document: default
 header-includes: \usepackage{color}
 ---
  
@@ -140,7 +140,7 @@ c(1, 2, 'f')
 Look at the help for the `paste` function. You'll need to use this later.
 What is the difference between the `sep` and `collapse` arguments?
 
-<div class="fold s">
+<div class="fold s"> 
 
 ```{r eval = FALSE}
 > # Solution to Challenge 2
@@ -183,7 +183,7 @@ decimal point (i.e. comma vs period).
 
 hint: use `??csv` to lookup csv related functions.
 
-<div class="fold s>
+<div class="fold s">
 
 ```{r eval = FALSE}
 # Solution to Challenge 3
