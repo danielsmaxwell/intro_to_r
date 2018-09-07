@@ -1,11 +1,12 @@
 ---
 title: |
-       | Activity Worksheet
-       | *RStudio Introduction*
+  | Activity Worksheet
+  | *RStudio Introduction*
 author: "Dan Maxwell"
-date: "June 1, 2017"
+date: '`r Sys.Date()`'
 output:
-  pdf_document: default
+  pdf_document:
+    fig_caption: no
   html_document: default
 header-includes: \usepackage{color}
 ---
@@ -13,6 +14,12 @@ header-includes: \usepackage{color}
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+![](../fig/mydatastory_carpentry_footer.png)
+
+<script src="hideOutput.js"></script>
+
+<link rel="stylesheet" type="text/css" href="fold.css">
 
 ## Before You Start...
 
@@ -24,9 +31,9 @@ Please ensure you have the latest version of R and RStudio installed on your mac
 
 [Download and install RStudio here](https://www.rstudio.com/) 
 
-> ### *Tip: Installation order for R and RStudio* 
-> You must install base R before installing RStudio.  In fact RStudio won't work without
-> R installed.
+> ### Tip: Installation order for R and RStudio 
+> You must install base R before installing RStudio.  In fact RStudio won't work
+> without R installed.
 
 ## Introduction to RStudio
 
@@ -58,7 +65,7 @@ in the top left.
 ![RStudio layout with .R file open](../fig/rstudio_script.png)
 
 \newpage 
-## Work flow within RStudio
+## Workflow within RStudio
 There are two main ways one can work within RStudio.
 
 1. Test and play within the interactive R console then copy code into
@@ -72,7 +79,7 @@ interactive R console.
    * You will be able to run the file you create from within RStudio
    or using R's `source()`  function.
 
-> ### *Tip: Running segments of your code*
+> ### Tip: Running segments of your code
 > 
 > RStudio offers you great flexibility in running code from within the editor
 > window. There are buttons, menu choices, and keyboard shortcuts. To run the
@@ -122,7 +129,7 @@ means it's waiting for you to complete the command. If you want to cancel
 a command you can simply hit "Esc" and RStudio will give you back the ">"
 prompt.
 
-> ### *Tip: Cancelling commands*
+> ### Tip: Cancelling commands
 >
 > If you're using R from the command line instead of from within RStudio,
 > you need to use `Ctrl+C` instead of `Esc` to cancel the command. This
@@ -202,8 +209,9 @@ Don't worry about trying to remember every function in R. You
 can simply look them up on Google, or if you can remember the
 start of the function's name, use the tab completion in RStudio.
 
-> ### *Ref: Functions*
-> So what is a function? As defined by Webopedia, a software function is "a named section of a program that performs a specific task."  Functions are the workhorses of R, allowing programmers to do all kinds of things.
+> ### Ref: Functions
+> So what is a function? As defined by Webopedia, a software function is "a named
+> section of a program that performs a specific task.""
 
 This is one advantage that RStudio has over R on its own, it
 has auto-completion abilities that allow you to more easily
@@ -245,7 +253,7 @@ We can also do comparison in R:
 ```
 
 
-> ### *Tip: Comparing Numbers*
+> ### Tip: Comparing Numbers
 >
 > A word of warning about comparing numbers: you should
 > never use `==` to compare two numbers unless they are
@@ -337,7 +345,7 @@ There are a few useful commands you can use to interact with the R session.
 ls()
 ```
 
-> ### *Tip: Hidden objects*
+> ### Tip: Hidden objects
 > 
 > Like in the shell, `ls` will hide any variables or functions starting
 > with a "." by default. To list all objects, type `ls(all.names=TRUE)`
@@ -378,7 +386,7 @@ If instead we use `<-`, there will be unintended side effects, or you may get an
 rm(list <- ls())
 ```
 
-> ### *Tip: Warnings vs. Errors*
+> ### Tip: Warnings vs. Errors
 > 
 > Pay attention when R does something unexpected! Errors, like above,
 > are thrown when R cannot proceed with a calculation. Warnings on the
@@ -388,10 +396,11 @@ rm(list <- ls())
 > In both cases, the message that R prints out usually give you clues
 > how to fix a problem.
 
-> ### *Tip: The getwd() and setwd() functions*
+> ### Tip: The getwd() and setwd() functions
 > For newcomers, the `getwd ()` and `setwd ()` functions are critically important
-> because R sources files from your current working directory.  Inevitably, students
-> forget where they're at and then get an error message when trying to load a data file.
+> because R sources files from your current working directory.  Inevitably,
+> students forget where they're at and then get an error message when trying 
+> to load a data file.
 
 ```{r}
 getwd()                  # Get the working directory -- Where are we at?
@@ -399,16 +408,7 @@ getwd()                  # Get the working directory -- Where are we at?
 
 ## Memory and Large Datasets
 
-Although advanced computer science topics such as memory management are not covered in this course, the following reference is of particular importance.
-
-> ### *Ref: R in Action (Section 1.7)*
-> Appendix F is worth the read, especially if you think you'll be working with very
-> large datasets.  Memory management in R is unique in that function arguments are
-> passed by *value* and not by *reference*.  What this means, in practical terms, is
-> that R makes a copy of each object you pass to a function.  So if you pass a dataframe
-> to a function, you now have two copies of that dataframe in memory, one for the
-> function and another for the program that called it.  Because of this, R will gobble
-> up a lot of memory when your datasets are really large.
+Memory management in R is unique in that function arguments are passed by *value* and not by *reference*.  What this means, in practical terms, is that R makes a copy of each object you pass to a function.  So if you pass a dataframe to a function, you now have two copies of that dataframe in memory, one for the function and another for the program that called it.  Because of this, R will gobble up a lot of memory when your datasets are really large.
 
 ## R Packages
 
@@ -428,7 +428,7 @@ network). R and RStudio have functionality for managing packages:
 ## Challenge 1
 
 Which of the following are valid R variable names?
-```{r, eval=FALSE}
+```{r, eval = FALSE}
 min_height
 max.height
 _age
@@ -439,105 +439,132 @@ min-length
 celsius2kelvin
 ```
 
-> ## Solution to challenge 1
->
-> The following can be used as R variables:
-> ```{r ch1pt1-sol, eval=FALSE}
-> min_height
-> max.height
-> MaxLength
-> celsius2kelvin
-> ```
->
-> The following creates a hidden variable:
-> ```{r ch1pt2-sol, eval=FALSE}
-> .mass
-> ```
->
-> The following will not be able to be used to create a variable
-> ```{r ch1pt3-sol, eval=FALSE}
-> _age
-> min-length
-> 2widths
-> ```
+<div class="fold s"> 
 
+```{r eval = FALSE}
+
+# Solution to challenge 1
+
+# The following can be used as R variables:
+min_height
+max.height
+MaxLength
+celsius2kelvin
+
+# The following creates a hidden variable:
+.mass
+
+# The following will not be able to be used to create a variable
+_age
+min-length
+2widths
+
+```
+
+</div>
 
 ## Challenge 2
 
 What will be the value of each  variable  after each
 statement in the following program?
 
-```{r, eval=FALSE}
+```{r, eval = FALSE}
+
 mass <- 47.5
-age <- 122
+age  <- 122
 mass <- mass * 2.3
-age <- age - 20
+age  <- age - 20
+
 ```
 
-> ## Solution to challenge 2
->
-> ```{r ch2pt1-sol}
-> mass <- 47.5
-> ```
-> This will give a value of `r mass` for the variable mass
->
-> ```{r ch2pt2-sol}
-> age <- 122
-> ```
-> This will give a value of `r age` for the variable age
->
-> ```{r ch2pt3-sol}
-> mass <- mass * 2.3
-> ```
-> This will multiply the existing value of `r mass/2.3` by 2.3 to give a new value of
-> `r mass` to the variable mass.
->
-> ```{r ch2pt4-sol}
-> age <- age - 20
-> ```
-> This will subtract 20 from the existing value of `r age + 20 ` to give a new value
-> of `r age` to the variable age.
+<div class="fold s"> 
 
+```{r eval = FALSE}
+
+# Solution to challenge 2
+
+mass <- 47.5
+
+# This will give a value of `r mass` for the variable mass
+
+age <- 122
+
+# This will give a value of `r age` for the variable age
+
+mass <- mass * 2.3
+
+# This will multiply the existing value of `r mass/2.3` by 2.3 to give a new 
+# value of `r mass` to the variable mass.
+
+age <- age - 20
+
+# This will subtract 20 from the existing value of `r age + 20 ` to give a 
+# new value of `r age` to the variable age.
+
+```
+
+</div>
 
 ## Challenge 3
 
 Run the code from the previous challenge, and write a command to
 compare mass to age. Is mass larger than age?
 
-> ## Solution to challenge 3
->
-> One way of answering this question in R is to use the `>` to set up the following:
-> ```{r ch3-sol}
-> mass > age
->```
-> This should yield a boolean value of TRUE since `r mass` is greater than `r age`.
+<div class="fold s"> 
 
+```{r eval = FALSE}
+
+# Solution to challenge 3
+
+# One way of answering this question in R is to use the `>` to set up the
+# following:
+
+mass > age
+
+# This should yield a boolean value of TRUE since `r mass` is greater than `r age`.
+
+```
+
+</div>
 
 ## Challenge 4
 
 Clean up your working environment by deleting the mass and age
 variables.
 
-> ## Solution to challenge 4
->
-> We can use the `rm` command to accomplish this task
-> ```{r ch4-sol}
-> rm(age, mass)
-> ```
+<div class="fold s">
+
+```{r eval = FALSE}
+
+# Solution to challenge 4
+
+# We can use the `rm` command to accomplish this task
+rm(age, mass)
+
+```
+
+</div>
 
 ## Challenge 5
 
 Install the following packages: `dplyr`, `rshape2`, `gapminder`
 Please note: Do not create a separate section for this challenge in your assignment RMarkdown document.  Instead, run the appropriate commands at the console prompt.
 
-> ## Solution to challenge 5
->
-> We can use the `install.packages()` command to install the required packages.
-> ```{r ch5-sol, eval=FALSE}
-> install.packages("rshape2")
-> install.packages("dplyr")
-> install.packages("gapminder")
->```
+<div class="fold s">
+
+```{r eval = FALSE}
+
+# Solution to challenge 5
+
+# We can use the `install.packages()` command to install the required packages.
+
+install.packages("rshape2")
+install.packages("dplyr")
+install.packages("gapminder")
+
+```
+
+</div>
 
 
 
