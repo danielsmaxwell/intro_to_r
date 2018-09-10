@@ -3,9 +3,10 @@ title: |
        | Activity Worksheet
        | *Data Structures 1*
 author: "Dan Maxwell"
-date: "June 20, 2017"
+date: '`r Sys.Date()`'
 output:
-  pdf_document: default
+  pdf_document:
+    fig_caption: no
   html_document: default
 header-includes: \usepackage{color}
 ---
@@ -14,8 +15,13 @@ header-includes: \usepackage{color}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+![](../fig/mydatastory_carpentry_footer.png)
 
-```{r, include=FALSE}
+<script src="hideOutput.js"></script>
+
+<link rel="stylesheet" type="text/css" href="fold.css">
+
+```{r, include = FALSE}
 ## Save the data
 cats_orig <- data.frame(coat = factor(c("calico", "black", "tabby")),
                    weight = c(2.1, 5.0, 3.2),
@@ -33,32 +39,35 @@ One of R's most powerful features is its ability to deal with tabular data -
 such as you may already have in a spreadsheet or a CSV file. Let's start by
 making a toy dataset in your current working directory, called `feline_data.csv`:
 
-```{r, eval=FALSE}
+```{r eval = FALSE}
+cats <- data.frame(coat = c("calico", "black", "tabby"), 
+                    weight = c(2.1, 5.0,3.2), 
+                    likes_string = c(1, 0, 1))
+
+write.csv(x = cats, file = "data/feline_data.csv", row.names = FALSE)
+
+```
+
+The contents of the new file, feline_data.csv: 
+
+```{r eval = FALSE}
 coat,weight,likes_string
 calico,2.1,1
 black,5.0,0
 tabby,3.2,1
 ```
 
-> ### *Tip: Editing Text files in R*
+> ### Tip: Editing Text files in R
 >
 > Alternatively, you can create `feline_data.csv` using a text editor (Nano),
 > or within RStudio with the **File -> New File -> Text File** menu item.
 
-> ### *Tip: The fix(), edit(), and View() functions*
-> The `fix()` function opens the (Nano) text editor, allowing you to edit individual 
+> ### Tip: The fix(), edit(), and View() functions
+> The `fix()` function opens the text editor, allowing you to edit individual 
 > cells in a dataframe while the `edit()` function does essentially the same thing. And 
 > finally, you can use the `View()` function to examine and filter a dataframe without 
 > modifying it.  Please note: this function is mixed case with a capital 'V'.  Because 
 > R is case-sensitive, you'll get an error if you type it as all lower-case.
-
-
-```{r, echo = FALSE}
-cats.df <- data.frame(coat = c("calico", "black", "tabby"),
-                      weight = c(2.1, 5.0, 3.2),
-                      likes_string = c(1, 0, 1))
-write.csv(cats.df, "feline_data.csv", row.names = FALSE)
-```
 
 We can load this into R via the following:
 
@@ -101,14 +110,6 @@ cats$weight + cats$coat
 
 Understanding what happened here is key to successfully analyzing data in R.
 
-> ### *Ref: Data structures and datatypes*
-> 
-> Data structures and/or datatypes are incredibly important in a programming language. 
-> Many times when R raises an error or you are getting unexpected results, the problem 
-> can be traced back to the datatype.  For example, a function might be expecting a 
-> number as one of its arguments, and you pass it a character string instead. I often 
-> use `class()` to see what the underlying datatype is.
-
 ## Data Types
 
 If you guessed that the last command will return an error because `2.1` plus
@@ -130,8 +131,7 @@ typeof(TRUE)
 typeof('banana')
 ```
 
-No matter how complicated our analyses become, all data in R is interpreted as one of these
-basic data types. This strictness has some really important consequences.
+No matter how complicated our analyses become, all data in R is interpreted as one of these basic data types. This strictness has some really important consequences.
 
 A user has added details of another cat. This information is in the file
 `feline_data_v2.csv`.
@@ -177,7 +177,6 @@ We can see that it is a *data.frame* by calling the `class` function on it:
 ```{r}
 class(cats)
 ```
-
 
 In order to successfully use our data in R, we need to understand what the basic
 data structures are, and how they behave. For now, let's remove that extra line
@@ -243,7 +242,7 @@ we see that `cats$weight` is a vector, too - *the columns of data we load into R
 data.frames are all vectors*, and that's the root of why R forces everything in
 a column to be the same basic data type.
 
-> ### *Discussion 1*
+> ### Discussion 1
 >
 > Why is R so opinionated about what we put in our columns of data?
 > How does this help us?
