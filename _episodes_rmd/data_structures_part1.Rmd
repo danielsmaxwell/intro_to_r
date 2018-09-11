@@ -386,7 +386,7 @@ tst <- function(num) {
 In this example, we fail to verify the argument's datatype, using the `is.numeric()` function.  Now, try calling this function with a character string, like this: `tst("chars")`.  R throws an error.  But strangely, the `print()` statement displays our argument to the console, meaning that we are in the function and the interpreter is happy with everything up to that point.  It complains only when it encounters the next line which assumes a numeric variable.  Thus R is not checking the datatype of passed arguments.  You must do that yourself when working with a *dynamically* typed language. \newline
 
 
-## Challenge 1
+### Challenge 1
 
 Start by making a vector with the numbers 1 through 26.
 Multiply the vector by 2, and give the resulting vector
@@ -452,7 +452,7 @@ typeof(coats)
 typeof(CATegories)
 ```
 
-## Challenge 2
+### Challenge 2
 
 Is there a factor in our `cats` data.frame? what is its name?
 Try using `?read.csv` to figure out how to keep text columns as character
@@ -541,7 +541,7 @@ typeof(cats[1,])
 str(cats[1,])
 ```
 
-## Challenge 3
+### Challenge 3
 
 There are several subtly different ways to call variables, observations and
 elements from data.frames:
@@ -631,7 +631,7 @@ ncol(matrix_example)
 > Note that matrices can "contain only one datatype."  And because of that, data frames
 > are much more common in R.
 
-## Challenge 4
+### Challenge 4
 
 What do you think will be the result of
 `length(matrix_example)`?
@@ -656,7 +656,7 @@ length(matrix_example)
 
 </div>
 
-## Challenge 5
+### Challenge 5
 
 Make another matrix, this time containing the numbers 1:50, with 5 columns and 10 rows.  Did the `matrix` function fill your matrix by column, or by row, as its default behaviour?
 See if you can figure out how to change this.
@@ -681,7 +681,7 @@ x <- matrix(1:50, ncol=5, nrow=10, byrow = TRUE) # to fill by row
 
 </div>
 
-## Challenge 6
+### Challenge 6
 Create a list of length two containing a character vector for each of the sections in this part of the workshop:
 
 - Data types
@@ -707,7 +707,7 @@ answer <- list(dataTypes, dataStructures)
 
 </div>
 
-## Challenge 7
+### Challenge 7
 
 Consider the R output of the matrix below:
 ```{r, echo = FALSE}
@@ -740,7 +740,3 @@ matrix(c(4, 1, 9, 5, 10, 7), ncol = 2, byrow = TRUE)
 ```
 
 </div>
-
-
-
-
