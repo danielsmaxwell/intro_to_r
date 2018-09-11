@@ -1,12 +1,13 @@
 ---
 title: |
-       | Activity Worksheet 
+       | Activity Worksheet
        | *Data Structures 2*
 author: "Dan Maxwell"
-date: "June 21, 2017"
+date: '`r Sys.Date()`'
 output:
-  pdf_document: default
   html_document: default
+  pdf_document:
+    fig_caption: no
 header-includes: \usepackage{color}
 ---
  
@@ -14,11 +15,15 @@ header-includes: \usepackage{color}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+![](../fig/mydatastory_carpentry_footer.png)
+
+<script src="hideOutput.js"></script>
+
+<link rel="stylesheet" type="text/css" href="fold.css">
+
 ## Introduction
 
-At this point, you've seen it all - in the last chapter 2 activities worksheet, we toured all the basic data types and data structures in R. Everything you do will be a manipulation of those tools. But a whole lot of the time, the star of the show is going to be the data frame - the table that we created by loading
-information from a csv file. In this lesson, we'll learn a few more things
-about working with data frames.
+At this point, you've seen it all - in the last chapter 2 activities worksheet, we toured all the basic data types and data structures in R. Everything you do will be a manipulation of those tools. But a whole lot of the time, the star of the show is going to be the data frame - the table that we created by loading information from a csv file. In this lesson, we'll learn a few more things about working with data frames.
 
 ## Adding columns and rows in a data frame
 
@@ -139,7 +144,7 @@ rownames(cats) <- NULL
 cats
 ```
 
-## Challenge 1
+### Challenge 1
 
 You can create a new data frame right from within R with the following syntax:
 ```{r}
@@ -156,16 +161,24 @@ Make a data frame that holds the following information for yourself:
 
 Then use `rbind` to add an entry for your best friend. Finally, use `cbind` to add a column with an answer to the question, "Is it time for coffee break?"
 
-> ## Solution to Challenge 1
-> ```{r}
-> df <- data.frame(first = c('Grace'),
->                  last = c('Hopper'),
->                  lucky_number = c(0),
->                  stringsAsFactors = FALSE)
-> df <- rbind(df, list('Marie', 'Curie', 238) )
-> df <- cbind(df, coffeetime = c(TRUE,TRUE))
-> ```
+<div class="fold s">
+
+```{r eval = FALSE}
+# Solution to Challenge 1
+
+df <- data.frame(first = c('Grace'),
+                 last = c('Hopper'),
+                 lucky_number = c(0),
+                 stringsAsFactors = FALSE)
+df <- rbind(df, list('Marie', 'Curie', 238) )
+df <- cbind(df, coffeetime = c(TRUE,TRUE))
+
+```
+
+</div>
+
 ## Realistic example
+
 So far, you've seen the basics of manipulating data frames with our cat data;
 now, let's use those skills to digest a more realistic dataset. Lets read in the
 gapminder dataset that we downloaded previously:
@@ -174,7 +187,7 @@ gapminder dataset that we downloaded previously:
 gapminder <- read.csv("gapminder.csv")
 ```
 
-> ## Miscellaneous Tips
+> ### Miscellaneous Tips
 >
 > * Another type of file you might encounter are tab-separated value files (.tsv). To specify a tab as a separator, use `"\\t"` or `read.delim()`.
 >
@@ -264,7 +277,7 @@ head(gapminder)
 To make sure our analysis is reproducible, we should put the code
 into a script file so we can come back to it later.
 
-## Challenge 2
+### Challenge 2
 
 Go to file -> new file -> R script, and write an R script
 to load in the gapminder dataset. Put it in your default working
@@ -273,26 +286,42 @@ directory.
 Run the script using the `source` function, using the file path
 as its argument (or by pressing the "source" button in RStudio).
 
-> ## Solution to Challenge 2
-> The contents of `script/load-gapminder.R`:
-> ```{r eval = FALSE}
-> download.file("https://raw.githubusercontent.com/danielsmaxwell/intro_to_r/master/data/gapminder.csv", destfile = "gapminder.csv")
-> gapminder <- read.csv(file = "gapminder.csv")
-> ```
-> To run the script and load the data into the `gapminder` variable:
-> ```{r eval = FALSE}
-> source(file = "load-gapminder.R")
-> ```
+<div class="fold s">
 
-## Challenge 3
+```{r eval = FALSE}
+
+# Solution to Challenge 2
+# The contents of `script/load-gapminder.R`:
+
+download.file("https://raw.githubusercontent.com/danielsmaxwell/intro_to_r/master/data/gapminder.csv", destfile = "gapminder.csv")
+
+gapminder <- read.csv(file = "gapminder.csv")
+
+# To run the script and load the data into the `gapminder` variable:
+
+source(file = "load-gapminder.R")
+
+```
+
+</div>
+
+### Challenge 3
 
 Read the output of `str(gapminder)` again;
 this time, use what you've learned about factors, lists and vectors, as well as the output of functions like `colnames` and `dim` to explain what everything that `str` prints out for gapminder means.
 
-> ## Solution to Challenge 3
->
-> The object `gapminder` is a data frame with columns
-> - `country` and `continent` are factors.
-> - `year` is an integer vector.
-> - `pop`, `lifeExp`, and `gdpPercap` are numeric vectors.
->
+<div class="fold s">
+
+```{r eval = FALSE}
+
+# Solution to Challenge 3
+
+# The object `gapminder` is a data frame with columns
+# - `country` and `continent` are factors.
+# - `year` is an integer vector.
+# - `pop`, `lifeExp`, and `gdpPercap` are numeric vectors.
+
+```
+
+</div>
+
