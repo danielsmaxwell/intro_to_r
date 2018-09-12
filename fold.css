@@ -11,6 +11,7 @@
 }
 
 .showopt:hover {
+    cursor: pointer;
     background-color: #DADADA;
     color: #000000;
 }
