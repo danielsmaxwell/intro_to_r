@@ -11,7 +11,7 @@
 
 <meta name="author" content="Dan Maxwell" />
 
-<meta name="date" content="2018-09-10" />
+<meta name="date" content="2018-09-12" />
 
 <title>Activity Worksheet Data Subsetting</title>
 
@@ -120,7 +120,7 @@ $(document).ready(function () {
 <h1 class="title toc-ignore"><p>Activity Worksheet<br />
 <em>Data Subsetting</em></p></h1>
 <h4 class="author"><em>Dan Maxwell</em></h4>
-<h4 class="date"><em>2018-09-10</em></h4>
+<h4 class="date"><em>2018-09-12</em></h4>
 
 </div>
 
@@ -130,7 +130,7 @@ $(document).ready(function () {
 
 </div>
 <script src="data:application/x-javascript;base64,JChkb2N1bWVudCkucmVhZHkoZnVuY3Rpb24oKSB7DQoNCiAgJGNodW5rcyA9ICQoJy5mb2xkJyk7DQoNCiAgJGNodW5rcy5lYWNoKGZ1bmN0aW9uICgpIHsNCg0KICAgIC8vIGFkZCBidXR0b24gdG8gc291cmNlIGNvZGUgY2h1bmtzDQogICAgaWYgKCAkKHRoaXMpLmhhc0NsYXNzKCdzJykgKSB7DQogICAgICAkKCdwcmUucicsIHRoaXMpLnByZXBlbmQoIjxkaXYgY2xhc3M9XCJzaG93b3B0XCI+Q29kZTwvZGl2PjxiciBzdHlsZT1cImxpbmUtaGVpZ2h0OjIycHg7XCIvPiIpOw0KICAgICAgJCgncHJlLnInLCB0aGlzKS5jaGlsZHJlbignY29kZScpLmF0dHIoJ2NsYXNzJywgJ2ZvbGRlZCcpOw0KICAgIH0NCiAgICANCiAgICAvLyBhZGQgYnV0dG9uIHRvIHNvdXJjZSBjb2RlIGNodW5rcyBmb3IgcHl0aG9uDQogICAgaWYgKCAkKHRoaXMpLmhhc0NsYXNzKCdzJykgKSB7DQogICAgICAkKCdwcmUucHl0aG9uJywgdGhpcykucHJlcGVuZCgiPGRpdiBjbGFzcz1cInNob3dvcHRcIj5Db2RlPC9kaXY+PGJyIHN0eWxlPVwibGluZS1oZWlnaHQ6MjJweDtcIi8+Iik7DQogICAgICAkKCdwcmUucHl0aG9uJywgdGhpcykuY2hpbGRyZW4oJ2NvZGUnKS5hdHRyKCdjbGFzcycsICdmb2xkZWQnKTsNCiAgICB9DQoNCiAgICAvLyBhZGQgYnV0dG9uIHRvIG91dHB1dCBjaHVua3MNCiAgICBpZiAoICQodGhpcykuaGFzQ2xhc3MoJ28nKSApIHsNCiAgICAgICQoJ3ByZTpub3QoLnIpJywgdGhpcykuaGFzKCdjb2RlJykucHJlcGVuZCgiPGRpdiBjbGFzcz1cInNob3dvcHRcIj5PdXRwdXQ8L2Rpdj48YnIgc3R5bGU9XCJsaW5lLWhlaWdodDoyMnB4O1wiLz4iKTsNCiAgICAgICQoJ3ByZTpub3QoLnIpJywgdGhpcykuY2hpbGRyZW4oJ2NvZGU6bm90KHIpJykuYWRkQ2xhc3MoJ2ZvbGRlZCcpOw0KDQogICAgICAvLyBhZGQgYnV0dG9uIHRvIHBsb3RzDQogICAgICAkKHRoaXMpLmZpbmQoJ2ltZycpLndyYXAoJzxwcmUgY2xhc3M9XCJwbG90XCI+PC9wcmU+Jyk7DQogICAgICAkKCdwcmUucGxvdCcsIHRoaXMpLnByZXBlbmQoIjxkaXYgY2xhc3M9XCJzaG93b3B0XCI+UGxvdDwvZGl2PjxiciBzdHlsZT1cImxpbmUtaGVpZ2h0OjIycHg7XCIvPiIpOw0KICAgICAgJCgncHJlLnBsb3QnLCB0aGlzKS5jaGlsZHJlbignaW1nJykuYWRkQ2xhc3MoJ2ZvbGRlZCcpOw0KDQogICAgfQ0KICB9KTsNCg0KICAvLyBoaWRlIGFsbCBjaHVua3Mgd2hlbiBkb2N1bWVudCBpcyBsb2FkZWQNCiAgJCgnLmZvbGRlZCcpLmNzcygnZGlzcGxheScsICdub25lJykNCg0KICAvLyBmdW5jdGlvbiB0byB0b2dnbGUgdGhlIHZpc2liaWxpdHkNCiAgJCgnLnNob3dvcHQnKS5jbGljayhmdW5jdGlvbigpIHsNCiAgICB2YXIgbGFiZWwgPSAkKHRoaXMpLmh0bWwoKTsNCiAgICBpZiAobGFiZWwuaW5kZXhPZigiQ29kZSIpID09PSAwKSB7DQogICAgICAkKHRoaXMpLmh0bWwobGFiZWwucmVwbGFjZSgiQ29kZSIsICIgSGlkZSIpKTsNCiAgICB9IGVsc2UgaWYgKGxhYmVsLmluZGV4T2YoIkhpZGUiKSA9PT0gMSkgew0KICAgICAgJCh0aGlzKS5odG1sKGxhYmVsLnJlcGxhY2UoIiBIaWRlIiwgIkNvZGUiKSk7DQogICAgfSBlbHNlIGlmIChsYWJlbC5pbmRleE9mKCJPdXRwdXQiKSA9PT0gMCkgew0KICAgICAgJCh0aGlzKS5odG1sKGxhYmVsLnJlcGxhY2UoIk91dHB1dCIsICJIaWRlIikpOw0KICAgIH0gZWxzZSB7DQogICAgICAkKHRoaXMpLmh0bWwobGFiZWwucmVwbGFjZSgiSGlkZSIsICJPdXRwdXQiKSk7DQogICAgfQ0KICAgIA0KICAgICQodGhpcykuc2libGluZ3MoJ2NvZGUsIGltZycpLnNsaWRlVG9nZ2xlKCdmYXN0JywgJ3N3aW5nJyk7DQogIH0pOw0KfSk7"></script>
-<p><link href="data:text/css;charset=utf-8,%2Eshowopt%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Acolor%3A%20%23000000%3B%20width%3A%2050px%3B%0Aheight%3A%2020px%3B%0Aborder%3A1px%20solid%20%23A9A9A9%3B%20%0Atext%2Dalign%3A%20center%3B%0Avertical%2Dalign%3A%20middle%20%21important%3B%0Afloat%3A%20right%3B%0Afont%2Dfamily%3A%20sans%2Dserif%3B%0A%7D%0A%2Eshowopt%3Ahover%20%7B%0Abackground%2Dcolor%3A%20%23DADADA%3B%0Acolor%3A%20%23000000%3B%0A%7D%0Apre%2Eplot%20%7B%0Abackground%2Dcolor%3A%20white%20%21important%3B%0A%7D" rel="stylesheet" type="text/css"></p>
+<p><link href="data:text/css;charset=utf-8,%2Eshowopt%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Acolor%3A%20%23000000%3B%20width%3A%2050px%3B%0Aheight%3A%2020px%3B%0Aborder%3A1px%20solid%20%23A9A9A9%3B%20%0Atext%2Dalign%3A%20center%3B%0Avertical%2Dalign%3A%20middle%20%21important%3B%0Afloat%3A%20right%3B%0Afont%2Dfamily%3A%20sans%2Dserif%3B%0A%7D%0A%2Eshowopt%3Ahover%20%7B%0Acursor%3A%20pointer%3B%0Abackground%2Dcolor%3A%20%23DADADA%3B%0Acolor%3A%20%23000000%3B%0A%7D%0Apre%2Eplot%20%7B%0Abackground%2Dcolor%3A%20white%20%21important%3B%0A%7D" rel="stylesheet" type="text/css"></p>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
 <p>R has many powerful subset operators and mastering them will allow you to easily perform complex operations on any kind of dataset.</p>
