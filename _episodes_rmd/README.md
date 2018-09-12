@@ -17,4 +17,5 @@
 15. [Knitr Markdown]
 16. [Wrap]
 
-Note: See ../src for the barplot.R code.
+Notes: See ../src for the barplot.R code.  Integrate long_wide.Rmd into one of the other episodes.
+
