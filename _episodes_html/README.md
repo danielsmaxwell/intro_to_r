@@ -10,4 +10,4 @@
 7. [Control & Flow](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/control_flow.html)
 
 
-[![Getting Started](../fig/Module1Header.jpg)](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/rstudio_intro.html)
+[![Getting Started](../fig/module_1_header.jpg)](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/rstudio_intro.html)
