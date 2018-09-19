@@ -8,3 +8,6 @@
 5. [Data Subsetting](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/data_subsetting.html)
 6. [Plot Base R](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/plot_base_r.html)
 7. [Control & Flow](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/control_flow.html)
+
+
+[![Getting Started](../fig/Module1Header.jpg)](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/rstudio_intro.html)
