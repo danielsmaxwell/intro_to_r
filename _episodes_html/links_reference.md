@@ -1,3 +1,4 @@
+## Introduction to R (Episode Order)
 
 1. [RStudio Introduction](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/rstudio_intro.html)
 2. [Seeking Help](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/seeking_help.html)
