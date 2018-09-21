@@ -10,7 +10,7 @@
 7. [Control & Flow](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/control_flow.html)
 
 
-[![Getting Started](../fig/module_1_header.jpg)](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/rstudio_intro.html)
+[![Getting Started](../fig/module_1_header.jpg)](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/module_1_main.html)
 [![Data Wrangling](../fig/module_2_header.jpg)](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/module_2_main.html)
 [![Basic Graphs](../fig/module_3_header.jpg)](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/plot_base_r.html)
 [![Loops & Control](../fig/module_4_header.jpg)](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/control_flow.html)
