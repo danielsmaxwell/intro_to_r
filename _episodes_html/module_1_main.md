@@ -1,7 +1,5 @@
 ![](../fig/module_1_header.jpg)
 
-Complete [Data Structures 1](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/data_structures_part1.html) Worksheet
-
-Complete [Data Structures 2](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/data_structures_part2.html) Worksheet
-
-Complete [Data Subsetting](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/data_subsetting.html) Worksheet
+### To Do List
+Complete [RStudio Introduction](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/rstudio_intro.html) Worksheet
+Complete [Seeking Help](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/seeking_help.html) Worksheet
