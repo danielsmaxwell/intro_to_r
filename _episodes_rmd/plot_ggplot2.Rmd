@@ -1,27 +1,27 @@
----
-title: Creating Publication-Quality Graphics with ggplot2
-teaching: 60
-exercises: 20
-questions:
-- "How can I create publication-quality graphics in R?"
-objectives:
-- "To be able to use ggplot2 to generate publication quality graphics."
-- "To apply geometry, aesthetic, and statisics layers to a ggplot plot."
-- "To manipulate the aesthetics of a plot usng different colors, shapes, and lines."
-- "To improve data visualization through transforming scales and paneling by group."
-- "To save a plot created with ggplot to disk."
-keypoints:
-- "Use `ggplot2` to create plots."
-- "Think about graphics in layers: aesthetics, geometry, statistics, scale transformation, and grouping."
-source: Rmd
+--- 
+title: |
+       | Activity Worksheet
+       | *Plotting with ggplot2*
+author: "Dan Maxwell"
+date: "`r Sys.Date()`" 
+output:
+  html_document: default
+  pdf_document: 
+    fig_caption: no
+  word_document: default
+header-includes: \usepackage{color}
 ---
 
 ```{r, include=FALSE}
-source("../bin/chunk-options.R")
-knitr_fig_path("08-")
 # Silently load in the data so the rest of the lesson works
-gapminder <- read.csv("data/gapminder-FiveYearData.csv", header = TRUE)
+gapminder <- read.csv("../data/gapminder_FiveYearData.csv", header = TRUE)
 ```
+
+![](../fig/mydatastory_carpentry_footer.png)
+
+<script src="hideOutput.js"></script>
+
+<link rel="stylesheet" type="text/css" href="fold.css">
 
 Plotting our data is one of the best ways to
 quickly explore it and the various relationships
@@ -85,56 +85,51 @@ tells `ggplot` we want to visually represent the relationship between **x** and
 ```{r lifeExp-vs-gdpPercap-scatter2}
 ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +
   geom_point()
+
 ```
 
-> ## Challenge 1
->
-> Modify the example so that the figure shows how life expectancy has
-> changed over time:
->
-> ```{r, eval=FALSE}
-> ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) + geom_point()
-> ```
->
-> Hint: the gapminder dataset has a column called "year", which should appear
-> on the x-axis.
->
-> > ## Solution to challenge 1
-> >
-> > Here is one possible solution:
-> >
-> > ```{r ch1-sol}
-> > ggplot(data = gapminder, aes(x = year, y = lifeExp)) + geom_point()
-> > ```
-> >
-> {: .solution}
-{: .challenge}
+### Challenge 1
 
->
-> ## Challenge 2
->
-> In the previous examples and challenge we've used the `aes` function to tell
-> the scatterplot **geom** about the **x** and **y** locations of each point.
-> Another *aesthetic* property we can modify is the point *color*. Modify the
-> code from the previous challenge to **color** the points by the "continent"
-> column. What trends do you see in the data? Are they what you expected?
->
-> > ## Solution to challenge 2
-> >
-> > In the previous examples and challenge we've used the `aes` function to tell
-> > the scatterplot **geom** about the **x** and **y** locations of each point.
-> > Another *aesthetic* property we can modify is the point *color*. Modify the
-> > code from the previous challenge to **color** the points by the "continent"
-> > column. What trends do you see in the data? Are they what you expected?
-> >
-> > ```{r ch2-sol}
-> > ggplot(data = gapminder, aes(x = year, y = lifeExp, color=continent)) +
-> >   geom_point()
-> > ```
-> >
-> {: .solution}
-{: .challenge}
+Modify the example so that the figure shows how life expectancy has
+changed over time:
 
+```{r, eval = FALSE}
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) + geom_point()
+```
+
+Hint: the gapminder dataset has a column called "year", which should appear
+on the x-axis.
+
+<div class="fold s">
+
+```{r eval = FALSE}
+# Solution to Challenge 1.
+
+ggplot(data = gapminder, aes(x = year, y = lifeExp)) + geom_point()
+
+```
+
+</div>
+
+### Challenge 2
+
+In the previous examples and challenge we've used the `aes` function to tell
+the scatterplot **geom** about the **x** and **y** locations of each point.
+Another *aesthetic* property we can modify is the point *color*. Modify the
+code from the previous challenge to **color** the points by the "continent"
+column. What trends do you see in the data? Are they what you expected?
+
+<div class="fold s">
+
+```{r eval = FALSE}
+# Solution to Challenge 2.
+
+ggplot(data = gapminder, aes(x = year, y = lifeExp, color=continent)) +
+  geom_point()
+
+```
+
+</div>
 
 ## Layers
 
@@ -172,30 +167,27 @@ global plot options in `ggplot` to the `geom_line` layer so it no longer applies
 to the points. Now we can clearly see that the points are drawn on top of the
 lines.
 
-> ## Tip: Setting an aesthetic to a value instead of a mapping
+> ### Tip: Setting an aesthetic to a value instead of a mapping
 >
 > So far, we've seen how to use an aesthetic (such as **color**) as a *mapping* to a variable in the data. For example, when we use `geom_line(aes(color=continent))`, ggplot will give a different color to each continent. But what if we want to change the colour of all lines to blue? You may think that `geom_line(aes(color="blue"))` should work, but it doesn't. Since we don't want to create a mapping to a specific variable, we simply move the color specification outside of the `aes()` function, like this: `geom_line(color="blue")`.
-{: .callout}
 
-> ## Challenge 3
->
-> Switch the order of the point and line layers from the previous example. What
-> happened?
->
-> > ## Solution to challenge 3
-> >
-> > Switch the order of the point and line layers from the previous example. What
-> > happened?
-> >
-> > ```{r ch3-sol}
-> > ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country)) +
-> >  geom_point() + geom_line(aes(color=continent))
-> > ```
-> >
-> > The lines now get drawn over the points!
-> >
-> {: .solution}
-{: .challenge}
+### Challenge 3
+
+Switch the order of the point and line layers from the previous example. What
+happened?
+
+<div class="fold s">
+
+```{r eval = FALSE}
+# Solution to Challenge 3.
+
+ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country)) +
+  geom_point() + geom_line(aes(color=continent))
+
+# The lines now get drawn over the points!
+```
+
+</div>
 
 ## Transformations and statistics
 
@@ -226,10 +218,9 @@ of 1,000 is now 3 on the y axis, a value of 10,000 corresponds to 4 on the y
 axis and so on. This makes it easier to visualize the spread of data on the
 x-axis.
 
-> ## Tip Reminder: Setting an aesthetic to a value instead of a mapping
+> ### Tip Reminder: Setting an aesthetic to a value instead of a mapping
 >
 > Notice that we used `geom_point(alpha = 0.5)`. As the previous tip mentioned, using a setting outside of the `aes()` function will cause this value to be used for all points, which is what we want in this case. But just like any other aesthetic setting, *alpha* can also be mapped to a variable in the data. For example, we can give a different transparency to each continent with `geom_point(aes(alpha = continent))`.
-{: .callout}
 
 We can fit a simple relationship to the data by adding another layer,
 `geom_smooth`:
@@ -252,50 +243,44 @@ aesthetic by passing it as an argument to `geom_smooth`. Previously in the
 lesson we've used the `aes` function to define a *mapping* between data
 variables and their visual representation.
 
-> ## Challenge 4a
->
-> Modify the color and size of the points on the point layer in the previous
-> example.
->
-> Hint: do not use the `aes` function.
->
-> > ## Solution to challenge 4a
-> >
-> > Modify the color and size of the points on the point layer in the previous
-> > example.
-> >
-> > Hint: do not use the `aes` function.
-> >
-> > ```{r ch4a-sol}
-> > ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +
-> >  geom_point(size=3, color="orange") + scale_x_log10() +
-> >  geom_smooth(method="lm", size=1.5)
-> > ```
-> {: .solution}
-{: .challenge}
+### Challenge 4a
 
+Modify the color and size of the points on the point layer in the previous
+example.
 
-> ## Challenge 4b
->
-> Modify your solution to Challenge 4a so that the
-> points are now a different shape and are colored by continent with new
-> trendlines.  Hint: The color argument can be used inside the aesthetic.
->
-> > ## Solution to challenge 4b
-> >
-> > Modify Challenge 4 so that the points are now a different shape and are
-> > colored by continent with new trendlines.
-> >
-> > Hint: The color argument can be used inside the aesthetic.
-> >
-> >```{r ch4b-sol}
-> > ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) +
-> > geom_point(size=3, shape=17) + scale_x_log10() +
-> > geom_smooth(method="lm", size=1.5)
-> > ```
-> {: .solution}
-{: .challenge}
+Hint: do not use the `aes` function.
 
+<div class="fold s">
+
+```{r eval = FALSE}
+# Solution to Challenge 4a
+
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +
+  geom_point(size=3, color="orange") + scale_x_log10() +
+  geom_smooth(method="lm", size=1.5)
+
+```
+
+</div>
+
+### Challenge 4b
+
+Modify your solution to Challenge 4a so that the
+points are now a different shape and are colored by continent with new
+trendlines.  Hint: The color argument can be used inside the aesthetic.
+
+<div class="fold s">
+
+```{r eval = FALSE}
+# Solution to Challenge 4b
+
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) +
+  geom_point(size=3, shape=17) + scale_x_log10() +
+  geom_smooth(method="lm", size=1.5)
+
+```
+
+</div>
 
 ## Multi-panel figures
 
@@ -304,7 +289,7 @@ countries in one plot. Alternatively, we can split this out over multiple panels
 by adding a layer of **facet** panels. Focusing only on those countries with
 names that start with the letter "A" or "Z".
 
-> ## Tip
+> ### Tip
 >
 > We start by subsetting the data.  We use the `substr` function to
 > pull out a part of a character string; in this case, the letters that occur
@@ -313,7 +298,6 @@ names that start with the letter "A" or "Z".
 > than write out long subsetting conditions (in this case,
 > `starts.with %in% c("A", "Z")` is equivalent to
 > `starts.with == "A" | starts.with == "Z"`)
-{: .callout}
 
 
 ```{r facet}
@@ -368,7 +352,7 @@ lifeExp_plot <- ggplot(data = az.countries, aes(x = year, y = lifeExp, color=con
   ) +
   theme(axis.text.x=element_blank(), axis.ticks.x=element_blank())
 
-ggsave(filename = "results/lifeExp.png", plot = lifeExp_plot, width = 12, height = 10, dpi = 300, units = "cm")
+ggsave(filename = "lifeExp.png", plot = lifeExp_plot, width = 12, height = 10, dpi = 300, units = "cm")
 ```
 
 There are two nice things about `ggsave`. First, it defaults to the last plot, so if you omit the `plot` argument it will automatically save the last plot you created with `ggplot`. Secondly, it tries to determine the format you want to save your plot in from the file extension you provide for the filename (for example `.png` or `.pdf`). If you need to, you can specify the format explicitly in the `device` argument.
@@ -384,25 +368,24 @@ code to modify!
 [ggplot-doc]: http://docs.ggplot2.org/current/
 
 
-> ## Challenge 5
->
-> Create a density plot of GDP per capita, filled by continent.
->
-> Advanced:
->  - Transform the x axis to better visualise the data spread.
->  - Add a facet layer to panel the density plots by year.
->
-> > ## Solution to challenge 5
-> >
-> > Create a density plot of GDP per capita, filled by continent.
-> >
-> > Advanced:
-> >  - Transform the x axis to better visualise the data spread.
-> >  - Add a facet layer to panel the density plots by year.
-> >
-> > ```{r ch5-sol}
-> > ggplot(data = gapminder, aes(x = gdpPercap, fill=continent)) +
-> >  geom_density(alpha=0.6) + facet_wrap( ~ year) + scale_x_log10()
-> > ```
-> {: .solution}
-{: .challenge}
+### Challenge 5
+
+Create a density plot of GDP per capita, filled by continent.
+
+Advanced:
+
+  1. Transform the x axis to better visualise the data spread.
+  2. Add a facet layer to panel the density plots by year.
+
+<div class="fold s">
+
+```{r eval = FALSE}
+# Solution to Challenge 5
+
+ggplot(data = gapminder, aes(x = gdpPercap, fill=continent)) +
+  geom_density(alpha=0.6) + facet_wrap( ~ year) + scale_x_log10()
+
+```
+
+</div>
+
