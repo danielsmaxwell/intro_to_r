@@ -1,6 +1,6 @@
 ![](../fig/module_1_header.jpg)
 
 ### To Do List
-Complete [RStudio Introduction](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/rstudio_intro.html) Worksheet
+Complete [RStudio Introduction](https://rawcdn.githack.com/mydatastory/r_intro_class/f4092f3b80ca84d8e8d547128ea58ad9554cd483/_episodes_html/rstudio_intro.html) Worksheet
 
-Complete [Seeking Help](http://htmlpreview.github.com/?https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/seeking_help.html) Worksheet
+Complete [Seeking Help](https://rawcdn.githack.com/mydatastory/r_intro_class/f4092f3b80ca84d8e8d547128ea58ad9554cd483/_episodes_html/seeking_help.html) Worksheet
