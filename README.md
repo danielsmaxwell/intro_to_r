@@ -10,4 +10,4 @@
 ## Notes
 - Use MacTeX for Mac computers as opposed to MicTeX
 - On Macs, students may need to setwd() at the top of their activity worksheets.
-- All .html files are rendered using [raw.githack.com](https://raw.githack.com)
+- All .html files are rendered using [raw githack](https://raw.githack.com) because htmlpreview.github stopped rendering the files.
