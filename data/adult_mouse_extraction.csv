@@ -1,0 +1,118 @@
+phenotype,protocol,mouse.id,date.of.birth,heart.isolation.date,tube.weight,dry.weigt(g)
+wild type,basal 25min,,12/3/2010,3/9/2011,1.2103,1.2238
+wild type,basal 25min,,12/3/2010,3/10/2011,1.1816,1.2003
+Non-induced,basal 25min,342,12/19/2010,3/9/2011,1.2236,1.2333
+Non-induced,basal 25min,420,1/12/2011,3/10/2011,1.2244,1.2443
+HIF (2 days),basal 25min,376,12/14/2010,3/9/2011,1.163,1.1834
+HIF (2 days),basal 25min,375,12/14/2010,3/9/2011,1.2258,1.2408
+HIF (2 days),basal 25min,363,12/8/2010,3/9/2011,1.2003,1.2184
+HIF (2 days),basal 25min,361,12/8/2010,3/10/2011,1.2041,1.2263
+Non-induced,basal 25min,367,12/14/2010,3/11/2011,1.1751,1.1981
+HIF (2 days),basal 25min,397,12/30/2010,3/11/2011,1.1701,1.1902
+Non-induced,5-min ischemia,372,12/14/2010,3/11/2011,1.1662,1.1871
+HIF (2 days),5-min ischemia,374,12/14/2010,3/11/2011,1.177,1.2029
+wild type,basal 25min,,12/31/2010,3/16/2011,1.163,1.1755
+wild type,5-min ischemia,,12/9/2010,3/16/2011,1.1738,1.1805
+HIF (2 days),5-min ischemia,344,12/19/2010,3/16/2011,1.181,1.1959
+HIF (2 days),5-min ischemia,350,12/9/2010,3/16/2011,1.195,1.2167
+HIF (2 days),5-min ischemia,428,1/21/2011,3/17/2011,1.1655,1.1887
+wild type,5-min ischemia,,12/31/2010,3/17/2011,1.1739,1.1979
+wild type,5-min ischemia,,12/31/2010,3/17/2011,1.1823,1.2007
+HIF (6 days),basal 25min,339,12/9/2010,3/17/2011,1.1633,1.1858
+HIF (2 days),5-min ischemia,432,1/21/2011,3/17/2011,1.2031,1.2164
+Non-induced,5-min ischemia,349,12/9/2010,3/18/2011,1.1883,1.2117
+Non-induced,5-min ischemia,385,12/20/2010,3/18/2011,1.1874,1.2118
+HIF (6 days),5-min ischemia,404,1/11/2011,3/18/2011,1.1761,1.2015
+wild type,5-min ischemia,,11/17/2010,3/21/2011,1.1943,1.2176
+wild type,5-min ischemia,,11/17/2010,3/22/2011,1.685,1.1928
+HIF (6 days),5-min ischemia,303,11/10/2010,3/23/2011,1.1696,1.1943
+HIF (6 days),5-min ischemia,310,11/15/2010,3/21/2011,1.1773,1.2055
+Non-induced,5-min ischemia,405,1/11/2011,3/25/2011,1.1693,1.1903
+Non-induced,5-min ischemia,351,11/29/2010,3/22/2011,1.1888,1.2143
+HIF (6 days),5-min ischemia,305,11/10/2010,3/22/2011,1.1912,1.2181
+HIF (6 days),10-min ischemia,412,1/14/2011,3/23/2011,1.1734,1.1936
+Non-induced,10-min ischemia,440,1/26/2011,3/23/2011,1.2009,1.2236
+HIF (2 days),10-min ischemia,328,11/27/2010,3/23/2011,1.1949,1.2358
+wild type,10-min ischemia,,1/7/2011,3/23/2011,1.1782,1.2011
+HIF (6 days),5-min ischemia,277,11/1/2010,3/22/2011,1.1795,1.2052
+Non-induced,10-min ischemia,607,3/28/2011,6/8/2011,1.0782,1.1095
+Non-induced,10-min ischemia,606,3/28/2011,6/8/2011,1.0733,1.0949
+HIF (2 days),10-min ischemia,83,3/27/2011,6/8/2011,1.0812,1.0954
+HIF (2 days),10-min ischemia,613,3/28/2011,6/8/2011,1.082,1.0939
+Non-induced,20-min ischemia,72,3/21/2011,6/9/2011,1.0774,1.0942
+Non-induced,20-min ischemia,70,3/21/2011,6/9/2011,1.0765,1.0873
+HIF (2 days),20-min ischemia,715,3/21/2011,6/9/2011,1.076,1.0926
+HIF (2 days),20-min ischemia,620,3/28/2011,6/9/2011,1.0808,1.0899
+Non-induced,20-min ischemia,21,3/7/2011,6/10/2011,1.0796,1.101
+Non-induced,20-min ischemia,604,3/6/2011,6/10/2011,1.0719,1.091
+HIF (2 days),20-min ischemia,24,3/7/2011,6/10/2011,1.0826,1.1031
+HIF (2 days),20-min ischemia,71,3/21/2011,6/10/2011,1.074,1.0938
+Non-induced,10-min ischemia,38,3/6/2011,6/13/2011,1.0705,1.0989
+HIF (6 days),10-min ischemia,619,3/28/2011,6/13/2011,1.0805,1.104
+Non-induced,20-min ischemia,28,3/7/2011,6/13/2011,1.074,1.1007
+HIF (6 days),20-min ischemia,620?,3/28/2011,6/13/2011,1.082,1.106
+Non-induced,30-min ischemia,49,3/9/2011,6/14/2011,1.0804,1.0979
+Non-induced,30-min ischemia,603,3/7/2011,6/14/2011,1.0809,1.103
+HIF (6 days),30-min ischemia,47,3/9/2011,6/14/2011,1.078,1.0962
+HIF (6 days),30-min ischemia,717,3/28/2011,6/14/2011,1.0725,1.0866
+Non-induced,30-min ischemia,1,2/20/2011,6/15/2011,1.0809,1.0985
+Non-induced,30-min ischemia,493,2/19/2011,6/15/2011,1.0841,1.1083
+HIF (6 days),30-min ischemia,494,2/19/2011,6/15/2011,1.0812,1.1033
+HIF (6 days),30-min ischemia,2,2/20/2011,6/15/2011,1.079,1.0997
+wild type,10-min ischemia,,4/19/2011,6/22/2011,1.0757,1.0941
+wild type,10-min ischemia,,4/19/2011,6/22/2011,1.0786,1.0936
+HIF (2 days),10-min ischemia,627,4/19/2011,6/22/2011,1.0815,1.0997
+HIF (2 days),10-min ischemia,628,4/19/2011,6/22/2011,1.0807,1.0936
+Non-induced,30-min ischemia,622,4/9/2011,6/23/2011,1.0783,1.0966
+Non-induced,30-min recovery,718,4/9/2011,6/23/2011,1.0697,1.0866
+HIF (6 days),30-min ischemia,625,4/9/2011,6/23/2011,1.0828,1.099
+HIF (6 days),30-min recovery,624,4/9/2011,6/23/2011,1.0827,1.1006
+wild type,30-min ischemia,,4/15/2011,6/24/2011,1.0815,1.0996
+wild type,30-min ischemia,,4/15/2011,6/24/2011,1.0753,1.0933
+HIF (2 days),30-min ischemia,646,4/21/2011,6/24/2011,1.0761,1.0949
+HIF (2 days),30-min ischemia,648,4/21/2011,6/24/2011,1.0758,1.0893
+wild type,20-min ischemia,,4/29/2011,7/7/2011,1.072,1.0893
+wild type,30-min recovery,,4/29/2011,7/7/2011,1.0834,1.0893
+HIF (2 days),20-min ischemia,706,4/21/2011,7/7/2011,1.0778,1.1012
+HIF (2 days),30-min recovery,663,4/21/2011,7/7/2011,1.0833,1.0946
+wild type,30-min ischemia,,4/29/2011,7/8/2011,1.0679,1.0823
+wild type,30-min recovery,,4/29/2011,7/8/2011,1.0822,1.0985
+HIF (2 days),30-min ischemia,678,4/29/2011,7/8/2011,1.0782,1.0917
+HIF (2 days),30-min recovery,681,4/29/2011,7/8/2011,1.0807,1.0968
+Non-induced,10-min ischemia,674,4/27/2011,7/11/2011,1.0735,1.0906
+HIF (6 days),10-min ischemia,809,5/4/2011,7/11/2011,1.072,1.0935
+wild type,30-min recovery,,4/29/2011,7/11/2011,1.0838,1.1097
+HIF (6 days),30-min recovery,811,5/4/2011,7/11/2011,1.0786,1.0955
+wild type,30-min ischemia,,5/10/2011,7/14/2011,1.0792,1.105
+HIF (2 days),30-min ischemia,745,5/15/2011,7/14/2011,1.0804,1.0984
+Non-induced,30-min recovery,760,5/13/2011,7/14/2011,1.0745,1.0932
+HIF (2 days),30-min recovery,746,5/15/2011,7/14/2011,1.085,1.1019
+wild type,30-min ischemia,,4/30/2011,7/13/2011,1.0835,1.1
+HIF (2 days),30-min ischemia,707,4/21/2011,7/13/2011,1.0802,1.0959
+Non-induced,30-min recovery,803,4/27/2011,7/13/2011,1.074,1.0896
+HIF (2 days),30-min recovery,647,4/21/2011,7/13/2011,1.083,1.1013
+wild type,30-min recovery,,4/30/2011,7/12/2011,1.0827,1.1015
+HIF (6 days),30-min recovery,804,4/27/2011,7/12/2011,1.0823,1.101
+Non-induced,30-min recovery,639,4/24/2011,7/12/2011,1.0743,1.0916
+HIF (6 days),30-min recovery,825,5/4/2011,7/12/2011,1.0715,1.0949
+wild type,20-min ischemia,,4/19/2011,6/27/2011,1.0742,1.1038
+wild type,20-min ischemia,,4/19/2011,6/27/2011,1.0848,1.1095
+HIF (6 days),20-min ischemia,626,4/9/2011,6/27/2011,1.081,1.1009
+HIF (6 days),20-min ischemia,629,4/19/2011,6/27/2011,1.0799,1.1093
+wild type,10-min ischemia,,4/15/2011,6/28/2011,1.0717,1.10135
+wild type,10-min ischemia,,4/15/2011,6/28/2011,1.0673,1.0927
+wild type,20-min ischemia,,4/15/2011,6/29/2011,1.0787,1.1047
+wild type,20-min ischemia,,4/15/2011,6/29/2011,1.0859,1.1138
+HIF (6 days),10-min ischemia,671,4/22/2011,6/28/2011,1.0829,1.1093
+HIF (6 days),10-min ischemia,669,4/22/2011,6/28/2011,1.0808,1.1059
+HIF (6 days),20-min ischemia,635,4/24/2011,6/29/2011,1.0717,1.1044
+HIF (6 days),20-min ischemia,640,4/24/2011,6/29/2011,1.085,1.1137
+wild type,20-min ischemia no glucose+iodoacetate,,5/10/2011,7/20/2011,1.0801,1.1108
+wild type,20-min ischemia no glucose+iodoacetate,,5/10/2011,7/20/2011,1.081,1.1102
+wild type,20-min ischemia no glucose+iodoacetate,,,7/20/2011,1.0799,1.1061
+wild type,20-min ischemia no glucose+iodoacetate,,5/22/2011,7/28/2011,1.0849,1.1158
+wild type,20-min ischemia no glucose+iodoacetate,,5/22/2011,7/28/2011,1.0776,1.1023
+HIF (6 days),20-min ischemia no glucose+iodoacetate,733,5/10/2011,7/21/2011,1.079,1.1006
+HIF (6 days),20-min ischemia no glucose+iodoacetate,749,5/15/2011,7/21/2011,1.0828,1.111
+HIF (6 days),20-min ischemia no glucose+iodoacetate,750,5/15/2011,7/21/2011,1.0805,1.1108
+HIF (6 days),20-min ischemia no glucose+iodoacetate,840,5/15/2011,7/28/2011,1.0718,1.0981
