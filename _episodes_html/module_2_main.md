@@ -1,7 +1,7 @@
 ![](../fig/module_2_header.jpg)
 
 ### To Do List
-Complete [Data Structures 1](https://rawcdn.githack.com/mydatastory/r_intro_class/6f7ac66a497d6190bbc4da46f2efa71261db42c5/_episodes_html/data_structures_part1.html) Worksheet
+Complete [Data Structures 1](https://rawcdn.githack.com/mydatastory/r_intro_class/56b5e6f4725a010e524a120453ed34cd01a495c0/_episodes_html/data_structures_part1.html) Worksheet
 
 Complete [Data Structures 2](https://rawcdn.githack.com/mydatastory/r_intro_class/f5c43f29b38aa3b7f59db75ddd5fba7eaf4b022c/_episodes_html/data_structures_part2.html) Worksheet1
 
