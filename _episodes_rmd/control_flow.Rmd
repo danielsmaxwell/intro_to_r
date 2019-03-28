@@ -5,9 +5,9 @@ title: |
 author: "Dan Maxwell"
 date: '`r Sys.Date()`' 
 output:
+  html_document: default
   pdf_document:
     fig_caption: no
-  html_document: default
 header-includes: \usepackage{color}
 ---
 
@@ -22,7 +22,7 @@ set.seed(10)
 
 ```
 
-![](../fig/mydatastory_carpentry_footer.png)
+![](../fig/mydatastory_footer.png)
 
 <script src="hideOutput.js"></script>
 
