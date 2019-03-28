@@ -17,7 +17,7 @@ header-includes: \usepackage{color}
 gapminder <- read.csv("../data/gapminder_FiveYearData.csv", header = TRUE)
 ```
 
-![](../fig/mydatastory_carpentry_footer.png)
+![](../fig/mydatastory_footer.png)
 
 <script src="hideOutput.js"></script>
 
