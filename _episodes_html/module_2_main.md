@@ -5,4 +5,4 @@ Complete [Data Structures 1](https://rawcdn.githack.com/mydatastory/r_intro_clas
 
 Complete [Data Structures 2](https://rawcdn.githack.com/mydatastory/r_intro_class/bdc3346041dd141b0ec185eb4017498935495e9b/_episodes_html/data_structures_part2.html) Worksheet1
 
-Complete [Data Subsetting](https://rawcdn.githack.com/mydatastory/r_intro_class/f4a71b1b9ae4020ef4465d21ff42bde504dc4be3/_episodes_html/data_subsetting.html) Worksheet
+Complete [Data Subsetting](https://rawcdn.githack.com/mydatastory/r_intro_class/30169ac77570d61b5f6e42640a12d3651643437f/_episodes_html/data_subsetting.html) Worksheet
