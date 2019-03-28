@@ -19,7 +19,7 @@ gapminder <- read.csv("gapminder.csv", header=TRUE)
 
 ```
 
-![](../fig/mydatastory_carpentry_footer.png)
+![](../fig/mydatastory_footer.png)
 
 <script src="hideOutput.js"></script>
 
