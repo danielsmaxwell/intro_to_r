@@ -1,8 +1,5 @@
 --- 
-title: |
-  | Activity Worksheet
-  | *Control & Flow*
-author: "Dan Maxwell"
+title: Control & Flow (Instructional Worksheet)
 date: '`r Sys.Date()`' 
 output:
   html_document: default
