@@ -1,8 +1,5 @@
 ---
-title: |
-  | Activity Worksheet
-  | *Data Subsetting*
-author: "Dan Maxwell"
+title: Data Subsetting (Instructional Worksheet)
 date: '`r Sys.Date()`'
 output:
   html_document: default
