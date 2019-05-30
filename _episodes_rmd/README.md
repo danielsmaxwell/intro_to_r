@@ -7,7 +7,7 @@
 5. [Data Subsetting](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/data_subsetting.Rmd)
 6. [Basic Graphs](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/plot_base_r.Rmd)
 7. [Control Flow](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/control_flow.Rmd)
-8. [Ggplot2]
+8. [Ggplot2](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/plot_ggplot2.Rmd)
 9. [Vectorization]
 10. [Functions]
 11. [Writing Data]
