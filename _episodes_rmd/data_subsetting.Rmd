@@ -53,8 +53,7 @@ x[1]
 x[4]
 ```
 
-It may look different, but the square brackets operator is a function. For atomic vectors
-(and matrices), it means "get me the nth element".
+It may look different, but the square brackets operator is a function. For atomic vectors (and matrices), it means "get me the nth element".
 
 We can ask for multiple elements at once:
 
@@ -180,6 +179,7 @@ x[c(2,3,4)]
 ```
 
 </div>
+
 
 ## Subsetting by name
 
