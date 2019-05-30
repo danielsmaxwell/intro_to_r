@@ -1,33 +1,22 @@
 ---
-title: Writing Good Software
-teaching: 15
-exercises: 0
-questions:
-- "How can I write software that other people can use?"
-objectives:
-- "Describe best practices for writing R and explain the justification for each."
-keypoints:
-- "Keep your project folder structured, organized and tidy."
-- "Document what and why, not how."
-- "Break programs into short single-purpose functions."
-- "Write re-runnable tests."
-- "Don't repeat yourself."
-- "Don't repeat yourself."
-- "Be consistent in naming, indentation, and other aspects of style."
-source: Rmd
+title: Writing Good Software (Instructional Worksheet)
+date: '`r Sys.Date()`'
+output:
+  html_document: default
+  pdf_document:
+    fig_caption: no
+header-includes: \usepackage{color}
 ---
+
+![](../fig/mydatastory_footer.png)
 
 ## Structure your project folder
 
 Keep your project folder structured, organized and tidy, by creating subfolders for your code files, manuals, data, binaries, output plots, etc. It can be done completely manually, or with the help of RStudio's `New Project` functionality, or a desginated package, such as `ProjectTemplate`.
 
-> ## Tip: ProjectTemplate - a possible solution
+> ### Tip: ProjectTemplate - a possible solution
 >
-> One way to automate the management of projects is to install the third-party package, `ProjectTemplate`.
-> This package will set up an ideal directory structure for project management.
-> This is very useful as it enables you to have your analysis pipeline/workflow organised and structured.
-> Together with the default RStudio project functionality and Git you will be able to keep track of your
-> work as well as be able to share your work with collaborators.
+> One way to automate the management of projects is to install the third-party package, `ProjectTemplate`.  This package will set up an ideal directory structure for project management.  This is very useful as it enables you to have your analysis pipeline/workflow organised and structured.  Together with the default RStudio project functionality and Git you will be able to keep track of your work as well as be able to share your work with collaborators.
 >
 > 1. Install `ProjectTemplate`.
 > 2. Load the library
@@ -41,7 +30,6 @@ Keep your project folder structured, organized and tidy, by creating subfolders 
 >
 > For more information on ProjectTemplate and its functionality visit the
 > home page [ProjectTemplate](http://projecttemplate.net/index.html)
-{: .callout}
 
 
 ## Make code readable
