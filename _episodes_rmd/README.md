@@ -8,7 +8,7 @@
 6. [Basic Graphs](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/plot_base_r.Rmd)
 7. [Control Flow](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/control_flow.Rmd)
 8. [Ggplot2](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/plot_ggplot2.Rmd)
-9. [Vectorization]
+9. [Vectorization](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/vectorization.Rmd)
 10. [Functions]
 11. [Writing Data]
 12. [Plyr]
