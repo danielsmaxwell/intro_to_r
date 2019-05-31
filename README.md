@@ -7,6 +7,9 @@
   The original Software Carpentry episodes have been modified and/or extended to meet the specific learning goals of this class.  The 
   basic_graphs episode, however, was created by the myDataStory development team.
 
+## Original Software Carpentry Course
+[r-novice-gapminder](https://github.com/swcarpentry/r-novice-gapminder)
+
 ## Notes
 - Use MacTeX for Mac computers as opposed to MicTeX
 - On Macs, students may need to setwd() at the top of their activity worksheets.
