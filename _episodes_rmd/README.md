@@ -14,7 +14,7 @@
 12. [Plyr](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/plyr.Rmd)
 13. [Dplyr]
 14. [Tidyr]
-15. [Knitr Markdown]
+15. [Knitr Markdown](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/knitr_markdown.Rmd)
 16. [Wrap](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/wrap_up.Rmd)
 
 Notes: See ../src for the barplot.R code.  Integrate long_wide.Rmd into one of the other episodes.
