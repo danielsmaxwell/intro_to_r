@@ -10,7 +10,7 @@
 8. [Ggplot2](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/plot_ggplot2.Rmd)
 9. [Vectorization](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/vectorization.Rmd)
 10. [Functions](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/functions.Rmd)
-11. [Writing Data]
+11. [Writing Data](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/writing_data.Rmd)
 12. [Plyr]
 13. [Dplyr]
 14. [Tidyr]
