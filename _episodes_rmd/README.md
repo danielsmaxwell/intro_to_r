@@ -11,7 +11,7 @@
 9. [Vectorization](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/vectorization.Rmd)
 10. [Functions](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/functions.Rmd)
 11. [Writing Data](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/writing_data.Rmd)
-12. [Plyr]
+12. [Plyr](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/plyr.Rmd)
 13. [Dplyr]
 14. [Tidyr]
 15. [Knitr Markdown]
