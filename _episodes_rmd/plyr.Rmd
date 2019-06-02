@@ -1,22 +1,24 @@
 ---
-title: Splitting and Combining Data Frames with plyr
-teaching: 30
-exercises: 30
-questions:
-- "How can I do different calculations on different sets of data?"
-objectives:
-- "To be able to use the split-apply-combine strategy for data analysis."
-keypoints:
-- "Use the `plyr` package to split data, apply functions to subsets, and combine the results."
-source: Rmd
+title: Working with plyr (Instructional Worksheet)
+date: '`r Sys.Date()`'
+output:
+  html_document: default
+  pdf_document:
+    fig_caption: no
+header-includes: \usepackage{color}
 ---
 
 ```{r, include=FALSE}
-source("../bin/chunk-options.R")
-knitr_fig_path("12-")
+
 # Silently load in the data so the rest of the lesson works
-gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
+gapminder <- read.csv("../data/gapminder_FiveYearData.csv", header=TRUE)
 ```
+
+![](../fig/mydatastory_footer.png)
+
+<script src="hideOutput.js"></script>
+
+<link rel="stylesheet" type="text/css" href="fold.css">
 
 Previously we looked at how you can use functions to simplify your code.
 We defined the `calcGDP` function, which takes the gapminder dataset,
@@ -26,6 +28,7 @@ additional arguments so we could filter by `year` and `country`:
 ```{r}
 # Takes a dataset and multiplies the population column
 # with the GDP per capita column.
+
 calcGDP <- function(dat, year=NULL, country=NULL) {
   if(!is.null(year)) {
     dat <- dat[dat$year %in% year, ]
@@ -64,7 +67,7 @@ also takes a substantial amount of effort and testing to get right.
 
 The abstract problem we're encountering here is know as "split-apply-combine":
 
-![Split apply combine](../fig/12-plyr-fig1.png)
+![Split apply combine](../fig/plyr_fig1.png)
 
 We want to *split* our data into groups, in this case continents, *apply*
 some calculations on that group, then optionally *combine* the results
@@ -105,7 +108,7 @@ table)
 Note here that plyr's use of "array" is different to R's,
 an array in ply can include a vector or matrix.
 
-![Full apply suite](../fig/12-plyr-fig2.png)
+![Full apply suite](../fig/plyr_fig2.png)
 
 
 Each of the xxply functions (`daply`, `ddply`, `llply`, `laply`, ...) has the
@@ -146,11 +149,26 @@ returns another `data.frame` (2nd letter is a **d**) i
   function: we haven't defined it elsewhere, and it has no name. It only exists
   in the scope of our call to `ddply`.
 
-> ## Challenge 1
->
-> Calculate the average life expectancy per continent. Which has the longest?
-> Which had the shortest?
-{: .challenge}
+### Challenge 1
+
+Calculate the average life expectancy per continent. Which has the longest?
+Which had the shortest?
+
+<div class="fold s">
+
+```{r eval = FALSE}
+# Solution to challenge 1.
+
+ddply(
+   .data = gapminder,
+   .variables = gapminder$continent,
+   .fun = function(dataGroup) {
+      mean(dataGroup$lifeExp)
+     }
+   )
+```
+
+</div>
 
 What if we want a different type of output data structure?:
 
@@ -184,8 +202,7 @@ daply(
 ```
 
 You can use these functions in place of `for` loops (and its usually faster to
-do so).
-To replace a for loop, put the code that was in the body of the `for` loop inside an anonymous function.
+do so).  To replace a for loop, put the code that was in the body of the `for` loop inside an anonymous function.
 
 ```{r}
 d_ply(
@@ -201,73 +218,27 @@ d_ply(
 )
 ```
 
-> ## Tip: printing numbers
+> ### Tip: printing numbers
 >
 > The `format` function can be used to make numeric
 > values "pretty" for printing out in messages.
-{: .callout}
 
+### Challenge 2
 
-> ## Challenge 2
->
-> Calculate the average life expectancy per continent and year. Which had the
-> longest and shortest in 2007? Which had the greatest change in between 1952
-> and 2007?
-{: .challenge}
+Calculate the average life expectancy per continent and year. Which had the
+longest and shortest in 2007? Which had the greatest change in between 1952
+and 2007?
 
+<div class="fold s">
 
-> ## Advanced Challenge
->
-> Calculate the difference in mean life expectancy between
-> the years 1952 and 2007 from the output of challenge 2
-> using one of the `plyr` functions.
-{: .challenge}
+```{r eval = FALSE}
+# Solution to challenge 2.
 
-> ## Alternate Challenge if class seems lost
->
-> Without running them, which of the following will calculate the average
-> life expectancy per continent:
->
-> 1.
-> ```{r, eval=FALSE}
-> ddply(
->   .data = gapminder,
->   .variables = gapminder$continent,
->   .fun = function(dataGroup) {
->      mean(dataGroup$lifeExp)
->   }
-> )
-> ```
->
-> 2.
-> ```{r, eval=FALSE}
-> ddply(
->   .data = gapminder,
->   .variables = "continent",
->   .fun = mean(dataGroup$lifeExp)
-> )
-> ```
->
-> 3.
-> ```{r, eval=FALSE}
-> ddply(
->   .data = gapminder,
->   .variables = "continent",
->   .fun = function(dataGroup) {
->      mean(dataGroup$lifeExp)
->   }
-> )
-> ```
->
-> 4.
-> ```{r, eval=FALSE}
-> adply(
->   .data = gapminder,
->   .variables = "continent",
->   .fun = function(dataGroup) {
->      mean(dataGroup$lifeExp)
->   }
-> )
-> ```
->
-{: .challenge}
+ddply(
+   .data = gapminder,
+   .variables = "continent",
+   .fun = mean(dataGroup$lifeExp))
+
+```
+
+</div>
