@@ -1,28 +1,14 @@
 ---
-title: Producing Reports With knitr
-teaching: 60
-exercises: 15
-questions:
-- "How can I integrate software and reports?"
-objectives:
-- Value of reproducible reports
-- Basics of Markdown
-- R code chunks
-- Chunk options
-- Inline R code
-- Other output formats
-keypoints:
-- "Mix reporting written in R Markdown with software written in R."
-- "Specify chunk options to control formatting."
-- "Use `knitr` to convert these documents into PDF and other formats."
-source: Rmd
+title: Producing Reports with knitr (Instructional Worksheet)
+date: '`r Sys.Date()`'
+output:
+  html_document: default
+  pdf_document:
+    fig_caption: no
+header-includes: \usepackage{color}
 ---
 
-```{r chunk_options, include=FALSE}
-source("../bin/chunk-options.R")
-knitr_fig_path("15-")
-```
-
+![](../fig/mydatastory_footer.png)
 
 ## Data analysis reports
 
@@ -70,7 +56,7 @@ pages.
 Within R Studio, click File &rarr; New File &rarr; R Markdown and
 you'll get a dialog box like this:
 
-![](../fig/New_R_Markdown.png)
+![](../fig/r_markdown.png)
 
 You can stick with the default (HTML output), but give it a title.
 
@@ -180,15 +166,13 @@ next to it; click the question mark and you'll get a "Markdown Quick
 Reference" (with the Markdown syntax) as well to the RStudio
 documentation on R Markdown.
 
-> ## Challenge
->
-> Create a new R Markdown document. Delete all of the R code chunks
-> and write a bit of Markdown (some sections, some italicized
-> text, and an itemized list).
->
-> Convert the document to a webpage.
-{: .challenge}
+### Challenge
 
+Create a new R Markdown document. Delete all of the R code chunks
+and write a bit of Markdown (some sections, some italicized
+text, and an itemized list).
+
+Convert the document to a webpage.
 
 ## A bit more Markdown
 
@@ -208,9 +192,6 @@ you can use `$ $` and `$$ $$` to insert math equations, like
 ```
 $$y = \mu + \sum_{i=1}^p \beta_i x_i + \epsilon$$
 ```
-
-
-
 ## R code chunks
 
 Markdown is interesting and useful, but the real power comes from
@@ -232,14 +213,13 @@ a name, as they will help you to fix errors and, if any graphs are
 produced, the file names are based on the name of the code chunk that
 produced them.
 
-> ## Challenge
->
-> Add code chunks to
->
-> - Load the ggplot2 package
-> - Read the gapminder data
-> - Create a plot
-{: .challenge}
+### Challenge
+
+Add code chunks to
+
+- Load the ggplot2 package
+- Read the gapminder data
+- Create a plot
 
 ## How things get compiled
 
@@ -286,9 +266,6 @@ arrows(62, 50, 78, 50, lwd=2, col="slateblue", len=0.1)
 text((62+78)/2, 60, "pandoc", col="darkslateblue", cex=1.3)
 ```
 
-
-
-
 ## Chunk options
 
 There are a variety of options to affect how the code chunks are
@@ -329,13 +306,9 @@ If you have multiple R Markdown files in a common directory, you might
 want to use `fig.path` to define separate prefixes for the figure file
 names, like `fig.path="Figs/cleaning-"` and `fig.path="Figs/analysis-"`.
 
+## Challenge
 
-> ## Challenge
->
-> Use chunk options to control the size of a figure and to hide the
-> code.
-{: .challenge}
-
+Use chunk options to control the size of a figure and to hide the code.
 
 ## Inline R code
 
@@ -358,11 +331,9 @@ The
 function in my [R/broman](https://github.com/kbroman) package handles
 this.
 
-> ## Challenge
->
-> Try out a bit of in-line R code.
-{: .challenge}
+### Challenge
 
+Try out a bit of in-line R code.
 
 ## Other output options
 
@@ -371,14 +342,13 @@ little triangle next to the "Knit HTML" button to get a drop-down
 menu. Or you could put `pdf_document` or `word_document` in the header
 of the file.
 
-> ## Tip: Creating PDF documents
+> ### Tip: Creating PDF documents
 >
 > Creating .pdf documents may require installation of some extra software. If
 > required this is detailed in an error message.
 >
 > - [TeX installers for Windows](https://miktex.org/2.9/setup).
 > - [TeX installers for macOS](https://tug.org/mactex).
-{: .callout}
 
 
 ## Resources
