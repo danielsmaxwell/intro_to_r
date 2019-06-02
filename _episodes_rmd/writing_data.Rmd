@@ -1,35 +1,37 @@
 ---
-title: Writing Data
-teaching: 10
-exercises: 10
-questions:
-- "How can I save plots and data created in R?"
-objectives:
-- "To be able to write out plots and data from R."
-keypoints:
-- "Save plots from RStudio using the 'Export' button."
-- "Use `write.table` to save tabular data."
-source: Rmd
+title: Writing Data (Instructional Worksheet)
+date: '`r Sys.Date()`'
+output:
+  html_document: default
+  pdf_document:
+    fig_caption: no
+header-includes: \usepackage{color}
 ---
 
 ```{r, include=FALSE}
-source("../bin/chunk-options.R")
-knitr_fig_path("11-")
-# Silently load in the data so the rest of the lesson works
+
+# Silently load in the data so the rest of the lesson works.
 library("ggplot2")
-gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
+
+gapminder <- read.csv("../data/gapminder_FiveYearData.csv", header=TRUE)
+
 # Temporarily create a cleaned-data directory so that the writing examples work
 # The students should have created this in topic 2.
 dir.create("cleaned-data")
 ```
 
+![](../fig/mydatastory_footer.png)
+
+<script src="hideOutput.js"></script>
+
+<link rel="stylesheet" type="text/css" href="fold.css">
 
 ## Saving plots
 
 You have already seen how to save the most recent plot you create in `ggplot2`,
 using the command `ggsave`. As a refresher:
 
-```{r, eval=FALSE}
+```{r, eval = FALSE}
 ggsave("My_most_recent_plot.pdf")
 ```
 
@@ -50,9 +52,10 @@ using the arguments to this function.
 
 ```{r, eval=FALSE}
 pdf("Life_Exp_vs_time.pdf", width=12, height=4)
+
 ggplot(data=gapminder, aes(x=year, y=lifeExp, colour=country)) +
-  geom_line() +
-  theme(legend.position = "none")
+       geom_line() +
+       theme(legend.position = "none")
 
 # You then have to make sure to turn off the pdf device!
 
@@ -61,25 +64,28 @@ dev.off()
 
 Open up this document and have a look.
 
-> ## Challenge 1
->
-> Rewrite your 'pdf' command to print a second
-> page in the pdf, showing a facet plot (hint: use `facet_grid`)
-> of the same data with one panel per continent.
-> > ## Solution to challenge 1
-> >
-> > ```{r, eval = FALSE}
-> > pdf("Life_Exp_vs_time.pdf", width = 12, height = 4)
-> > p <- ggplot(data = gapminder, aes(x = year, y = lifeExp, colour = country)) +
-> >   geom_line() +
-> >   theme(legend.position = "none")
-> > p
-> > p + facet_grid(. ~continent)
-> > dev.off()
-> > ```
-> {: .solution}
-{: .challenge}
+### Challenge 1
 
+Rewrite your 'pdf' command to print a second
+page in the pdf, showing a facet plot (hint: use `facet_grid`)
+of the same data with one panel per continent.
+
+<div class="fold s">
+
+```{r eval = FALSE}
+# Solution to challenge 1.
+
+pdf("Life_Exp_vs_time.pdf", width = 12, height = 4)
+p <- ggplot(data = gapminder, aes(x = year, y = lifeExp, colour = country)) +
+            geom_line() + theme(legend.position = "none")
+p
+p + facet_grid(. ~continent)
+
+dev.off()
+
+```
+
+</div>
 
 The commands `jpeg`, `png` etc. are used similarly to produce
 documents in different formats.
@@ -98,17 +104,12 @@ only want to focus on the gapminder data for Australia:
 aust_subset <- gapminder[gapminder$country == "Australia",]
 
 write.table(aust_subset,
-  file="cleaned-data/gapminder-aus.csv",
-  sep=","
+            file = "cleaned-data/gapminder-aus.csv",
+            sep  = ","
 )
 ```
 
-Let's switch back to the shell to take a look at the data to make sure it looks
-OK:
-
-```{r, engine='bash'}
-head cleaned-data/gapminder-aus.csv
-```
+Take a look at the data to make sure it looks OK. Find the gapminder-aus.csv file in the /cleaned-data folder and open it with Excel or view it with a text editor. 
 
 Hmm, that's not quite what we wanted. Where did all these
 quotation marks come from? Also the row numbers are
@@ -128,42 +129,37 @@ column names.
 Let's fix this:
 
 ```{r}
-write.table(
-  gapminder[gapminder$country == "Australia",],
-  file="cleaned-data/gapminder-aus.csv",
-  sep=",", quote=FALSE, row.names=FALSE
+write.table(gapminder[gapminder$country == "Australia",],
+            file="cleaned-data/gapminder-aus.csv",
+            sep = ",", quote = FALSE, row.names = FALSE
 )
 ```
 
-Now lets look at the data again using our shell skills:
+Now lets look at the data again. Does that look better?
 
-```{r, engine='bash'}
-head cleaned-data/gapminder-aus.csv
+### Challenge 2
+
+Write a data-cleaning script file that subsets the gapminder
+data to include only data points collected since 1990.
+
+Use this script to write out the new subset to a file
+in the `cleaned-data/` directory.
+
+<div class="fold s">
+
+```{r eval = FALSE}
+# Solution to challenge 2.
+
+write.table(gapminder[gapminder$year > 1990, ],
+            file = "cleaned-data/gapminder-after1990.csv",
+            sep  = ",", quote = FALSE, row.names = FALSE)
 ```
 
-That looks better!
+</div>
 
-> ## Challenge 2
->
-> Write a data-cleaning script file that subsets the gapminder
-> data to include only data points collected since 1990.
->
-> Use this script to write out the new subset to a file
-> in the `cleaned-data/` directory.
-> > ## Solution to challenge 2
-> >
-> > ```{r, eval = FALSE}
-> > write.table(
-> >   gapminder[gapminder$year > 1990, ],
-> >   file = "cleaned-data/gapminder-after1990.csv",
-> >   sep = ",", quote = FALSE, row.names = FALSE
-> > )
-> > ```
-> {: .solution}
-{: .challenge}
+```{r, echo = FALSE}
+# We remove after rendering the lesson, because we don't want to permanently
+# keep this directory.
 
-```{r, echo=FALSE}
-# We remove after rendering the lesson, because we don't want this in the lesson
-# repository
 unlink("cleaned-data", recursive=TRUE)
 ```
