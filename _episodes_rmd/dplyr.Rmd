@@ -1,28 +1,24 @@
 ---
-title: Dataframe Manipulation with dplyr
-teaching: 40
-exercises: 15
-questions:
-- "How can I manipulate dataframes without repeating myself?"
-objectives:
-- " To be able to use the six main dataframe manipulation 'verbs' with pipes in  `dplyr`."
-- " To understand how `group_by()` and `summarize()` can be combined to summarize datasets."
-- " Be able to analyze a subset of data using logical filtering."
-keypoints:
-- "Use the `dplyr` package to manipulate dataframes."
-- "Use `select()` to choose variables from a dataframe."
-- "Use `filter()` to choose data based on values."
-- "Use `group_by()` and `summarize()` to work with subsets of data."
-- "Use `mutate()` to create new variables."
-source: Rmd
+title: Dataframe Manipulation with dplyr (Instructional Worksheet)
+date: '`r Sys.Date()`'
+output:
+  html_document: default
+  pdf_document:
+    fig_caption: no
+header-includes: \usepackage{color}
 ---
 
 ```{r, include=FALSE}
-source("../bin/chunk-options.R")
-knitr_fig_path("13-")
+
 # Silently load in the data so the rest of the lesson works
-gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
+gapminder <- read.csv("../data/gapminder_FiveYearData.csv", header=TRUE)
 ```
+
+![](../fig/mydatastory_footer.png)
+
+<script src="hideOutput.js"></script>
+
+<link rel="stylesheet" type="text/css" href="fold.css">
 
 Manipulation of dataframes means many things to many researchers, we often
 select certain observations (rows) or variables (columns), we often group the
@@ -78,7 +74,7 @@ variables you select.
 year_country_gdp <- select(gapminder,year,country,gdpPercap)
 ```
 
-![](../fig/13-dplyr-fig1.png)
+![](../fig/dplyr_fig1.png)
 
 If we open up `year_country_gdp` we'll see that it only contains the year,
 country and gdpPercap. Above we used 'normal' grammar, but the strengths of
@@ -109,21 +105,24 @@ year_country_gdp_euro <- gapminder %>%
     select(year,country,gdpPercap)
 ```
 
-> ## Challenge 1
->
-> Write a single command (which can span multiple lines and includes pipes) that
-> will produce a dataframe that has the African values for `lifeExp`, `country`
-> and `year`, but not for other Continents.  How many rows does your dataframe
-> have and why?
->
-> > ## Solution to Challenge 1
-> >```{r}
-> >year_country_lifeExp_Africa <- gapminder %>%
-> >                            filter(continent=="Africa") %>%
-> >                            select(year,country,lifeExp)
-> > ```
-> {: .solution}
-{: .challenge}
+### Challenge 1
+
+Write a single command (which can span multiple lines and includes pipes) that
+will produce a dataframe that has the African values for `lifeExp`, `country`
+and `year`, but not for other Continents.  How many rows does your dataframe
+have and why?
+
+<div class="fold s">
+
+```{r eval = FALSE}
+# Solution to challenge 1.
+
+year_country_lifeExp_Africa <- gapminder %>%
+                           filter(continent=="Africa") %>%
+                           select(year,country,lifeExp)
+```
+
+</div>
 
 As with last time, first we pass the gapminder dataframe to the `filter()`
 function, then we pass the filtered version of the gapminder dataframe to the
@@ -151,7 +150,7 @@ You will notice that the structure of the dataframe where we used `group_by()`
 `data.frame` which contains only the rows that correspond to the a particular
 value `continent` (at least in the example above).
 
-![](../fig/13-dplyr-fig2.png)
+![](../fig/dplyr_fig2.png)
 
 ## Using summarize()
 
@@ -168,7 +167,7 @@ gdp_bycontinents <- gapminder %>%
     summarize(mean_gdpPercap=mean(gdpPercap))
 ```
 
-![](../fig/13-dplyr-fig3.png)
+![](../fig/dplyr_fig3.png)
 
 ```{r,eval=FALSE}
 continent mean_gdpPercap
@@ -183,38 +182,39 @@ continent mean_gdpPercap
 That allowed us to calculate the mean gdpPercap for each continent, but it gets
 even better.
 
-> ## Challenge 2
->
->
-> Calculate the average life expectancy per country. Which has the longest average life
-> expectancy and which has the shortest average life expectancy?
->
-> > ## Solution to Challenge 2
-> >```{r}
-> >lifeExp_bycountry <- gapminder %>%
-> >    group_by(country) %>%
-> >    summarize(mean_lifeExp=mean(lifeExp))
-> >lifeExp_bycountry %>%
-> >    filter(mean_lifeExp == min(mean_lifeExp) | mean_lifeExp == max(mean_lifeExp))
-> >```
-> Another way to do this is to use the `dplyr` function `arrange()`, which
-> arranges the rows in a data frame according to the order of one or more
-> variables from the data frame.  It has similar syntax to other functions from
-> the `dplyr` package. You can use `desc()` inside `arrange()` to sort in
-> descending order.
-> >```{r}
-> >lifeExp_bycountry %>%
-> >    arrange(mean_lifeExp) %>%
-> >    head(1)
-> >lifeExp_bycountry %>%
-> >    arrange(desc(mean_lifeExp)) %>%
-> >    head(1)
-> >```
-> {: .solution}
-{: .challenge}
+### Challenge 2
+
+Calculate the average life expectancy per country. Which has the longest average life
+expectancy and which has the shortest average life expectancy?
+
+<div class="fold s">
+
+```{r eval = FALSE}
+# Solution to challenge 2.
+
+lifeExp_bycountry <- gapminder %>%
+    group_by(country) %>%
+    summarize(mean_lifeExp=mean(lifeExp))
+
+lifeExp_bycountry %>%
+    filter(mean_lifeExp == min(mean_lifeExp) | mean_lifeExp == max(mean_lifeExp))
+
+# Another way to do this is to use the `dplyr` function `arrange()`, which
+# arranges the rows in a data frame according to the order of one or more
+# variables from the data frame.  It has similar syntax to other functions from
+# the `dplyr` package. You can use `desc()` inside `arrange()` to sort in
+# descending order.
+
+lifeExp_bycountry %>%
+    arrange(mean_lifeExp) %>%
+    head(1)
+
+lifeExp_bycountry %>%
+    arrange(desc(mean_lifeExp)) %>%
+    head(1)
+```
 
 The function `group_by()` allows us to group by multiple variables. Let's group by `year` and `continent`.
-
 
 ```{r}
 gdp_bycontinents_byyear <- gapminder %>%
@@ -289,14 +289,12 @@ gdp_pop_bycontinents_byyear <- gapminder %>%
 
 ## Connect mutate with logical filtering: ifelse
 
-When creating new variables, we can hook this with a logical condition. A simple combination of
-`mutate()` and `ifelse()` facilitates filtering right where it is needed: in the moment of creating something new.
-This easy-to-read statement is a fast and powerful way of discarding certain data (even though the overall dimension
-of the data frame will not change) or for updating values depending on this given condition.
+When creating new variables, we can hook this with a logical condition. A simple combination of `mutate()` and `ifelse()` facilitates filtering right where it is needed: in the moment of creating something new.  This easy-to-read statement is a fast and powerful way of discarding certain data (even though the overall dimension of the data frame will not change) or for updating values depending on this given condition.
 
 ```{r}
-## keeping all data but "filtering" after a certain condition
+# Keeping all data but "filtering" after a certain condition
 # calculate GDP only for people with a life expectation above 25
+
 gdp_pop_bycontinents_byyear_above25 <- gapminder %>%
     mutate(gdp_billion = ifelse(lifeExp > 25, gdpPercap * pop / 10^9, NA)) %>%
     group_by(continent, year) %>%
@@ -307,8 +305,9 @@ gdp_pop_bycontinents_byyear_above25 <- gapminder %>%
               mean_gdp_billion = mean(gdp_billion),
               sd_gdp_billion = sd(gdp_billion))
 
-## updating only if certain condition is fullfilled
+# Updating only if certain condition is fullfilled
 # for life expectations above 40 years, the gpd to be expected in the future is scaled
+
 gdp_future_bycontinents_byyear_high_lifeExp <- gapminder %>%
     mutate(gdp_futureExpectation = ifelse(lifeExp > 40, gdpPercap * 1.5, gdpPercap)) %>%
     group_by(continent, year) %>%
@@ -323,10 +322,15 @@ a layer of facet panels using `ggplot2`. Here is the code we used (with some
 extra comments):
 
 ```{r}
+# Load the ggplot2 library
+library(ggplot2)
+
 # Get the start letter of each country
 starts.with <- substr(gapminder$country, start = 1, stop = 1)
+
 # Filter countries that start with "A" or "Z"
 az.countries <- gapminder[starts.with %in% c("A", "Z"), ]
+
 # Make the plot
 ggplot(data = az.countries, aes(x = year, y = lifeExp, color = continent)) +
   geom_line() + facet_wrap( ~ country)
@@ -365,24 +369,28 @@ gapminder %>%
 	facet_wrap( ~ country)
 ```
 
-> ## Advanced Challenge
->
-> Calculate the average life expectancy in 2002 of 2 randomly selected countries
-> for each continent. Then arrange the continent names in reverse order.
-> **Hint:** Use the `dplyr` functions `arrange()` and `sample_n()`, they have
-> similar syntax to other dplyr functions.
->
-> > ## Solution to Advanced Challenge
-> >```{r}
-> >lifeExp_2countries_bycontinents <- gapminder %>%
-> >    filter(year==2002) %>%
-> >    group_by(continent) %>%
-> >    sample_n(2) %>%
-> >    summarize(mean_lifeExp=mean(lifeExp)) %>%
-> >    arrange(desc(mean_lifeExp))
-> >```
-> {: .solution}
-{: .challenge}
+### Advanced Challenge
+
+Calculate the average life expectancy in 2002 of 2 randomly selected countries
+for each continent. Then arrange the continent names in reverse order.
+**Hint:** Use the `dplyr` functions `arrange()` and `sample_n()`, they have
+similar syntax to other dplyr functions.
+
+<div class="fold s">
+
+```{r eval = FALSE}
+# Solution to advanced challenge.
+
+lifeExp_2countries_bycontinents <- gapminder %>%
+    filter(year==2002) %>%
+    group_by(continent) %>%
+    sample_n(2) %>%
+    summarize(mean_lifeExp=mean(lifeExp)) %>%
+    arrange(desc(mean_lifeExp))
+
+```
+
+</div>
 
 ## Other great resources
 
