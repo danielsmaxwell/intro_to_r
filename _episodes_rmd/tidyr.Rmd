@@ -1,41 +1,42 @@
 ---
-title: Dataframe Manipulation with tidyr
-teaching: 30
-exercises: 15
-questions:
-- "How can I change the format of dataframes?"
-objectives:
-- "To be understand the concepts of 'long' and 'wide' data formats and be able to convert between them with `tidyr`."
-keypoints:
-- "Use the `tidyr` package to change the layout of dataframes."
-- "Use `gather()` to go from wide to long format."
-- "Use `spread()` to go from long to wide format."
-source: Rmd
+title: Dataframe Manipulation with tidyr (Instructional Worksheet)
+date: '`r Sys.Date()`'
+output:
+  html_document: default
+  pdf_document:
+    fig_caption: no
+header-includes: \usepackage{color}
 ---
 
 ```{r, include=FALSE}
-source("../bin/chunk-options.R")
-knitr_fig_path("14-")
+
 # Silently load in the data so the rest of the lesson works
-gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE, stringsAsFactors = FALSE)
+gapminder <- read.csv("../data/gapminder_FiveYearData.csv", header=TRUE, stringsAsFactors = FALSE)
 
 # To create gapminder_wide.csv:
 # library("dplyr")
 # library("tidyr")
 #
-# #transform the data to the wide format
+# # Transform the data to the wide format
 # gap_wide <- gapminder %>% gather(obs_type,obs_values,-continent,-country,-year) %>%
 #     unite(ID_var,continent,country,sep="_") %>%
 #     unite(var_names,obs_type,year,sep="_") %>%
 #     spread(var_names,obs_values) %>%
 #     separate(ID_var,into=c('continent','country'),sep='_')
 #
-# #write our the .csv so students can use it
+# # Write our the .csv so students can use it
 # write.csv(gap_wide_betterID,"data/gapminder_wide.csv",row.names = FALSE)
 
-#load the "student" data
-gap_wide <- read.csv("data/gapminder_wide.csv", header=TRUE, stringsAsFactors = FALSE)
+# Load the "student" data
+gap_wide <- read.csv("../data/gapminder_wide.csv", header=TRUE, stringsAsFactors = FALSE)
+
 ```
+
+![](../fig/mydatastory_footer.png)
+
+<script src="hideOutput.js"></script>
+
+<link rel="stylesheet" type="text/css" href="fold.css">
 
 Researchers often want to manipulate their data from the 'wide' to the 'long'
 format, or vice-versa. The 'long' format is where:
@@ -46,7 +47,6 @@ format, or vice-versa. The 'long' format is where:
 In the 'long' format, you usually have 1 column for the observed variable and
 the other columns are ID variables.
 
-
 For the 'wide' format each row is often a site/subject/patient and you have
 multiple observation variables containing the same type of data. These can be
 either repeated observations over time, or observation of multiple variables (or
@@ -55,7 +55,7 @@ applications may prefer the 'wide' format. However, many of `R`'s functions have
 been designed assuming you have 'long' format data. This tutorial will help you
 efficiently transform your data regardless of original format.
 
-![](../fig/14-tidyr-fig1.png)
+![](../fig/tidyr_fig1.png)
 
 These data formats mainly affect readability. For humans, the wide format is
 often more intuitive since we can often see more of the data on the screen due
@@ -86,19 +86,22 @@ First, lets look at the structure of our original gapminder dataframe:
 str(gapminder)
 ```
 
-> ## Challenge 1
->
-> Is gapminder a purely long, purely wide, or some intermediate format?
->
->
-> > ## Solution to Challenge 1
-> >
-> > The original gapminder data.frame is in an intermediate format. It is not
-> > purely long since it had multiple observation variables
-> > (`pop`,`lifeExp`,`gdpPercap`).
-> {: .solution}
-{: .challenge}
+### Challenge 1
 
+Is gapminder a purely long, purely wide, or some intermediate format?
+
+<div class="fold s">
+
+```{r eval = FALSE}
+# Solution to challenge 1.
+
+# The original gapminder data.frame is in an intermediate format. It is not
+# purely long since it had multiple observation variables
+# (`pop`,`lifeExp`,`gdpPercap`).
+
+```
+
+</div>
 
 Sometimes, as with the gapminder dataset, we have multiple types of observed
 data. It is somewhere in between the purely 'long' and 'wide' data formats. We
@@ -124,7 +127,7 @@ Until now, we've been using the nicely formatted original gapminder dataset, but
 'real' data (i.e. our own research data) will never be so well organized. Here
 let's start with the wide format version of the gapminder dataset.
 
-> Download the wide version of the gapminder data from [here](https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder_wide.csv)
+> Download the wide version of the gapminder data from [here](https://github.com/mydatastory/r_intro_class/blob/master/data/gapminder_wide.csv)
 and save it in your data folder.
 
 We'll load the data file and look at it.  Note: we don't want our continent and
@@ -132,22 +135,23 @@ country columns to be factors, so we use the stringsAsFactors argument for
 `read.csv()` to disable that.
 
 ```{r}
-gap_wide <- read.csv("data/gapminder_wide.csv", stringsAsFactors = FALSE)
+gap_wide <- read.csv("../data/gapminder_wide.csv", stringsAsFactors = FALSE)
 str(gap_wide)
 ```
 
-![](../fig/14-tidyr-fig2.png)
+![](../fig/tidyr_fig2.png)
 
 The first step towards getting our nice intermediate data format is to first
 convert from the wide to the long format. The `tidyr` function `gather()` will
 'gather' your observation variables into a single variable.
 
-![](../fig/14-tidyr-fig3.png)
+![](../fig/tidyr_fig3.png)
 
 ```{r}
 gap_long <- gap_wide %>%
     gather(obstype_year, obs_values, starts_with('pop'),
            starts_with('lifeExp'), starts_with('gdpPercap'))
+
 str(gap_long)
 ```
 
@@ -164,7 +168,7 @@ that starts with the desired character string. Gather also allows the alternativ
 syntax of using the `-` symbol to identify which variables are not to be
 gathered (i.e. ID variables)
 
-![](../fig/14-tidyr-fig4.png)
+![](../fig/tidyr_fig4.png)
 
 ```{r}
 gap_long <- gap_wide %>% gather(obstype_year,obs_values,-continent,-country)
@@ -175,7 +179,6 @@ That may seem trivial with this particular dataframe, but sometimes you have 1
 ID variable and 40 Observation variables with irregular variables names. The
 flexibility is a huge time saver!
 
-
 Now `obstype_year` actually contains 2 pieces of information, the observation
 type (`pop`,`lifeExp`, or `gdpPercap`) and the `year`. We can use the
 `separate()` function to split the character strings into multiple variables
@@ -185,19 +188,23 @@ gap_long <- gap_long %>% separate(obstype_year,into=c('obs_type','year'),sep="_"
 gap_long$year <- as.integer(gap_long$year)
 ```
 
+### Challenge 2
 
-> ## Challenge 2
->
-> Using `gap_long`, calculate the mean life expectancy, population, and gdpPercap for each continent.
->**Hint:** use the `group_by()` and `summarize()` functions we learned in the `dplyr` lesson
->
-> > ## Solution to Challenge 2
-> >```{r}
-> >gap_long %>% group_by(continent,obs_type) %>%
-> >    summarize(means=mean(obs_values))
-> >```
-> {: .solution}
-{: .challenge}
+Using `gap_long`, calculate the mean life expectancy, population, and gdpPercap for each continent.
+
+**Hint:** use the `group_by()` and `summarize()` functions we learned in the `dplyr` lesson
+
+<div class="fold s">
+
+```{r eval = FALSE}
+# Solution to challenge 2.
+
+gap_long %>% group_by(continent,obs_type) %>%
+             summarize(means=mean(obs_values))
+
+```
+
+</div> 
 
 ## From long to intermediate format with spread()
 
@@ -265,19 +272,24 @@ gap_wide_new <- gap_long %>%
 str(gap_wide_new)
 ```
 
-> ## Challenge 3
->
-> Take this 1 step further and create a `gap_ludicrously_wide` format data by spreading over countries, year and the 3 metrics?
->**Hint** this new dataframe should only have 5 rows.
->
-> > ## Solution to Challenge 3
-> >```{r}
-> >gap_ludicrously_wide <- gap_long %>%
-> >    unite(var_names,obs_type,year,country,sep="_") %>%
-> >    spread(var_names,obs_values)
-> >```
-> {: .solution}
-{: .challenge}
+### Challenge 3
+
+Take this 1 step further and create a `gap_ludicrously_wide` format data by spreading over countries, year and the 3 metrics?
+
+**Hint** this new dataframe should only have 5 rows.
+
+<div class="fold s">
+
+```{r eval = FALSE}
+# Solution to challenge 3.
+
+gap_ludicrously_wide <- gap_long %>%
+    unite(var_names,obs_type,year,country,sep="_") %>%
+    spread(var_names,obs_values)
+
+```
+
+</div?
 
 Now we have a great 'wide' format dataframe, but the `ID_var` could be more
 usable, let's separate it into 2 variables with `separate()`
@@ -298,7 +310,7 @@ all.equal(gap_wide, gap_wide_betterID)
 There and back again!
 
 
-## Other great resources
+### Other great resources
 
 * [R for Data Science](http://r4ds.had.co.nz/index.html)
 * [Data Wrangling Cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
