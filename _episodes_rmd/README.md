@@ -13,7 +13,7 @@
 11. [Writing Data](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/writing_data.Rmd)
 12. [Plyr](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/plyr.Rmd)
 13. [Dplyr]
-14. [Tidyr]
+14. [Tidyr](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/tidyr.Rmd)
 15. [Knitr Markdown](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/knitr_markdown.Rmd)
 16. [Wrap](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_rmd/wrap_up.Rmd)
 
