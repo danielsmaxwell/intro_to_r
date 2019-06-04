@@ -80,14 +80,14 @@ interactive R console.
 > 
 > RStudio offers you great flexibility in running code from within the editor
 > window. There are buttons, menu choices, and keyboard shortcuts. To run the
-> current line, you can 1. click on the `Run` button above the editor panel,
-> or 2. select "Run Lines" from the "Code" menu, or 3. hit Ctrl-Enter in Windows
-> or Linux or Command-Enter on OS X. (This shortcut can also be seen by hovering
-> the mouse over the button). To run a block of code, select it and then `Run`.
-> If you have modified a line of code within a block of code you have just run,
-> there is no need to reselect the section and `Run`, you can use the next button
-> along, `Re-run the previous region`. This will run the previous code block
-> including the modifications you have made.
+> current line, you can 1. click on the Run button above the editor panel,
+> or 2. select "Run Lines" from the "Code" menu, or 3. hit <kbd>Ctrl-Enter</kbd>
+> in Windows or Linux or <kbd>Command-Enter</kbd> on OS X. (This shortcut can
+> also be seen by hovering the mouse over the button). To run a block of code,
+> select it and then `Run`.  If you have modified a line of code within a block
+> of code you have just run, there is no need to reselect the section and `Run`,
+> you can use the next button along, `Re-run the previous region`. This will run
+> the previous code block including the modifications you have made.
 
 ## Introduction to R
 
@@ -129,8 +129,8 @@ prompt.
 > ### Tip: Cancelling commands
 >
 > If you're using R from the command line instead of from within RStudio,
-> you need to use `Ctrl+C` instead of `Esc` to cancel the command. This
-> applies to Mac users as well!
+> you need to use <kbd>Ctrl+C</kbd> instead of <kbd>Esc</kbd> to cancel the
+> command. This applies to Mac users as well!
 > 
 > Cancelling a command isn't only useful for killing incomplete commands:
 > you can also use it to tell R to stop running code (for example if it's
@@ -208,7 +208,7 @@ start of the function's name, use the tab completion in RStudio.
 
 > ### Ref: Functions
 > So what is a function? As defined by Webopedia, a software function is "a named
-> section of a program that performs a specific task.""
+> section of a program that performs a specific task."
 
 This is one advantage that RStudio has over R on its own, it
 has auto-completion abilities that allow you to more easily
