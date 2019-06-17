@@ -2,7 +2,7 @@
 
 [![Getting Started](../fig/module_1_header.jpg)](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/module_1_main.md)
 
-[![Project Mgmt](../fig/module_5_header.jpg)](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/module_1_main.md)
+[![Project Mgmt](../fig/module_5_header.jpg)](https://rawcdn.githack.com/mydatastory/r_intro_class/19d5d84e658e9195549a6512a04302b4d8d97622/_episodes_html/project_intro.html)
 
 [![Data Wrangling](../fig/module_2_header.jpg)](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/module_2_main.md)
 
