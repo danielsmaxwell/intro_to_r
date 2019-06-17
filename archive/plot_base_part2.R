@@ -1,3 +1,10 @@
+# -----------------------------------------------------------------------------
+# The data files for this archived learning experience are on my u drive, in the
+# /r_intro_class/data folder. After using these as challenges in my original
+# offering of this class, I discovered that these examples were too advanced for
+# the students and therefore simplified and reworked this learning experience.
+# -----------------------------------------------------------------------------
+
 library(sqldf)
 library(dplyr)
 
