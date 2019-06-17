@@ -2,6 +2,8 @@
 
 [![Getting Started](../fig/module_1_header.jpg)](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/module_1_main.md)
 
+[![Project Mgmt](../fig/module_5_header.jpg)](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/module_1_main.md)
+
 [![Data Wrangling](../fig/module_2_header.jpg)](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/module_2_main.md)
 
 [![Basic Graphs](../fig/module_3_header.jpg)](https://github.com/mydatastory/r_intro_class/blob/master/_episodes_html/module_3_main.md)
