@@ -1,4 +1,9 @@
-# Basic Plot Code -------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# The data files for this archived learning experience are on my u drive, in the
+# /r_intro_class/data folder. After using these as challenges in my original
+# offering of this class, I discovered that these examples were too advanced for
+# the students and therefore simplified and reworked this learning experience.
+# -----------------------------------------------------------------------------
 
 # Create dataframe from the data file
 poverty <- read.delim("family_poverty.txt", sep = "\t", stringsAsFactors = FALSE)
