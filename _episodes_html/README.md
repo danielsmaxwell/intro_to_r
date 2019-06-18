@@ -17,3 +17,5 @@
 [![Writing Data](../fig/module_8_header.jpg)](https://rawcdn.githack.com/mydatastory/r_intro_class/a779bcd860668702b6bd6b2d4c4f2acb906d13dc/_episodes_html/writing_data.html)
 
 [![Plyr](../fig/module_9_header.jpg)](https://rawcdn.githack.com/mydatastory/r_intro_class/0c5017c5a253c534b875ec1605f2f29b0bd460a2/_episodes_html/plyr.html)
+
+[![Dplyr](../fig/module_10_header.jpg)](https://rawcdn.githack.com/mydatastory/r_intro_class/5323c77d6d1df085116dfb321f3032f930a06d3b/_episodes_html/dplyr.html)
