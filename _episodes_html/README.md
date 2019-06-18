@@ -16,3 +16,4 @@
 
 [![Writing Data](../fig/module_8_header.jpg)](https://rawcdn.githack.com/mydatastory/r_intro_class/a779bcd860668702b6bd6b2d4c4f2acb906d13dc/_episodes_html/writing_data.html)
 
+[![Plyr](../fig/module_9_header.jpg)](https://rawcdn.githack.com/mydatastory/r_intro_class/0c5017c5a253c534b875ec1605f2f29b0bd460a2/_episodes_html/plyr.html)
