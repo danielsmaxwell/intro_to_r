@@ -14,3 +14,5 @@
 
 [![Functions](../fig/module_7_header.jpg)](https://rawcdn.githack.com/mydatastory/r_intro_class/0d56a5a7e093b38bbd253ee4eb74965a259b643e/_episodes_html/functions.html)
 
+[![Writing Data](../fig/module_8_header.jpg)](https://rawcdn.githack.com/mydatastory/r_intro_class/a779bcd860668702b6bd6b2d4c4f2acb906d13dc/_episodes_html/writing_data.html)
+
