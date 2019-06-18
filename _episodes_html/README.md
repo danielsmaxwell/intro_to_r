@@ -22,3 +22,5 @@
 
 [![Tidyr](../fig/module_11_header.jpg)](https://rawcdn.githack.com/mydatastory/r_intro_class/66970d981f45f10f4657be02b51ccde843e3a2f8/_episodes_html/tidyr.html)
 
+[![Knitr Markdown](../fig/module_12_header.jpg)](https://rawcdn.githack.com/mydatastory/r_intro_class/0d4321f6e78c1e5c209b833581196c65c03e7b9d/_episodes_html/knitr_markdown.html)
+
