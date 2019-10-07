@@ -5,4 +5,4 @@ Complete [RStudio Introduction](https://rawcdn.githack.com/mydatastory/r_intro_c
 
 Complete [Seeking Help](https://rawcdn.githack.com/mydatastory/r_intro_class/8c17a3db018ec4c3d19894032524aac9874bfbd3/_episodes_html/seeking_help.html) Worksheet
 
-[Test](https://rawcdn.githack.com/mydatastory/r_intro_class/377ec44acb496fb50cd4d8e1679c105766f7b182/_episodes_html/seeking_help_toc.html#getting_help_on_packages)
+[Test](https://rawcdn.githack.com/mydatastory/r_intro_class/6cdf08ed9ce96258eeb7e96cd9b7f72ee71a1495/_episodes_html/seeking_help_toc.html#getting_help_on_packages)
