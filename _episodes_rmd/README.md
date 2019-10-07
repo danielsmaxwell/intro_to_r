@@ -20,6 +20,7 @@
 
 Notes: See ../src for the barplot.R code.  Integrate long_wide.Rmd into one of the other episodes.
 
+--------------------------------------------------------------------------------------------------
 ### Linking to Sections within a RMarkdown Document
 
 The idea is to make a link that opens another page AND that takes you directly to an anchor located further down on this page. 
