@@ -20,3 +20,12 @@
 
 Notes: See ../src for the barplot.R code.  Integrate long_wide.Rmd into one of the other episodes.
 
+### Linking to Sections within a RMarkdown Document
+
+The idea is to make a link that opens another page AND that takes you directly to an anchor located further down on this page. 
+In practice it's fairly simple to do: just type the page name, followed by a hash character (#), followed by the anchor name.
+
+For example:<a href="anchors.html#rollers">
+
+... will take you to the page anchors.html, directly to the anchor called rollers.
+
