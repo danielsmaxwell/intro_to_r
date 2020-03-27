@@ -7,13 +7,13 @@
   The original Software Carpentry episodes have been modified and/or extended to meet the specific learning goals of this class.  The 
   basic_graphs episode, however, was created by the myDataStory development team.
 
-## Original Software Carpentry Course
+### Original Software Carpentry Course
 [r-novice-gapminder](https://github.com/swcarpentry/r-novice-gapminder)
 
-## Presentation Resources
+### Presentation Resources
 [R Presentation](https://github.com/danielsmaxwell/presentations/tree/master/r_intro_class)
 
-## Notes
+### Notes
 - Use MacTeX for Mac computers as opposed to MicTeX
 - On Macs, students may need to setwd() at the top of their activity worksheets.
 - All .html files are rendered using [raw githack](https://raw.githack.com) because htmlpreview.github stopped working properly.
