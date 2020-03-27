@@ -10,6 +10,9 @@
 ## Original Software Carpentry Course
 [r-novice-gapminder](https://github.com/swcarpentry/r-novice-gapminder)
 
+## Presentation Resources
+[R Presentation](https://github.com/danielsmaxwell/presentations/tree/master/r_intro_class)
+
 ## Notes
 - Use MacTeX for Mac computers as opposed to MicTeX
 - On Macs, students may need to setwd() at the top of their activity worksheets.
