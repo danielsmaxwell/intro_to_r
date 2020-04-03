@@ -10,6 +10,7 @@
 ### Links
 - [Software Carpentry: r-novice-gapminder](https://github.com/swcarpentry/r-novice-gapminder)
 - [Presentation Resources](https://github.com/danielsmaxwell/presentations/tree/master/r_intro_class)
+- [R Training Videos List](https://github.com/mydatastory/projects/blob/master/r_master_video_list.xlsx)
 
 ### Notes
 - Use MacTeX for Mac computers as opposed to MicTeX
