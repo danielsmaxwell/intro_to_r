@@ -8,7 +8,7 @@
   basic_graphs episode, however, was created by the myDataStory development team.
 
 ### Textbook
-The recommended text for this class is *Using R for Statistics* by Sarah Stowell.  A .pdf can be found in the /doc sub-folder.
+The recommended text for this class is [*Using R for Statistics*](https://github.com/mydatastory/r_intro_class/blob/master/doc/UsingRStatistics.pdf) by Sarah Stowell.
 
 ### Links
 - [Software Carpentry: r-novice-gapminder](https://github.com/swcarpentry/r-novice-gapminder)
