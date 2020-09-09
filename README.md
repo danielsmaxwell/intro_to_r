@@ -7,6 +7,9 @@
   The original Software Carpentry episodes have been modified and/or extended to meet the specific learning goals of this class.  The 
   basic_graphs episode, however, was created by the myDataStory development team.
 
+### Textbook
+The recommended text for this class is *Using R for Statistics* by Sarah Stowell.  A .pdf can be found in the /doc sub-folder.
+
 ### Links
 - [Software Carpentry: r-novice-gapminder](https://github.com/swcarpentry/r-novice-gapminder)
 - [Presentation Resources](https://github.com/danielsmaxwell/presentations/tree/master/r_intro_class)
